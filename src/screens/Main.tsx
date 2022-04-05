@@ -1,10 +1,14 @@
 import React from 'react';
-import {Button, View, Text, StyleSheet} from 'react-native';
+import {Button, View, Text, StyleSheet, ImageBackground} from 'react-native';
 import TextComponent from '../components/atoms/Text';
 import MainBox from '../components/atoms/MainBox';
 import MainProfile from '../components/organisms/MainProfile';
+import BackgroundImage from '../components/atoms/BackgroundImage';
+import MainImageBox from '../components/molecules/MainImageBox';
 type Props = {};
-
+const image = {
+  uri: 'https://navermaps.github.io/android-map-sdk/assets/2-3-navi.png',
+};
 const Main = ({navigation}: any) => {
   return (
     <View
@@ -22,12 +26,16 @@ const Main = ({navigation}: any) => {
         </MainBox>
       </View>
       <View style={boxStyles(2).box}>
-        <MainBox type="bottom">
-          <TextComponent>bottom box</TextComponent>
-        </MainBox>
-        <MainBox type="bottom">
-          <TextComponent>bottom box</TextComponent>
-        </MainBox>
+        <MainImageBox
+          image={image}
+          subText="지도에서"
+          mainText="쓰레기통 찾기"
+        />
+        <MainImageBox
+          image={image}
+          subText="쓰레기통"
+          mainText=" 위치 등록하기"
+        />
       </View>
 
       <View style={boxStyles(1.5).box}>
@@ -57,4 +65,5 @@ const boxStyles = (flex: number) =>
       marginVertical: 10,
     },
   });
+
 export default Main;

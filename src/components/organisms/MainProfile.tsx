@@ -7,17 +7,20 @@ type Props = {};
 
 const MainProfile = () => {
   return (
-    <View style={{width: '100%'}}>
+    <View style={{width: '100%', flexDirection: 'column'}}>
       <View
         style={{
           flexDirection: 'row',
           justifyContent: 'space-around',
+          width: '100%',
         }}>
         <Profile img="https://en.pimg.jp/061/897/454/1/61897454.jpg" />
         <TextComponent>수미님 안녕하세요!</TextComponent>
+        <TextComponent>></TextComponent>
       </View>
-      <View>
-        <TextComponent>진행바?</TextComponent>
+      <View style={{ justifyContent: 'center',  width: '100%',}}>
+        <TextComponent size='small' textAlign='center'>진행바를 넣을것인가?! </TextComponent>
+        <TextComponent size='small' textAlign='center'>그렇다면 라이브러리를 사용하자</TextComponent>
         {/* <Profile img="https://en.pimg.jp/061/897/454/1/61897454.jpg" /> */}
       </View>
     </View>

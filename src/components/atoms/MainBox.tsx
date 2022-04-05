@@ -15,8 +15,7 @@ const MainBox = ({children, type}: Props) => {
 };
 const styles = StyleSheet.create({
   bottom: {
-    justifyContent: 'flex-end',
-    padding: 30,
+    // justifyContent: 'flex-end',
   },
   basic: {
     flex: 1,
@@ -25,6 +24,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
+    overflow: 'hidden',
   },
 });
 export default MainBox;
