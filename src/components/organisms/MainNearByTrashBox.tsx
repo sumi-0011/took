@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+import Tag from '../atoms/Tag';
 import TextComponent from '../atoms/Text';
 import MainImageBox from '../molecules/MainImageBox';
 
@@ -22,9 +23,11 @@ function MainNearByTrashBox({}: Props) {
           <TextComponent color="#fff" size="small" textAlign="right">
             공대 5호관 1층
           </TextComponent>
-          <TextComponent color="#fff" size="x-small" textAlign="right">
-            #플라스틱 #유리병 #스티로폼
-          </TextComponent>
+          <View style={styles.tagList}>
+            <Tag type="text">#플라스틱 </Tag>
+            <Tag type="text">#유리병 </Tag>
+            <Tag type="text">#스티로폼 </Tag>
+          </View>
         </View>
       </MainImageBox>
     </View>
@@ -47,6 +50,10 @@ const styles = StyleSheet.create({
   desc: {
     height: '50%',
     justifyContent: 'space-between',
+  },
+  tagList: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
 });
 
