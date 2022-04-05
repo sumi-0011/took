@@ -51,24 +51,23 @@ const Main = ({navigation}: any) => {
           </View>
         </MainImageBox>
       </View>
-
       <MainNearByTrashBox />
-      <View style={boxStyles(1).box}>
+      <View style={boxStyles().box}>
         <MainBox>
-          <TextComponent>basic box</TextComponent>
+          <TextComponent fontWeight="bold">MY TOOK</TextComponent>
         </MainBox>
         <MainBox>
-          <TextComponent>basic box</TextComponent>
+          <TextComponent fontWeight="bold">FAQ</TextComponent>
         </MainBox>
       </View>
     </View>
   );
 };
-const boxStyles = (flex: number) =>
+const boxStyles = (flex?: number) =>
   StyleSheet.create({
     box: {
       flexDirection: 'row',
-      flex: flex,
+      flex: flex ?? 1,
       marginVertical: 10,
     },
   });
