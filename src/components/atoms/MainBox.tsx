@@ -6,12 +6,8 @@ type Props = {
   type?: string;
 };
 
-const MainBox = ({children, type}: Props) => {
-  return (
-    <View style={[styles.basic, type === 'bottom' && styles.bottom]}>
-      {children}
-    </View>
-  );
+const MainBox = ({children}: Props) => {
+  return <View style={styles.basic}>{children}</View>;
 };
 const styles = StyleSheet.create({
   bottom: {

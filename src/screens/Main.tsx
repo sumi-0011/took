@@ -5,10 +5,8 @@ import MainBox from '../components/atoms/MainBox';
 import MainProfile from '../components/organisms/MainProfile';
 import BackgroundImage from '../components/atoms/BackgroundImage';
 import MainImageBox from '../components/molecules/MainImageBox';
+import MainNearByTrashBox from '../components/organisms/MainNearByTrashBox';
 type Props = {};
-const image = {
-  uri: 'https://navermaps.github.io/android-map-sdk/assets/2-3-navi.png',
-};
 const Main = ({navigation}: any) => {
   return (
     <View
@@ -27,25 +25,34 @@ const Main = ({navigation}: any) => {
       </View>
       <View style={boxStyles(2).box}>
         <MainImageBox
-          image={image}
-          subText="지도에서"
-          mainText="쓰레기통 찾기"
-        />
+          image={{
+            uri: 'https://navermaps.github.io/android-map-sdk/assets/2-3-navi.png',
+          }}>
+          <View style={styles.innerView}>
+            <TextComponent size="small" textAlign="center" fontWeight="700">
+              지도에서
+            </TextComponent>
+            <TextComponent size="small" textAlign="center" fontWeight="700">
+              쓰레기통 찾기
+            </TextComponent>
+          </View>
+        </MainImageBox>
         <MainImageBox
-          image={image}
-          subText="쓰레기통"
-          mainText=" 위치 등록하기"
-        />
+          image={{
+            uri: 'https://navermaps.github.io/android-map-sdk/assets/2-3-navi.png',
+          }}>
+          <View style={styles.innerView}>
+            <TextComponent size="small" textAlign="center" fontWeight="700">
+              쓰레기통
+            </TextComponent>
+            <TextComponent size="small" textAlign="center" fontWeight="700">
+              위치 등록하기
+            </TextComponent>
+          </View>
+        </MainImageBox>
       </View>
 
-      <View style={boxStyles(1.5).box}>
-        <View>
-          <TextComponent>basic box</TextComponent>
-        </View>
-        <View>
-          <TextComponent>basic box</TextComponent>
-        </View>
-      </View>
+      <MainNearByTrashBox />
       <View style={boxStyles(1).box}>
         <MainBox>
           <TextComponent>basic box</TextComponent>
@@ -65,5 +72,12 @@ const boxStyles = (flex: number) =>
       marginVertical: 10,
     },
   });
-
+const styles = StyleSheet.create({
+  innerView: {
+    paddingBottom: 30,
+    height: '100%',
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+  },
+});
 export default Main;

@@ -1,29 +1,21 @@
 import React from 'react';
 import {ImageBackground, StyleSheet, View} from 'react-native';
-import BackgroundImage from '../atoms/BackgroundImage';
 import MainBox from '../atoms/MainBox';
-import TextComponent from '../atoms/Text';
 
 type Props = {
   image: any;
-  mainText: string;
-  subText: string;
+  mainText?: string;
+  subText?: string;
   children?: any;
+  boxStyle?: any;
 };
 
-const MainImageBox = ({image, mainText, subText}: Props) => {
+const MainImageBox = ({image, boxStyle, children}: Props) => {
   return (
-    <MainBox type="bottom">
+    <MainBox>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
         <View style={styles.bg} />
-        <View style={styles.innerView}>
-          <TextComponent size="small" textAlign="center" fontWeight="700">
-            {subText}
-          </TextComponent>
-          <TextComponent size="small" textAlign="center" fontWeight="700">
-            {mainText}
-          </TextComponent>
-        </View>
+        <View style={boxStyle}>{children}</View>
       </ImageBackground>
     </MainBox>
   );
@@ -38,12 +30,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     position: 'absolute',
-  },
-  innerView: {
-    paddingBottom: 30,
-    height: '100%',
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
   },
 });
 export default MainImageBox;

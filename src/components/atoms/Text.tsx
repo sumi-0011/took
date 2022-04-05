@@ -2,7 +2,7 @@ import React, {ReactChild} from 'react';
 import {Text} from 'react-native';
 interface TextProps {
   children: ReactChild;
-  size?: 'medium' | 'large' | 'small';
+  size?: 'medium' | 'large' | 'small' | 'x-small';
   color?: string;
   textAlign?: 'auto' | 'left' | 'right' | 'center' | 'justify';
   fontWeight?:
@@ -21,8 +21,9 @@ interface TextProps {
 }
 const fontSizeStyle: {[index: string]: number} = {
   large: 24,
-  medium: 18,
-  small: 16,
+  medium: 16,
+  small: 14,
+  'x-small': 12,
 };
 function TextComponent({
   children,
