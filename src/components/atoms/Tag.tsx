@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text} from 'react-native';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 type Props = {children: any; type: 'text' | 'badge'};
 

@@ -10,7 +10,7 @@ type Props = {
 const MainBox = ({children}: Props) => {
   return <Box>{children}</Box>;
 };
-const Box = styled.View`
+const Box = styled(View)`
   flex: 1;
   background-color: #f4f4f4;
   margin-horizontal: 10;
