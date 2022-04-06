@@ -3,7 +3,6 @@ import {
   Avatar,
   Progress,
   Text,
-  Flex,
   ChevronRightIcon,
   HStack,
 } from 'native-base';
@@ -42,7 +41,7 @@ const ProfileBox = () => {
           <ChevronRightIcon size="5" />
         </HStack>
       </HStack>
-      <Progress value={45} size="lg" colorScheme="emerald" marginY={5} />
+      <Progress value={45} size="lg" marginY={5} colorScheme="tertiary" />
     </Box>
   );
 };
