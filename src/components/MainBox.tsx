@@ -1,6 +1,5 @@
 import {Box, Text} from 'native-base';
 import React from 'react';
-import {ImageBackground} from 'react-native';
 import styled from 'styled-components/native';
 import ImageBg from './ImageBg';
 

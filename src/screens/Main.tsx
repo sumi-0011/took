@@ -2,26 +2,27 @@ import React from 'react';
 import {
   NativeBaseProvider,
   Box,
-  AspectRatio,
-  Center,
-  Heading,
   HStack,
-  Image,
-  Stack,
-  Text,
   VStack,
-  Avatar,
+  Text,
+  Center,
 } from 'native-base';
 // import ProfileBox from 'components/ProfileBox';
 import ProfileBox from 'components/ProfileBox';
 import MainBox from '~/components/MainBox';
+import NearByTrashBox from '~/components/NearByTrashBox';
 
 type Props = {};
 
 function Main() {
   return (
     <NativeBaseProvider>
-      <Box w="100%" h="100%" p={5} alignContent="center">
+      <Box
+        w="100%"
+        h="100%"
+        p={5}
+        alignContent="center"
+        backgroundColor={'white'}>
         <VStack justifyContent="space-evenly" space={5} h="100%">
           <ProfileBox />
           <HStack w="100%" space={5} flex={2}>
@@ -36,10 +37,18 @@ function Main() {
               img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSm2-zWd0cNNhehI_h34ZMZPK0Qj9tf8l39w&usqp=CAU"
             />
           </HStack>
-          <Box w="100%" bg="coolGray.100" rounded="md" shadow={3} flex={1.5} />
+          <NearByTrashBox />
           <HStack w="100%" space={5} flex={1}>
-            <Box flex={1} bg="coolGray.100" rounded="md" shadow={3} />
-            <Box flex={1} bg="coolGray.100" rounded="md" shadow={3} />
+            <Center flex={1} bg="coolGray.100" rounded="md" shadow={3}>
+              <Text bold fontSize={'lg'}>
+                MY TOOK
+              </Text>
+            </Center>
+            <Center flex={1} bg="coolGray.100" rounded="md" shadow={3}>
+              <Text bold fontSize={'lg'}>
+                FAQ
+              </Text>
+            </Center>
           </HStack>
         </VStack>
       </Box>
