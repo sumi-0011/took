@@ -1,5 +1,8 @@
 import React, {ReactChild} from 'react';
 import {Text} from 'react-native';
+import styled from 'styled-components/native';
+
+
 interface TextProps {
   children: ReactChild;
   size?: 'medium' | 'large' | 'small' | 'x-small';
@@ -36,7 +39,7 @@ function TextComponent({
     <Text
       style={{
         fontSize: fontSizeStyle[size ?? 'medium'],
-        color: color ?? '#000',
+        color,
         fontWeight,
         textAlign: textAlign,
       }}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import {ImageBackground, StyleSheet, View} from 'react-native';
 import MainBox from '../atoms/MainBox';
 
@@ -6,7 +6,7 @@ type Props = {
   image: any;
   mainText?: string;
   subText?: string;
-  children?: any;
+  children?: ReactNode;
   boxStyle?: any;
 };
 
