@@ -1,14 +1,12 @@
 import React from 'react';
-import {
-  NativeBaseProvider,
-  Box,
-  HStack,
-  VStack,
-  Text,
-  Center,
-} from 'native-base';
+import {NativeBaseProvider, Box, HStack, VStack} from 'native-base';
 // import ProfileBox from 'components/ProfileBox';
-import {MainBox, NearByTrashBox, ProfileBox} from '~/components/Main/index';
+import {
+  MainBox,
+  NearByTrashBox,
+  ProfileBox,
+  SmallBox,
+} from '~/components/Main/index';
 
 type Props = {};
 
@@ -37,16 +35,8 @@ function Main() {
           </HStack>
           <NearByTrashBox />
           <HStack w="100%" space={5} flex={1}>
-            <Center flex={1} bg="coolGray.100" rounded="md" shadow={3}>
-              <Text bold fontSize={'lg'}>
-                MY TOOK
-              </Text>
-            </Center>
-            <Center flex={1} bg="coolGray.100" rounded="md" shadow={3}>
-              <Text bold fontSize={'lg'}>
-                FAQ
-              </Text>
-            </Center>
+            <SmallBox title="MY TOOK" />
+            <SmallBox title="FAQ" />
           </HStack>
         </VStack>
       </Box>

@@ -1,4 +1,4 @@
-import {Box, HStack, Text, VStack} from 'native-base';
+import {Box, Text} from 'native-base';
 import React from 'react';
 import ImageBg from '../ImageBg';
 import TagList from '../TagList';
@@ -7,13 +7,7 @@ type Props = {};
 
 const NearByTrashBox = ({}: Props) => {
   return (
-    <Box
-      w="100%"
-      bg="coolGray.100"
-      rounded="md"
-      shadow={3}
-      flex={1.5}
-      overflow="hidden">
+    <Box bg="coolGray.100" rounded="md" shadow={3} flex={1.5} overflow="hidden">
       <ImageBg
         img={
           'https://img.freepik.com/free-photo/white-paper-in-the-trash-can_144627-45832.jpg?size=626&ext=jpg&ga=GA1.2.1908636980.1634256000'
