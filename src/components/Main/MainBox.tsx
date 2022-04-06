@@ -1,7 +1,7 @@
 import {Box, Text} from 'native-base';
 import React from 'react';
 import styled from 'styled-components/native';
-import ImageBg from './ImageBg';
+import ImageBg from '../ImageBg';
 
 type Props = {
   sub: string;

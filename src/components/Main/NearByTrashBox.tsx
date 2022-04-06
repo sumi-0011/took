@@ -1,7 +1,7 @@
 import {Box, HStack, Text, VStack} from 'native-base';
 import React from 'react';
-import ImageBg from './ImageBg';
-import TagList from './TagList';
+import ImageBg from '../ImageBg';
+import TagList from '../TagList';
 
 type Props = {};
 

@@ -8,9 +8,7 @@ import {
   Center,
 } from 'native-base';
 // import ProfileBox from 'components/ProfileBox';
-import ProfileBox from 'components/ProfileBox';
-import MainBox from '~/components/MainBox';
-import NearByTrashBox from '~/components/NearByTrashBox';
+import {MainBox, NearByTrashBox, ProfileBox} from '~/components/Main/index';
 
 type Props = {};
 
