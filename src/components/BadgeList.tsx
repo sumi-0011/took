@@ -1,4 +1,4 @@
-import {Box, Text} from 'native-base';
+import {Box, HStack, Text} from 'native-base';
 import React from 'react';
 import styled from 'styled-components/native';
 
@@ -8,19 +8,22 @@ type Props = {
 
 const BadgeList = ({data}: Props) => {
   return (
-    <Wrapper>
+    <Wrapper space={1} marginY="2">
       {data.map((item, index) => (
-        <Badge key={`tag${index}`} p={1} m={1}>
+        <Badge
+          key={`tag${index}`}
+          paddingX={2}
+          paddingY={1}
+          borderRadius={5}
+          fontSize="xs">
           {item}
         </Badge>
       ))}
     </Wrapper>
   );
 };
-const Wrapper = styled(Box)`
-  flex-direction: row;
-`;
+const Wrapper = styled(HStack)``;
 const Badge = styled(Text)`
-  background-color: grey;
+  background-color: #d1d5db;
 `;
 export default BadgeList;
