@@ -8,7 +8,7 @@ type Props = {
 
 const BadgeList = ({data}: Props) => {
   return (
-    <Wrapper space={1} marginY="2">
+    <HStack space={1} marginY="2">
       {data.map((item, index) => (
         <Badge
           key={`tag${index}`}
@@ -19,10 +19,10 @@ const BadgeList = ({data}: Props) => {
           {item}
         </Badge>
       ))}
-    </Wrapper>
+    </HStack>
   );
 };
-const Wrapper = styled(HStack)``;
+// const Wrapper = styled(HStack)``;
 const Badge = styled(Text)`
   background-color: #d1d5db;
 `;
