@@ -5,6 +5,7 @@ import {Button, View, Text, StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Main from './src/screens/Main';
+import Map from './src/screens/Map';
 function DetailsScreen({navigation}: any) {
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -29,6 +30,7 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="TOOK" component={Main} />
+        <Stack.Screen name="Map" component={Map} />
         <Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
