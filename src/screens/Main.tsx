@@ -26,7 +26,7 @@ function Main({navigation}: any) {
               sub="지도에서"
               main="쓰레기통 찾기"
               img="https://media.istockphoto.com/vectors/abstract-city-map-simple-map-illustration-vector-id685869052?s=612x612"
-              onPress={() => navigation.navigate('Details')}
+              onPress={() => navigation.navigate('Map')}
             />
             <MainBox
               sub="쓰레기통"
