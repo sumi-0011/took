@@ -1,10 +1,11 @@
 import {
   Box,
   Button,
-  ChevronLeftIcon,
+  Center,
   HStack,
   Image,
   NativeBaseProvider,
+  Pressable,
   SunIcon,
   Text,
   WarningTwoIcon,
@@ -43,11 +44,13 @@ const Map = ({}: Props) => {
               <IconText>신고하기</IconText>
             </IconButton>
           </HStack>
-          <Button bg={'#68DE7B'}>
-            <Text color={'#fff'} fontSize="lg" bold>
-              TOOK 버리기
-            </Text>
-          </Button>
+          <TookButton>
+            <Pressable>
+              <Text color={'#fff'} fontSize="lg" bold>
+                TOOK 버리기
+              </Text>
+            </Pressable>
+          </TookButton>
         </Modal>
       </Wrapper>
     </NativeBaseProvider>
@@ -95,7 +98,12 @@ const IconText = styled(Text)`
   color: #767676;
   margin-left: 10px;
 `;
-const IconButton = styled(Box)`
+const TookButton = styled(Center)`
+  background-color: #68de7b;
+  padding: 10px;
+  border-radius: 10px;
+`;
+const IconButton = styled(Pressable)`
   flex-direction: row;
   justify-content: center;
   align-items: center;
