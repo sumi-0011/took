@@ -19,14 +19,9 @@ type Props = {};
 const Map = ({}: Props) => {
   return (
     <NativeBaseProvider>
-      {/* <Box>
-        <ChevronLeftIcon size="4" />
-      </Box>
-      <Box>Hello</Box> */}
       <Wrapper>
-        Wrapper
-        <Modal borderTopRadius="20" p={5} h={300}>
-          <Detail paddingY={5} borderBottomWidth="1" borderColor="coolGray.200">
+        <Modal borderTopRadius="20" p={5}>
+          <Detail paddingY={2} borderBottomWidth="1" borderColor="coolGray.200">
             <DetailText
               name="공대 5호관 1층"
               address="대전광역시 유성구 대학로 99(궁동)"
