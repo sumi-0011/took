@@ -16,7 +16,7 @@ import BadgeList from '~/components/BadgeList';
 
 type Props = {};
 
-const Map = ({}: Props) => {
+const Map = ({navigation}: any) => {
   return (
     <NativeBaseProvider>
       <Wrapper>
@@ -40,7 +40,8 @@ const Map = ({}: Props) => {
             </IconButton>
           </HStack>
           <TookButton>
-            <Pressable>
+            <Pressable
+              onPress={() => navigation.navigate('RegistrationCategory')}>
               <Text color={'#fff'} fontSize="lg" bold>
                 TOOK 버리기
               </Text>
