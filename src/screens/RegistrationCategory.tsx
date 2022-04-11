@@ -92,7 +92,7 @@ const RegistrationCategory = () => {
           />
           {/* </FormControl> */}
 
-          <BasicButton>사진 촬영</BasicButton>
+          <BasicButton >사진 촬영</BasicButton>
         </Box>
       </Box>
     </NativeBaseProvider>
