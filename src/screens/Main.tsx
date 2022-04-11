@@ -1,5 +1,12 @@
 import React from 'react';
-import {NativeBaseProvider, Box, HStack, VStack, Pressable} from 'native-base';
+import {
+  NativeBaseProvider,
+  Box,
+  HStack,
+  VStack,
+  Pressable,
+  StatusBar,
+} from 'native-base';
 // import ProfileBox from 'components/ProfileBox';
 import {
   MainBox,

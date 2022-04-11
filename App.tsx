@@ -7,6 +7,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Main from './src/screens/Main';
 import Map from './src/screens/Map';
 import RegistrationCategory from '~/screens/RegistrationCategory';
+import {StatusBar} from 'native-base';
 function DetailsScreen({navigation}: any) {
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -30,8 +31,20 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="TOOK" component={Main} />
-        <Stack.Screen name="Map" component={Map} />
+        <Stack.Screen
+          name="TOOK"
+          component={Main}
+          options={{
+            title: 'TOOK',
+          }}
+        />
+        <Stack.Screen
+          name="Map"
+          component={Map}
+          options={{
+            headerShown: false,
+          }}
+        />
         <Stack.Screen
           name="RegistrationCategory"
           component={RegistrationCategory}

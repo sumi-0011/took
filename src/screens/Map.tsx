@@ -20,6 +20,12 @@ const Map = ({navigation}: any) => {
   return (
     <NativeBaseProvider>
       <Wrapper>
+        <Button
+          onPress={() => {
+            navigation.pop();
+          }}>
+          HEllo
+        </Button>
         <Modal borderTopRadius="20" p={5}>
           <Detail paddingY={2} borderBottomWidth="1" borderColor="coolGray.200">
             <DetailText
