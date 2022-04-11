@@ -22,5 +22,6 @@ const TookButton = styled(Center)`
   background-color: #68de7b;
   padding: 10px;
   border-radius: 10px;
+  margin: 10px 0;
 `;
 export default BasicButton;

@@ -79,9 +79,7 @@ const RegistrationCategory = () => {
   return (
     <NativeBaseProvider>
       <Box height={'100%'}>
-        <Box flex={1} width={'100%'}>
-          <Text>Hello</Text>
-        </Box>
+        <Box flex={1} width={'100%'} />
         <Box p={5} bg={'#fff'}>
           {/* <FormControl> */}
           <Input size="lg" placeholder="lg Input" marginY={2} />
