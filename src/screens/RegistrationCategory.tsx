@@ -6,6 +6,7 @@ import {
   Stack,
   FlatList,
   Checkbox,
+  FormControl,
 } from 'native-base';
 import React, {useState} from 'react';
 import BasicButton from '~/components/BasicButton';
@@ -82,6 +83,7 @@ const RegistrationCategory = () => {
           <Text>Hello</Text>
         </Box>
         <Box p={5} bg={'#fff'}>
+          {/* <FormControl> */}
           <Input size="lg" placeholder="lg Input" marginY={2} />
           <FlatList
             numColumns={2}
@@ -90,6 +92,8 @@ const RegistrationCategory = () => {
               <CheckInput name={item.name} checked={item.check} />
             )}
           />
+          {/* </FormControl> */}
+
           <BasicButton>사진 촬영</BasicButton>
         </Box>
       </Box>
