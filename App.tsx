@@ -47,6 +47,9 @@ function App() {
         <Stack.Screen
           name="RegistrationCategory"
           component={RegistrationCategory}
+          options={{
+            title: '쓰레기통 등록하기',
+          }}
         />
         <Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>
