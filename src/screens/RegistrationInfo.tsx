@@ -1,6 +1,5 @@
 import {Box, HStack, Image, NativeBaseProvider, Text} from 'native-base';
 import React, {useState} from 'react';
-import styled from 'styled-components/native';
 import BadgeList from '~/components/BadgeList';
 import BasicButton from '~/components/BasicButton';
 
@@ -26,48 +25,72 @@ const RegistrationInfo = ({}: Props) => {
 
   return (
     <NativeBaseProvider>
-      <Wrapper p={5} bg={'#fff'} height={'100%'} justifyContent="space-between">
-        <Box>
-          <Text bold fontSize={'lg'}>
-            {info.name}
-          </Text>
-          <Text fontSize={'xs'} color="coolGray.500">
-            {info.address}
-          </Text>
-          <Image
-            source={{
-              uri: info.image,
-            }}
-            width={'100%'}
-            height={150}
-            marginY={5}
-            borderRadius={10}
-            alt="위치"
-          />
-        </Box>
-        <Box marginTop={5}>
-          <Text bold fontSize={'lg'}>
-            쓰레기통 정보
-          </Text>
-          <Image
-            source={{
-              uri: info.trashImage,
-            }}
-            width={'100%'}
-            height={200}
-            marginY={5}
-            borderRadius={10}
-            alt="쓰레기통 이미지"
-          />
-          <HStack>
-            <BadgeList data={info.tagList} />
-          </HStack>
-        </Box>
+      <Box p={5} bg={'#fff'} height={'100%'} justifyContent="space-between">
+        <PlaceInfo name={info.name} address={info.address} image={info.image} />
+        <TrashBoxInfo image={info.trashImage} tagList={info.tagList} />
 
         <BasicButton>등록하기</BasicButton>
-      </Wrapper>
+      </Box>
     </NativeBaseProvider>
   );
 };
-const Wrapper = styled(Box)``;
 export default RegistrationInfo;
+
+const PlaceInfo = ({
+  name,
+  address,
+  image,
+}: {
+  name: string;
+  address: string;
+  image: string;
+}) => {
+  return (
+    <Box>
+      <Text bold fontSize={'lg'}>
+        {name}
+      </Text>
+      <Text fontSize={'xs'} color="coolGray.500">
+        {address}
+      </Text>
+      <Image
+        source={{
+          uri: image,
+        }}
+        width={'100%'}
+        height={150}
+        marginTop={5}
+        borderRadius={10}
+        alt="위치"
+      />
+    </Box>
+  );
+};
+const TrashBoxInfo = ({
+  image,
+  tagList,
+}: {
+  image: string;
+  tagList: Array<string>;
+}) => {
+  return (
+    <Box marginTop={5}>
+      <Text bold fontSize={'lg'}>
+        쓰레기통 정보
+      </Text>
+      <Image
+        source={{
+          uri: image,
+        }}
+        width={'100%'}
+        height={200}
+        marginY={5}
+        borderRadius={10}
+        alt="쓰레기통 이미지"
+      />
+      <HStack>
+        <BadgeList data={tagList} />
+      </HStack>
+    </Box>
+  );
+};
