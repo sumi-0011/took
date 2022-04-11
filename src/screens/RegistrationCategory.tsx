@@ -74,7 +74,7 @@ const categoryList = [
     check: false,
   },
 ];
-const RegistrationCategory = () => {
+const RegistrationCategory = ({navigation}: {navigation: any}) => {
   const [category, setcategory] = useState(categoryList);
   return (
     <NativeBaseProvider>
@@ -92,7 +92,12 @@ const RegistrationCategory = () => {
           />
           {/* </FormControl> */}
 
-          <BasicButton >사진 촬영</BasicButton>
+          <BasicButton
+            onPress={() => {
+              navigation.navigate('RegistrationInfo');
+            }}>
+            사진 촬영
+          </BasicButton>
         </Box>
       </Box>
     </NativeBaseProvider>

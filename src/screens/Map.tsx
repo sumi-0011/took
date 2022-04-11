@@ -61,8 +61,7 @@ const Map = ({navigation}: any) => {
             </IconButton>
           </HStack>
           <TookButton>
-            <Pressable
-              onPress={() => navigation.navigate('RegistrationCategory')}>
+            <Pressable onPress={() => console.log('버리기 버튼 클릭')}>
               <Text color={'#fff'} fontSize="lg" bold>
                 TOOK 버리기
               </Text>
