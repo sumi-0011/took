@@ -1,5 +1,12 @@
 import React from 'react';
-import {NativeBaseProvider, Box, HStack, VStack, Pressable} from 'native-base';
+import {
+  NativeBaseProvider,
+  Box,
+  HStack,
+  VStack,
+  Pressable,
+  StatusBar,
+} from 'native-base';
 // import ProfileBox from 'components/ProfileBox';
 import {
   MainBox,
@@ -32,7 +39,7 @@ function Main({navigation}: any) {
               sub="쓰레기통"
               main="위치 등록하기"
               img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSm2-zWd0cNNhehI_h34ZMZPK0Qj9tf8l39w&usqp=CAU"
-              onPress={() => navigation.navigate('Details')}
+              onPress={() => navigation.navigate('RegistrationCategory')}
             />
           </HStack>
           <NearByTrashBox />
