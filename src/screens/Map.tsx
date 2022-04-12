@@ -1,8 +1,12 @@
 import {
+  AddIcon,
   Box,
   Button,
   Center,
+  ChevronLeftIcon,
+  Fab,
   HStack,
+  Icon,
   Image,
   NativeBaseProvider,
   Pressable,
@@ -13,13 +17,30 @@ import {
 import React from 'react';
 import styled from 'styled-components/native';
 import BadgeList from '~/components/BadgeList';
-
+// import {AntDesign} from '@expo/vector-icons';
 type Props = {};
+import {AntDesign} from '@native-base/icons';
 
-const Map = ({}: Props) => {
+const Map = ({navigation}: any) => {
   return (
     <NativeBaseProvider>
       <Wrapper>
+        <BackBtn
+          borderRadius="full"
+          onPress={() => {
+            navigation.pop();
+          }}>
+          <ChevronLeftIcon />
+          {/* <Icon
+            as={AntDesign}
+            name="left-outlined"
+            color="coolGray.800"
+            _dark={{
+              color: 'warmGray.50',
+            }}
+          /> */}
+        </BackBtn>
+
         <Modal borderTopRadius="20" p={5}>
           <Detail paddingY={2} borderBottomWidth="1" borderColor="coolGray.200">
             <DetailText
@@ -40,7 +61,8 @@ const Map = ({}: Props) => {
             </IconButton>
           </HStack>
           <TookButton>
-            <Pressable>
+            <Pressable
+              onPress={() => navigation.navigate('RegistrationCategory')}>
               <Text color={'#fff'} fontSize="lg" bold>
                 TOOK 버리기
               </Text>
@@ -89,6 +111,12 @@ const DetailImage = ({url}: {url: string}) => {
     </Box>
   );
 };
+const BackBtn = styled(Button)`
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  margin: 10px;
+`;
 const IconText = styled(Text)`
   color: #767676;
   margin-left: 10px;

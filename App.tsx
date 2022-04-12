@@ -6,6 +6,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Main from './src/screens/Main';
 import Map from './src/screens/Map';
+import RegistrationCategory from '~/screens/RegistrationCategory';
 function DetailsScreen({navigation}: any) {
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -29,8 +30,27 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="TOOK" component={Main} />
-        <Stack.Screen name="Map" component={Map} />
+        <Stack.Screen
+          name="TOOK"
+          component={Main}
+          options={{
+            title: 'TOOK',
+          }}
+        />
+        <Stack.Screen
+          name="Map"
+          component={Map}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="RegistrationCategory"
+          component={RegistrationCategory}
+          options={{
+            title: '쓰레기통 등록하기',
+          }}
+        />
         <Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
