@@ -3,7 +3,6 @@ import React, {useState} from 'react';
 import BadgeList from '~/components/BadgeList';
 import BasicButton from '~/components/BasicButton';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RouteProp} from '@react-navigation/native';
 import {postAxios} from '~/api/registation';
 interface IRegistraionInput {
   checkList: Array<string>;
@@ -46,7 +45,6 @@ const RegistrationInfo = ({route, navigation}: any) => {
       <Box p={5} bg={'#fff'} height={'100%'} justifyContent="space-between">
         <PlaceInfo name={info.name} address={info.address} image={info.image} />
         <TrashBoxInfo image={info.trashImage} tagList={info.tagList} />
-
         <BasicButton onPress={handleSubmit}>등록하기</BasicButton>
       </Box>
     </NativeBaseProvider>
@@ -84,6 +82,7 @@ const PlaceInfo = ({
     </Box>
   );
 };
+
 const TrashBoxInfo = ({
   image,
   tagList,

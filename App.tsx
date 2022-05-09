@@ -41,7 +41,6 @@ function App() {
           options={{
             title: '쓰레기통 등록하기',
           }}
-          initialParams={{name: '', checkList: []}}
         />
       </Stack.Navigator>
     </NavigationContainer>

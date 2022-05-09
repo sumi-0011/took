@@ -7,7 +7,6 @@ export interface ICategory {
   name: string;
   key: string;
 }
-type Props = {};
 interface IRegistraionInput {
   checks: Array<string>;
   name: string;

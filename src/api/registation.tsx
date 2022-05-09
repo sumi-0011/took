@@ -25,10 +25,10 @@ export const getAxios = async (address: string) => {
 
 export const postAxios = async (address: string, data: any) => {
   console.log('post data', data);
-
   const response = await axios
     .post(`${HOST_ADDRESS}/${address}`, data)
     .then(res => {
+      console.log(res);
       return res.data;
     })
     .catch(error => {
@@ -43,5 +43,5 @@ export const postAxios = async (address: string, data: any) => {
       }
       console.log(error.config);
     });
-  // return response.data;
+  return response.data;
 };
