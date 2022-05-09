@@ -63,7 +63,6 @@ const CategotyCheckbox = ({groupValue, setGroupValue}: ICategotyCheckbox) => {
         colorScheme="green"
         accessibilityLabel="재활용 가능한 품목"
         onChange={values => {
-          console.log(groupValue);
           setGroupValue(values || []);
         }}>
         <FlatList
@@ -71,7 +70,7 @@ const CategotyCheckbox = ({groupValue, setGroupValue}: ICategotyCheckbox) => {
           data={CATEGORY_LIST}
           renderItem={({item}) => (
             <Box width={'50%'}>
-              <Checkbox value={item.key} my="2">
+              <Checkbox value={item.name} my="2">
                 {item.name}
               </Checkbox>
             </Box>

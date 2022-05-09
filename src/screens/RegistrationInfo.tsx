@@ -2,10 +2,18 @@ import {Box, HStack, Image, NativeBaseProvider, Text} from 'native-base';
 import React, {useState} from 'react';
 import BadgeList from '~/components/BadgeList';
 import BasicButton from '~/components/BasicButton';
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RouteProp} from '@react-navigation/native';
+import {postAxios} from '~/api/registation';
+interface IRegistraionInput {
+  checkList: Array<string>;
+  name: string;
+}
 
-type Props = {};
+type Props = NativeStackScreenProps<{state: IRegistraionInput}>;
+
 const dummyInfo = {
-  name: '대전역 건너 버스정류장',
+  name: '대전역 건너 버스정류장teststest',
   address: '대전광역시 동구 중앙로 211(장동)',
   image:
     'https://spi.maps.daum.net/map2/map/imageservice?IW=600&IH=350&MX=400205&MY=-11702&SCALE=2.5&service=open',
@@ -20,16 +28,26 @@ interface InfoProps {
   trashImage: string;
   tagList: Array<string>;
 }
-const RegistrationInfo = ({}: Props) => {
-  const [info, setInfo] = useState<InfoProps>(dummyInfo);
+const RegistrationInfo = ({route, navigation}: any) => {
+  const {name, checkList} = route.params as IRegistraionInput;
+  const [info, setInfo] = useState<InfoProps>({
+    ...dummyInfo,
+    name,
+    tagList: checkList,
+  });
+  const handleSubmit = () => {
+    postAxios('test', info);
+    console.log('등록되었습니다');
 
+    navigation.navigate('TOOK');
+  };
   return (
     <NativeBaseProvider>
       <Box p={5} bg={'#fff'} height={'100%'} justifyContent="space-between">
         <PlaceInfo name={info.name} address={info.address} image={info.image} />
         <TrashBoxInfo image={info.trashImage} tagList={info.tagList} />
 
-        <BasicButton>등록하기</BasicButton>
+        <BasicButton onPress={handleSubmit}>등록하기</BasicButton>
       </Box>
     </NativeBaseProvider>
   );

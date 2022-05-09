@@ -131,5 +131,112 @@
       "key": "lamp",
       "check": false
     }
+  ],
+  "test": [
+    {
+      "id": 1
+    },
+    {
+      "name": "대전역 건너 버스정류장",
+      "address": "대전광역시 동구 중앙로 211(장동)",
+      "image": "https://spi.maps.daum.net/map2/map/imageservice?IW=600&IH=350&MX=400205&MY=-11702&SCALE=2.5&service=open",
+      "trashImage": "https://mediahub.seoul.go.kr/uploads/mediahub/2021/09/tpuykXsdsBZQXeTWToBZZEYuYyQSMNof.jpeg",
+      "tagList": [
+        "플라스틱",
+        "유리병"
+      ],
+      "id": 2
+    },
+    {
+      "name": "대전역 건너 버스정류장",
+      "address": "대전광역시 동구 중앙로 211(장동)",
+      "image": "https://spi.maps.daum.net/map2/map/imageservice?IW=600&IH=350&MX=400205&MY=-11702&SCALE=2.5&service=open",
+      "trashImage": "https://mediahub.seoul.go.kr/uploads/mediahub/2021/09/tpuykXsdsBZQXeTWToBZZEYuYyQSMNof.jpeg",
+      "tagList": [
+        "플라스틱",
+        "유리병"
+      ],
+      "id": 3
+    },
+    {
+      "name": "대전역 건너 버스정류장",
+      "address": "대전광역시 동구 중앙로 211(장동)",
+      "image": "https://spi.maps.daum.net/map2/map/imageservice?IW=600&IH=350&MX=400205&MY=-11702&SCALE=2.5&service=open",
+      "trashImage": "https://mediahub.seoul.go.kr/uploads/mediahub/2021/09/tpuykXsdsBZQXeTWToBZZEYuYyQSMNof.jpeg",
+      "tagList": [
+        "플라스틱",
+        "유리병"
+      ],
+      "id": 4
+    },
+    {
+      "name": "대전역 건너 버스정류장teststest",
+      "address": "대전광역시 동구 중앙로 211(장동)",
+      "image": "https://spi.maps.daum.net/map2/map/imageservice?IW=600&IH=350&MX=400205&MY=-11702&SCALE=2.5&service=open",
+      "trashImage": "https://mediahub.seoul.go.kr/uploads/mediahub/2021/09/tpuykXsdsBZQXeTWToBZZEYuYyQSMNof.jpeg",
+      "tagList": [
+        "플라스틱",
+        "유리병"
+      ],
+      "id": 5
+    },
+    {
+      "name": "대전역 건너 버스정류장teststest",
+      "address": "대전광역시 동구 중앙로 211(장동)",
+      "image": "https://spi.maps.daum.net/map2/map/imageservice?IW=600&IH=350&MX=400205&MY=-11702&SCALE=2.5&service=open",
+      "trashImage": "https://mediahub.seoul.go.kr/uploads/mediahub/2021/09/tpuykXsdsBZQXeTWToBZZEYuYyQSMNof.jpeg",
+      "tagList": [
+        "플라스틱",
+        "유리병"
+      ],
+      "id": 6
+    },
+    {
+      "name": "대전역 건너 버스정류장teststest",
+      "address": "대전광역시 동구 중앙로 211(장동)",
+      "image": "https://spi.maps.daum.net/map2/map/imageservice?IW=600&IH=350&MX=400205&MY=-11702&SCALE=2.5&service=open",
+      "trashImage": "https://mediahub.seoul.go.kr/uploads/mediahub/2021/09/tpuykXsdsBZQXeTWToBZZEYuYyQSMNof.jpeg",
+      "tagList": [
+        "플라스틱",
+        "유리병"
+      ],
+      "id": 7
+    },
+    {
+      "name": "trashTest",
+      "address": "대전광역시 동구 중앙로 211(장동)",
+      "image": "https://spi.maps.daum.net/map2/map/imageservice?IW=600&IH=350&MX=400205&MY=-11702&SCALE=2.5&service=open",
+      "trashImage": "https://mediahub.seoul.go.kr/uploads/mediahub/2021/09/tpuykXsdsBZQXeTWToBZZEYuYyQSMNof.jpeg",
+      "tagList": [
+        "유리병",
+        "스티로폼",
+        "헌옷수거함"
+      ],
+      "id": 8
+    },
+    {
+      "name": "trashTest",
+      "address": "대전광역시 동구 중앙로 211(장동)",
+      "image": "https://spi.maps.daum.net/map2/map/imageservice?IW=600&IH=350&MX=400205&MY=-11702&SCALE=2.5&service=open",
+      "trashImage": "https://mediahub.seoul.go.kr/uploads/mediahub/2021/09/tpuykXsdsBZQXeTWToBZZEYuYyQSMNof.jpeg",
+      "tagList": [
+        "유리병",
+        "스티로폼",
+        "헌옷수거함"
+      ],
+      "id": 9
+    },
+    {
+      "name": "trashTest",
+      "address": "대전광역시 동구 중앙로 211(장동)",
+      "image": "https://spi.maps.daum.net/map2/map/imageservice?IW=600&IH=350&MX=400205&MY=-11702&SCALE=2.5&service=open",
+      "trashImage": "https://mediahub.seoul.go.kr/uploads/mediahub/2021/09/tpuykXsdsBZQXeTWToBZZEYuYyQSMNof.jpeg",
+      "tagList": [
+        "유리병",
+        "스티로폼",
+        "헌옷수거함"
+      ],
+      "id": 10
+    }
   ]
 }

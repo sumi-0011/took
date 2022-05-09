@@ -8,8 +8,12 @@ export interface ICategory {
   key: string;
 }
 type Props = {};
-
+interface IRegistraionInput {
+  checks: Array<string>;
+  name: string;
+}
 const RegistrationCategory = ({navigation}: {navigation: any}) => {
+  const [inputName, setInputName] = useState('');
   const [groupValue, setGroupValue] = useState([]);
 
   return (
@@ -18,14 +22,23 @@ const RegistrationCategory = ({navigation}: {navigation: any}) => {
         <Box flex={1} width={'100%'} />
         <Box p={5} bg={'#fff'}>
           <Text>쓰레기통 이름</Text>
-          <Input size="lg" placeholder="lg Input" marginY={2} />
+          <Input
+            size="lg"
+            placeholder="lg Input"
+            marginY={2}
+            value={inputName}
+            onChangeText={text => setInputName(text)}
+          />
           <CategotyCheckbox
             groupValue={groupValue}
             setGroupValue={setGroupValue}
           />
           <BasicButton
             onPress={() => {
-              navigation.navigate('RegistrationInfo');
+              navigation.navigate('RegistrationInfo', {
+                name: inputName,
+                checkList: groupValue,
+              });
             }}>
             사진 촬영
           </BasicButton>
