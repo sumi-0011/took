@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  NativeBaseProvider,
-  Box,
-  HStack,
-  VStack,
-  Pressable,
-  StatusBar,
-} from 'native-base';
+import {NativeBaseProvider, Box, HStack, VStack, Button} from 'native-base';
 // import ProfileBox from 'components/ProfileBox';
 import {
   MainBox,
@@ -27,6 +20,7 @@ function Main({navigation}: any) {
         alignContent="center"
         backgroundColor={'white'}>
         <VStack justifyContent="space-evenly" space={5} h="100%">
+          <Button Press={() => navigation.navigate('Test')}>Test</Button>
           <ProfileBox />
           <HStack w="100%" space={5} flex={2}>
             <MainBox

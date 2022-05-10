@@ -7,6 +7,7 @@ import Main from './src/screens/Main';
 import Map from './src/screens/Map';
 import RegistrationCategory from '~/screens/RegistrationCategory';
 import RegistrationInfo from '~/screens/RegistrationInfo';
+import ExampleApp from '~/screens/Test';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,7 +17,7 @@ function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="TOOK"
-          component={Main}
+          component={ExampleApp}
           options={{
             title: 'TOOK',
           }}
@@ -40,6 +41,13 @@ function App() {
           component={RegistrationInfo}
           options={{
             title: '쓰레기통 등록하기',
+          }}
+        />
+        <Stack.Screen
+          name="Test"
+          component={ExampleApp}
+          options={{
+            title: 'Test',
           }}
         />
       </Stack.Navigator>
