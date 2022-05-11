@@ -17,7 +17,7 @@ function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="TOOK"
-          component={Main}
+          component={ExampleApp}
           options={{
             title: 'TOOK',
           }}
@@ -43,13 +43,13 @@ function App() {
             title: '쓰레기통 등록하기',
           }}
         />
-        {/* <Stack.Screen
+        <Stack.Screen
           name="Test"
           component={ExampleApp}
           options={{
             title: 'Test',
           }}
-        /> */}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

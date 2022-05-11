@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+import CameraRoll from '@react-native-community/cameraroll';
 import {
   AppRegistry,
   StyleSheet,
@@ -7,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import {RNCamera} from 'react-native-camera';
-
+import {PermissionsAndroid, Platform} from 'react-native';
 const PendingView = () => (
   <View
     style={{
@@ -28,6 +29,7 @@ class ExampleApp extends PureComponent {
           style={styles.preview}
           type={RNCamera.Constants.Type.back}
           flashMode={RNCamera.Constants.FlashMode.on}
+          captureAudio={false}
           androidCameraPermissionOptions={{
             title: 'Permission to use camera',
             message: 'We need your permission to use your camera',
@@ -64,11 +66,20 @@ class ExampleApp extends PureComponent {
     );
   }
 
-  takePicture = async function (camera) {
+  takePicture = async function (camera: RNCamera) {
     const options = {quality: 0.5, base64: true};
     const data = await camera.takePictureAsync(options);
     //  eslint-disable-next-line
+    // console.log('😻 data', data);
     console.log(data.uri);
+
+    if (data) {
+      if (Platform.OS === 'android' && !(await hasAndroidPermission())) {
+        return;
+      }
+      const result = await CameraRoll.save(data.uri);
+      console.log('🐤result', result);
+    }
   };
 }
 
@@ -94,4 +105,23 @@ const styles = StyleSheet.create({
   },
 });
 
+async function hasAndroidPermission() {
+  const permission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
+
+  const hasPermission = await PermissionsAndroid.check(permission);
+  if (hasPermission) {
+    return true;
+  }
+
+  const status = await PermissionsAndroid.request(permission);
+  return status === 'granted';
+}
+
+// async function savePicture() {
+//   if (Platform.OS === 'android' && !(await hasAndroidPermission())) {
+//     return;
+//   }
+
+//   CameraRoll.save(tag, {type, album});
+// }
 export default ExampleApp;
