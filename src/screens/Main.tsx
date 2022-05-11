@@ -7,6 +7,7 @@ import {
   ProfileBox,
   SmallBox,
 } from '~/components/Main/index';
+import Camera from '~/components/Camera';
 
 type Props = {};
 
@@ -20,7 +21,7 @@ function Main({navigation}: any) {
         alignContent="center"
         backgroundColor={'white'}>
         <VStack justifyContent="space-evenly" space={5} h="100%">
-          <Button Press={() => navigation.navigate('Test')}>Test</Button>
+          <Camera />
           <ProfileBox />
           <HStack w="100%" space={5} flex={2}>
             <MainBox
