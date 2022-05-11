@@ -58,6 +58,11 @@ class ExampleApp extends PureComponent {
                   style={styles.capture}>
                   <Text style={{fontSize: 14}}> SNAP </Text>
                 </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => getPhotos()}
+                  style={styles.capture}>
+                  <Text style={{fontSize: 14}}> GET </Text>
+                </TouchableOpacity>
               </View>
             );
           }}
@@ -78,7 +83,7 @@ class ExampleApp extends PureComponent {
         return;
       }
       const result = await CameraRoll.save(data.uri);
-      console.log('🐤result', result);
+      console.log('snap result', result);
     }
   };
 }
@@ -105,6 +110,16 @@ const styles = StyleSheet.create({
   },
 });
 
+const getPhotos = async () => {
+  try {
+    const {edges} = await CameraRoll.getPhotos({
+      first: 2,
+    });
+    console.log('get photo', edges);
+  } catch (error) {
+    console.log('getPhoto', error);
+  }
+};
 async function hasAndroidPermission() {
   const permission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
 
