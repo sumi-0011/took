@@ -1,5 +1,5 @@
-import {Box, Text} from 'native-base';
-import React from 'react';
+import {Box, Center, Image, Text} from 'native-base';
+import React, {useState} from 'react';
 import CameraRoll from '@react-native-community/cameraroll';
 import {AppRegistry, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {RNCamera} from 'react-native-camera';
@@ -17,9 +17,34 @@ const PendingView = () => (
   </View>
 );
 const Camera = () => {
+  const [imageURL, setImageURL] = useState<string>(
+    'https://wallpaperaccess.com/full/317501.jpg',
+  );
+  const getPhotos = async () => {
+    try {
+      const {edges} = await CameraRoll.getPhotos({
+        first: 2,
+      });
+      console.log('get photo', edges);
+      console.log('first', edges[0].node.image.uri);
+      setImageURL(edges[0].node.image.uri);
+    } catch (error) {
+      console.log('getPhoto', error);
+    }
+  };
   return (
     <Box flex={1}>
       <Text>Camera</Text>
+      <Center>
+        <Image
+          source={{
+            uri: imageURL,
+          }}
+          alt="Alternate Text"
+          size="xl"
+        />
+      </Center>
+      ;
       <RNCamera
         style={styles.preview}
         type={RNCamera.Constants.Type.back}
@@ -101,16 +126,7 @@ const takePicture = async (camera: RNCamera) => {
     console.log('snap result', result);
   }
 };
-const getPhotos = async () => {
-  try {
-    const {edges} = await CameraRoll.getPhotos({
-      first: 2,
-    });
-    console.log('get photo', edges);
-  } catch (error) {
-    console.log('getPhoto', error);
-  }
-};
+
 async function hasAndroidPermission() {
   const permission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
 
