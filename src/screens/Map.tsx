@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import {
   AddIcon,
   Box,
@@ -12,16 +14,52 @@ import {
   Pressable,
   SunIcon,
   Text,
+  View,
   WarningTwoIcon,
 } from 'native-base';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components/native';
 import BadgeList from '~/components/BadgeList';
 // import {AntDesign} from '@expo/vector-icons';
 type Props = {};
 import {AntDesign} from '@native-base/icons';
-
+import {color} from 'native-base/lib/typescript/theme/styled-system';
+import Geolocation from 'react-native-geolocation-service';
+import {Platform, PermissionsAndroid} from 'react-native';
+async function requestPermission() {
+  try {
+    if (Platform.OS === 'android') {
+      return await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      );
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}
+interface ILocation {
+  latitude: number;
+  longitude: number;
+}
 const Map = ({navigation}: any) => {
+  const [location, setLocation] = useState<ILocation | undefined>(undefined);
+  useEffect(() => {
+    requestPermission().then(result => {
+      if (result === 'granted') {
+        Geolocation.getCurrentPosition(
+          pos => {
+            const {latitude, longitude} = pos.coords;
+            setLocation({latitude, longitude});
+          },
+          error => {
+            console.log(error);
+          },
+          {enableHighAccuracy: true, timeout: 3600, maximumAge: 3600},
+        );
+      }
+    });
+  }, []);
+
   return (
     <NativeBaseProvider>
       <Wrapper>
@@ -40,8 +78,28 @@ const Map = ({navigation}: any) => {
             }}
           /> */}
         </BackBtn>
-
-        <Modal borderTopRadius="20" p={5}>
+        <>
+          <View style={{flex: 1}}>
+            {location && (
+              <MapView
+                style={{flex: 1}}
+                initialRegion={{
+                  latitude: location.latitude,
+                  longitude: location.longitude,
+                  latitudeDelta: 0.05,
+                  longitudeDelta: 0.05,
+                }}>
+                <Marker
+                  coordinate={{
+                    latitude: location.latitude,
+                    longitude: location.longitude,
+                  }}
+                />
+              </MapView>
+            )}
+          </View>
+        </>
+        {/*<Modal borderTopRadius="20" p={5}>
           <Detail paddingY={2} borderBottomWidth="1" borderColor="coolGray.200">
             <DetailText
               name="공대 5호관 1층"
@@ -67,7 +125,7 @@ const Map = ({navigation}: any) => {
               </Text>
             </Pressable>
           </TookButton>
-        </Modal>
+        </Modal>*/}
       </Wrapper>
     </NativeBaseProvider>
   );
