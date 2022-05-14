@@ -1,4 +1,4 @@
-import {Box, Input, NativeBaseProvider, Text} from 'native-base';
+import {Box, Button, Input, NativeBaseProvider, Text} from 'native-base';
 import React, {useState} from 'react';
 import BasicButton from '~/components/BasicButton';
 import CategotyCheckbox from '~/components/Registraion/CategotyCheckbox';
@@ -32,6 +32,16 @@ const RegistrationCategory = ({navigation}: {navigation: any}) => {
             groupValue={groupValue}
             setGroupValue={setGroupValue}
           />
+          <Button
+            onPress={() => {
+              navigation.navigate('Camera', {
+                name: inputName,
+                checkList: groupValue,
+              });
+            }}>
+            Camera
+          </Button>
+          {/* 
           <BasicButton
             onPress={() => {
               navigation.navigate('RegistrationInfo', {
@@ -40,7 +50,7 @@ const RegistrationCategory = ({navigation}: {navigation: any}) => {
               });
             }}>
             사진 촬영
-          </BasicButton>
+          </BasicButton> */}
         </Box>
       </Box>
     </NativeBaseProvider>

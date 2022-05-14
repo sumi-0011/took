@@ -21,7 +21,6 @@ function Main({navigation}: any) {
         alignContent="center"
         backgroundColor={'white'}>
         <VStack justifyContent="space-evenly" space={5} h="100%">
-          <Camera />
           <ProfileBox />
           <HStack w="100%" space={5} flex={2}>
             <MainBox

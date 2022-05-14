@@ -1,7 +1,7 @@
-import {Box, Center, Image, Text} from 'native-base';
+import {Box, Button, Center, Image, Text} from 'native-base';
 import React, {useState} from 'react';
 import CameraRoll from '@react-native-community/cameraroll';
-import {AppRegistry, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {RNCamera} from 'react-native-camera';
 import {PermissionsAndroid, Platform} from 'react-native';
 type Props = {};
@@ -16,39 +16,45 @@ const PendingView = () => (
     <Text>Waiting</Text>
   </View>
 );
-const Camera = () => {
-  const [imageURL, setImageURL] = useState<string>(
-    'https://wallpaperaccess.com/full/317501.jpg',
-  );
+interface ICamera {
+  imageURL: string;
+  setImageURL: (arg0: string) => void;
+  nextPage: (arg: string) => void;
+}
+const Camera = ({imageURL, setImageURL, nextPage}: ICamera) => {
   const getPhotos = async () => {
+    //갤러리에서 사진을 가져오는 부분
     try {
       const {edges} = await CameraRoll.getPhotos({
         first: 2,
       });
-      console.log('get photo', edges);
-      console.log('first', edges[0].node.image.uri);
-      setImageURL(edges[0].node.image.uri);
+      console.log(edges);
+      // setImageURL(edges[0].node.image.uri);
     } catch (error) {
       console.log('getPhoto', error);
     }
   };
+  const takePicture = async (camera: RNCamera) => {
+    const options = {quality: 0.5, base64: true};
+    const data = await camera.takePictureAsync(options);
+    // console.log('😻 data', data);
+    if (data) {
+      if (Platform.OS === 'android' && !(await hasAndroidPermission())) {
+        return;
+      }
+      const result = await CameraRoll.save(data.uri); //사진 갤러리에 저장
+      console.log('snap result', result);
+      // setImageURL(data.uri); //사진 데이터
+      // console.log(imageURL);
+      nextPage(data.uri);
+    }
+  };
   return (
     <Box flex={1}>
-      <Text>Camera</Text>
-      <Center>
-        <Image
-          source={{
-            uri: imageURL,
-          }}
-          alt="Alternate Text"
-          size="xl"
-        />
-      </Center>
-      ;
       <RNCamera
-        style={styles.preview}
+        style={{flex: 1, justifyContent: 'flex-end'}}
         type={RNCamera.Constants.Type.back}
-        flashMode={RNCamera.Constants.FlashMode.on}
+        // flashMode={RNCamera.Constants.FlashMode.on}
         captureAudio={false}
         androidCameraPermissionOptions={{
           title: 'Permission to use camera',
@@ -62,69 +68,20 @@ const Camera = () => {
           buttonPositive: 'Ok',
           buttonNegative: 'Cancel',
         }}>
-        {({camera, status, recordAudioPermissionStatus}) => {
+        {({camera, status}) => {
           if (status !== 'READY') {
             return <PendingView />;
           }
           return (
-            <View
-              style={{
-                flex: 0,
-                flexDirection: 'row',
-                justifyContent: 'center',
-              }}>
-              <TouchableOpacity
-                onPress={() => takePicture(camera)}
-                style={styles.capture}>
-                <Text style={{fontSize: 14}}> SNAP </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => getPhotos()}
-                style={styles.capture}>
-                <Text style={{fontSize: 14}}> GET </Text>
-              </TouchableOpacity>
-            </View>
+            <Box>
+              <Button onPress={() => takePicture(camera)}>SNAP</Button>
+            </Box>
           );
         }}
       </RNCamera>
+      {/* </Box> */}
     </Box>
   );
-};
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: 'black',
-  },
-  preview: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  capture: {
-    flex: 0,
-    backgroundColor: '#fff',
-    borderRadius: 5,
-    padding: 15,
-    paddingHorizontal: 20,
-    alignSelf: 'center',
-    margin: 20,
-  },
-});
-const takePicture = async (camera: RNCamera) => {
-  const options = {quality: 0.5, base64: true};
-  const data = await camera.takePictureAsync(options);
-  //  eslint-disable-next-line
-  // console.log('😻 data', data);
-  console.log(data.uri);
-
-  if (data) {
-    if (Platform.OS === 'android' && !(await hasAndroidPermission())) {
-      return;
-    }
-    const result = await CameraRoll.save(data.uri);
-    console.log('snap result', result);
-  }
 };
 
 async function hasAndroidPermission() {
