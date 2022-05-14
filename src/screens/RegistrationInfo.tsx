@@ -7,6 +7,7 @@ import {postAxios} from '~/api/registation';
 interface IRegistraionInput {
   checkList: Array<string>;
   name: string;
+  imageUrl: string;
 }
 
 type Props = NativeStackScreenProps<{state: IRegistraionInput}>;
@@ -28,12 +29,14 @@ interface InfoProps {
   tagList: Array<string>;
 }
 const RegistrationInfo = ({route, navigation}: any) => {
-  const {name, checkList} = route.params as IRegistraionInput;
+  const {name, checkList, imageUrl} = route.params as IRegistraionInput;
   const [info, setInfo] = useState<InfoProps>({
     ...dummyInfo,
     name,
     tagList: checkList,
+    trashImage: imageUrl,
   });
+  console.log(name, checkList, imageUrl);
   const handleSubmit = () => {
     postAxios('test', info);
     console.log('등록되었습니다');
