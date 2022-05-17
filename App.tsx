@@ -9,6 +9,7 @@ import RegistrationCategory from '~/screens/RegistrationCategory';
 import RegistrationInfo from '~/screens/RegistrationInfo';
 import UserScreen from '~/screens/UserScreen';
 import LoginScreen from '~/screens/LoginScreen';
+import Auth from '~/navigations/Auth';
 
 const Stack = createNativeStackNavigator();
 
@@ -44,7 +45,13 @@ function App() {
             title: '쓰레기통 등록하기',
           }}
         />
-        <Stack.Screen name="User" component={LoginScreen} />
+        <Stack.Screen
+          name="User"
+          component={Auth}
+          options={{
+            headerShown: false,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
