@@ -10,6 +10,8 @@ import RegistrationInfo from '~/screens/RegistrationInfo';
 import UserScreen from '~/screens/UserScreen';
 import LoginScreen from '~/screens/LoginScreen';
 import Auth from '~/navigations/Auth';
+import ExampleApp from '~/screens/Test';
+import CameraPage from '~/screens/CameraPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -50,6 +52,20 @@ function App() {
           component={Auth}
           options={{
             headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Camera"
+          component={CameraPage}
+          options={{
+            title: 'camera',
+          }}
+        />
+        <Stack.Screen
+          name="Test"
+          component={ExampleApp}
+          options={{
+            title: 'Test',
           }}
         />
       </Stack.Navigator>

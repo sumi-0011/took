@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  NativeBaseProvider,
-  Box,
-  HStack,
-  VStack,
-  Pressable,
-  StatusBar,
-} from 'native-base';
+import {NativeBaseProvider, Box, HStack, VStack, Button} from 'native-base';
 // import ProfileBox from 'components/ProfileBox';
 import {
   MainBox,
@@ -14,6 +7,7 @@ import {
   ProfileBox,
   SmallBox,
 } from '~/components/Main/index';
+import Camera from '~/components/Camera';
 
 type Props = {};
 
