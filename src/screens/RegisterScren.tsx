@@ -1,53 +1,18 @@
-import {
-  Box,
-  Button,
-  Heading,
-  Input,
-  NativeBaseProvider,
-  Text,
-  VStack,
-} from 'native-base';
+import {Box, Button, NativeBaseProvider, Text, VStack} from 'native-base';
 import React from 'react';
+import Input from '~/components/Input';
 
 function RegisterScren() {
   return (
     <NativeBaseProvider>
       <Box h="100%" w="100%" paddingTop={20} backgroundColor="white">
         <VStack alignItems="center" justifyContent="center" space={12}>
-          <Input
-            w={96}
-            h={12}
-            // InputLeftElement={<Icon size={5} ml="2" color="muted.400" />}
-            placeholder="이메일을 입력해주세요."
-            fontSize="16px"
-            variant="underlined"
-          />
+          <Input type="text" ph="이메일을 입력해주세요" />
           <VStack space={6}>
-            <Input
-              w={96}
-              h={12}
-              // InputRightElement={}
-              placeholder="비밀번호를 입력해주세요."
-              fontSize="16px"
-              variant="underlined"
-            />
-            <Input
-              w={96}
-              h={12}
-              // InputRightElement={}
-              placeholder="비밀번호를 다시 입력해주세요."
-              fontSize="16px"
-              variant="underlined"
-            />
+            <Input type="password" ph="비밀번호를 입력해주세요" />
+            <Input type="password" ph="비밀번호를 다시 입력해주세요" />
           </VStack>
-          <Input
-            w={96}
-            h={12}
-            // InputLeftElement={<Icon size={5} ml="2" color="muted.400" />}
-            placeholder="닉네임을 입력해주세요"
-            fontSize="16px"
-            variant="underlined"
-          />
+          <Input type="text" ph="닉네임을 입력해주세요" />
           <Button
             marginTop={'10'}
             colorScheme={'blue'}

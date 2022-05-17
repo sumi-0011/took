@@ -3,13 +3,13 @@ import {
   Button,
   HStack,
   Icon,
-  Input,
   NativeBaseProvider,
   Text,
   VStack,
 } from 'native-base';
 import React, {useState} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Input from '~/components/Input';
 
 function LoginScreen({navigation}: any) {
   const [show, setShow] = useState(false);
@@ -18,22 +18,10 @@ function LoginScreen({navigation}: any) {
       <Box h="100%" w="100%" paddingTop={20} backgroundColor="white">
         <VStack alignItems="center" justifyContent="center">
           <VStack space={6}>
+            <Input type="text" ph="이메일을 입력해주세요." />
             <Input
-              w={96}
-              h={12}
-              // InputLeftElement={<Icon size={5} ml="2" color="muted.400" />}
-              placeholder="이메일을 입력해주세요."
-              fontSize="16px"
-              variant="underlined"
-            />
-            <Input
-              w={96}
-              h={12}
               type={show ? 'text' : 'password'}
-              // InputRightElement={}
-              placeholder="비밀번호를 입력해주세요."
-              fontSize="16px"
-              variant="underlined"
+              ph="비밀번호를 입력해주세요."
             />
           </VStack>
           <VStack space={5} marginTop={16}>
