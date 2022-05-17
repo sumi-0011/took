@@ -1,14 +1,15 @@
 import {
   Box,
   Button,
-  Heading,
   HStack,
+  Icon,
   Input,
   NativeBaseProvider,
-  Stack,
+  Text,
   VStack,
 } from 'native-base';
 import React, {useState} from 'react';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 function LoginScreen({navigation}: any) {
   const [show, setShow] = useState(false);
@@ -39,14 +40,16 @@ function LoginScreen({navigation}: any) {
             <Button
               colorScheme={'blue'}
               w={96}
-              h={12}
-              size="lg"
+              padding={'4'}
               onPress={() => console.log('hello world')}>
-              로그인
+              <Text color={'white'} fontSize={'16px'}>
+                로그인
+              </Text>
             </Button>
             <Button
               variant="unstyled"
               w={'96'}
+              padding={'4'}
               size="lg"
               onPress={() => navigation.navigate('Regist')}>
               회원가입
@@ -54,12 +57,28 @@ function LoginScreen({navigation}: any) {
           </VStack>
           <VStack marginTop={16}>
             <Button
-              colorScheme={'dark'}
+              backgroundColor={'light.100'}
               w={96}
-              h={12}
-              size="lg"
-              onPress={() => navigation.navigate('Regist')}>
-              구글로 로그인
+              padding={4}
+              onPress={() => console.log('google login')}>
+              <HStack
+                w={96}
+                paddingX={4}
+                alignItems={'center'}
+                justifyContent="space-between">
+                <Icon
+                  as={Ionicons}
+                  name="logo-google"
+                  size="md"
+                  color={'black'}
+                />
+                <Text fontSize={'16px'}>구글 아이디로 로그인</Text>
+                <Icon
+                  as={Ionicons}
+                  name="chevron-forward-outline"
+                  size={'md'}
+                />
+              </HStack>
             </Button>
           </VStack>
         </VStack>
