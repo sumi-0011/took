@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
-import {Box, Input, NativeBaseProvider, Text, View} from 'native-base';
+import {Box, Button, Input, NativeBaseProvider, Text, View} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import BasicButton from '~/components/BasicButton';
 import Geolocation from 'react-native-geolocation-service';
