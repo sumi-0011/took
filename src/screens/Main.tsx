@@ -27,7 +27,7 @@ function Main({navigation}: any) {
         alignContent="center"
         backgroundColor={'white'}>
         <VStack justifyContent="space-evenly" space={5} h="100%">
-          <ProfileBox />
+          <ProfileBox onPress={() => navigation.navigate('User')} />
           <HStack w="100%" space={5} flex={2}>
             <MainBox
               sub="지도에서"
