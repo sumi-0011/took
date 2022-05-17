@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  NativeBaseProvider,
-  Box,
-  HStack,
-  VStack,
-  Pressable,
-  StatusBar,
-} from 'native-base';
+import {NativeBaseProvider, Box, HStack, VStack, Button} from 'native-base';
 // import ProfileBox from 'components/ProfileBox';
 import {
   MainBox,
@@ -14,6 +7,7 @@ import {
   ProfileBox,
   SmallBox,
 } from '~/components/Main/index';
+import Camera from '~/components/Camera';
 
 type Props = {};
 
@@ -27,7 +21,7 @@ function Main({navigation}: any) {
         alignContent="center"
         backgroundColor={'white'}>
         <VStack justifyContent="space-evenly" space={5} h="100%">
-          <ProfileBox />
+          <ProfileBox onPress={() => navigation.navigate('User')} />
           <HStack w="100%" space={5} flex={2}>
             <MainBox
               sub="지도에서"

@@ -1,21 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
-import {
-  Box,
-  Input,
-  NativeBaseProvider,
-  Text,
-  Stack,
-  FlatList,
-  Checkbox,
-  View,
-  FormControl,
-} from 'native-base';
+import {Box, Input, NativeBaseProvider, Text, View} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import BasicButton from '~/components/BasicButton';
 import Geolocation from 'react-native-geolocation-service';
 import {Platform, PermissionsAndroid} from 'react-native';
-
+import CategotyCheckbox from '~/components/Registraion/CategotyCheckbox';
 type Props = {};
 const categoryList = [
   {
@@ -94,7 +84,17 @@ interface ILocation {
   latitude: number;
   longitude: number;
 }
+export interface ICategory {
+  name: string;
+  key: string;
+}
+interface IRegistraionInput {
+  checks: Array<string>;
+  name: string;
+}
 const RegistrationCategory = ({navigation}: {navigation: any}) => {
+  const [inputName, setInputName] = useState('');
+  const [groupValue, setGroupValue] = useState([]);
   const [category, setcategory] = useState(categoryList);
   const [location, setLocation] = useState<ILocation | undefined>(undefined);
   useEffect(() => {
@@ -113,6 +113,7 @@ const RegistrationCategory = ({navigation}: {navigation: any}) => {
       }
     });
   }, []);
+
   return (
     <NativeBaseProvider>
       <Box height={'100%'}>
@@ -136,35 +137,41 @@ const RegistrationCategory = ({navigation}: {navigation: any}) => {
           )}
         </View>
         <Box p={5} bg={'#fff'}>
-          {/* <FormControl> */}
-          <Input size="lg" placeholder="lg Input" marginY={2} />
-          <FlatList
-            numColumns={2}
-            data={category}
-            renderItem={({item}) => (
-              <CheckInput name={item.name} checked={item.check} />
-            )}
+          <Text>쓰레기통 이름</Text>
+          <Input
+            size="lg"
+            placeholder="lg Input"
+            marginY={2}
+            value={inputName}
+            onChangeText={text => setInputName(text)}
           />
-          {/* </FormControl> */}
-
+          <CategotyCheckbox
+            groupValue={groupValue}
+            setGroupValue={setGroupValue}
+          />
+          <Button
+            onPress={() => {
+              navigation.navigate('Camera', {
+                name: inputName,
+                checkList: groupValue,
+              });
+            }}>
+            Camera
+          </Button>
+          {/* 
           <BasicButton
             onPress={() => {
-              navigation.navigate('RegistrationInfo');
+              navigation.navigate('RegistrationInfo', {
+                name: inputName,
+                checkList: groupValue,
+              });
             }}>
             사진 촬영
-          </BasicButton>
+          </BasicButton> */}
         </Box>
       </Box>
     </NativeBaseProvider>
   );
 };
-const CheckInput = ({name, checked}: {name: string; checked: boolean}) => {
-  return (
-    <Box flex={1} paddingY={2}>
-      <Checkbox value={name} defaultIsChecked={checked}>
-        {name}
-      </Checkbox>
-    </Box>
-  );
-};
+
 export default RegistrationCategory;

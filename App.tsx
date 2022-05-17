@@ -7,6 +7,11 @@ import Main from './src/screens/Main';
 import Map from './src/screens/Map';
 import RegistrationCategory from '~/screens/RegistrationCategory';
 import RegistrationInfo from '~/screens/RegistrationInfo';
+import UserScreen from '~/screens/UserScreen';
+import LoginScreen from '~/screens/LoginScreen';
+import Auth from '~/navigations/Auth';
+import ExampleApp from '~/screens/Test';
+import CameraPage from '~/screens/CameraPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -40,6 +45,27 @@ function App() {
           component={RegistrationInfo}
           options={{
             title: '쓰레기통 등록하기',
+          }}
+        />
+        <Stack.Screen
+          name="User"
+          component={Auth}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Camera"
+          component={CameraPage}
+          options={{
+            title: 'camera',
+          }}
+        />
+        <Stack.Screen
+          name="Test"
+          component={ExampleApp}
+          options={{
+            title: 'Test',
           }}
         />
       </Stack.Navigator>
