@@ -5,6 +5,9 @@ interface IInput {
   secondary?: boolean;
   ph: string;
   type: string;
+  onChangeText: () => void;
+  onBlur: () => void;
+  value: string;
 }
 
 function Input({type, ph, ...rest}: IInput) {
@@ -15,12 +18,15 @@ function Input({type, ph, ...rest}: IInput) {
   // if default
   return (
     <NativeInput
+      onBlur={rest.onBlur}
+      onChangeText={rest.onChangeText}
       w={96}
       h={12}
       type={type}
       placeholder={ph}
       fontSize="16px"
       variant="underlined"
+      value={rest.value}
       // InputLeftElement={<Icon size={5} ml="2" color="muted.400" />}
     />
   );
