@@ -12,6 +12,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Input from '~/components/Input';
 import {useForm, Controller} from 'react-hook-form';
 import ErrorMsg from '~/components/ErrorMsg';
+import * as yup from 'yup';
+import {yupResolver} from '@hookform/resolvers/yup';
 
 interface FormData {
   email: string;
@@ -19,18 +21,20 @@ interface FormData {
 }
 
 function LoginScreen({navigation}: any) {
+  const schema = yup.object().shape({
+    email: yup.string().email().required(),
+    password: yup.string().min(7).required(),
+  });
+
+  const formOptions = {resolver: yupResolver(schema)};
+
+  const onSubmit = (data: FormData) => console.log(data);
+
   const {
     control,
     handleSubmit,
     formState: {errors},
-  } = useForm<FormData>({
-    defaultValues: {
-      email: '',
-      password: '',
-    },
-  });
-
-  const onSubmit = (data: FormData) => console.log(data);
+  } = useForm<FormData>(formOptions);
 
   return (
     <NativeBaseProvider>
@@ -47,14 +51,16 @@ function LoginScreen({navigation}: any) {
                   <Input
                     onBlur={onBlur}
                     onChangeText={onChange}
-                    type="text"
-                    ph="이메일을 입력해주세요."
                     value={value}
+                    type="text"
+                    ph="이메일을 입력해주세요"
                   />
                 )}
                 name="email"
               />
-              {errors.email && <ErrorMsg>필수 입력 사항입니다!</ErrorMsg>}
+              {errors.email && (
+                <ErrorMsg>이메일 형식이 올바르지 않습니다!</ErrorMsg>
+              )}
             </VStack>
             <VStack space={3}>
               <Controller
@@ -67,13 +73,15 @@ function LoginScreen({navigation}: any) {
                     onBlur={onBlur}
                     onChangeText={onChange}
                     type="password"
-                    ph="비밀번호를 입력해주세요."
+                    ph="비밀번호를 입력해주세요"
                     value={value}
                   />
                 )}
                 name="password"
               />
-              {errors.password && <ErrorMsg>필수 입력 사항입니다!</ErrorMsg>}
+              {errors.password && (
+                <ErrorMsg>비밀번호를 다시 확인해주세요!</ErrorMsg>
+              )}
             </VStack>
           </VStack>
           <VStack space={5} marginTop={16}>
