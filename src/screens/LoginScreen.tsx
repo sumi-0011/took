@@ -7,25 +7,30 @@ import {
   Text,
   VStack,
 } from 'native-base';
-import React, {useState} from 'react';
+import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Input from '~/components/Input';
 import {useForm, Controller} from 'react-hook-form';
 import ErrorMsg from '~/components/ErrorMsg';
+
+interface FormData {
+  email: string;
+  password: string;
+}
 
 function LoginScreen({navigation}: any) {
   const {
     control,
     handleSubmit,
     formState: {errors},
-  } = useForm({
+  } = useForm<FormData>({
     defaultValues: {
       email: '',
       password: '',
     },
   });
 
-  const onSubmit = data => console.log(data);
+  const onSubmit = (data: FormData) => console.log(data);
 
   return (
     <NativeBaseProvider>
