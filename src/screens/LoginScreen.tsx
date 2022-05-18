@@ -10,26 +10,73 @@ import {
 import React, {useState} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Input from '~/components/Input';
+import {useForm, Controller} from 'react-hook-form';
+import ErrorMsg from '~/components/ErrorMsg';
 
 function LoginScreen({navigation}: any) {
-  const [show, setShow] = useState(false);
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
+
+  const onSubmit = data => console.log(data);
+
   return (
     <NativeBaseProvider>
       <Box h="100%" w="100%" paddingTop={20} backgroundColor="white">
         <VStack alignItems="center" justifyContent="center">
           <VStack space={6}>
-            <Input type="text" ph="이메일을 입력해주세요." />
-            <Input
-              type={show ? 'text' : 'password'}
-              ph="비밀번호를 입력해주세요."
-            />
+            <VStack space={3}>
+              <Controller
+                control={control}
+                rules={{
+                  required: true,
+                }}
+                render={({field: {onChange, onBlur, value}}) => (
+                  <Input
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    type="text"
+                    ph="이메일을 입력해주세요."
+                    value={value}
+                  />
+                )}
+                name="email"
+              />
+              {errors.email && <ErrorMsg>필수 입력 사항입니다!</ErrorMsg>}
+            </VStack>
+            <VStack space={3}>
+              <Controller
+                control={control}
+                rules={{
+                  required: true,
+                }}
+                render={({field: {onChange, onBlur, value}}) => (
+                  <Input
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    type="password"
+                    ph="비밀번호를 입력해주세요."
+                    value={value}
+                  />
+                )}
+                name="password"
+              />
+              {errors.password && <ErrorMsg>필수 입력 사항입니다!</ErrorMsg>}
+            </VStack>
           </VStack>
           <VStack space={5} marginTop={16}>
             <Button
               colorScheme={'blue'}
               w={96}
               padding={'4'}
-              onPress={() => console.log('hello world')}>
+              onPress={handleSubmit(onSubmit)}>
               <Text color={'white'} fontSize={'16px'}>
                 로그인
               </Text>
@@ -38,9 +85,10 @@ function LoginScreen({navigation}: any) {
               variant="unstyled"
               w={'96'}
               padding={'4'}
-              size="lg"
               onPress={() => navigation.navigate('Regist')}>
-              회원가입
+              <Text color={'black'} fontSize={'16px'}>
+                회원가입
+              </Text>
             </Button>
           </VStack>
           <VStack marginTop={16}>
