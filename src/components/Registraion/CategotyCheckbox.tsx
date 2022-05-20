@@ -1,6 +1,6 @@
 import {Box, Checkbox, FlatList, Text} from 'native-base';
 import React from 'react';
-import {ICategory} from '~/screens/RegistrationCategory';
+import {ICategory} from '~/screens/TCRegister/TCRCategoryScreen';
 const CATEGORY_LIST: Array<ICategory> = [
   {
     name: '일반쓰레기',

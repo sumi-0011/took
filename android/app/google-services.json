@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "17074629195",
+    "project_id": "took-84423",
+    "storage_bucket": "took-84423.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17074629195:android:761be79e43071a7950bbce",
+        "android_client_info": {
+          "package_name": "com.took"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "17074629195-o8rd3ik22u2re6jo702sn55h7g4mrk39.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.took",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "17074629195-nvc3in3820ckpgahtki7ebnmoc9svfcl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJLNXqxpcwKvsnzg_mvBGL9O-DnVkXSR0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "17074629195-nvc3in3820ckpgahtki7ebnmoc9svfcl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

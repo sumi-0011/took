@@ -27,7 +27,6 @@ function Input({type, ph, ...rest}: IInput) {
       fontSize="16px"
       variant="underlined"
       value={rest.value}
-      // InputLeftElement={<Icon size={5} ml="2" color="muted.400" />}
     />
   );
 }
