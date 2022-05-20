@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import {
   AddIcon,
@@ -21,7 +20,6 @@ import React, {useEffect, useState} from 'react';
 import styled from 'styled-components/native';
 import BadgeList from '~/components/BadgeList';
 // import {AntDesign} from '@expo/vector-icons';
-type Props = {};
 import {AntDesign} from '@native-base/icons';
 import {color} from 'native-base/lib/typescript/theme/styled-system';
 import Geolocation from 'react-native-geolocation-service';
@@ -42,7 +40,7 @@ interface ILocation {
   longitude: number;
 }
 
-const Map = ({navigation}: any) => {
+const MapScreen = ({navigation}: any) => {
   const [location, setLocation] = useState<ILocation | undefined>(undefined);
   useEffect(() => {
     requestPermission().then(result => {
@@ -204,4 +202,4 @@ const Modal = styled(Box)`
   bottom: 0;
   background-color: #fff;
 `;
-export default Map;
+export default MapScreen;

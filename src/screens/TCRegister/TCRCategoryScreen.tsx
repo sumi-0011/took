@@ -6,7 +6,7 @@ import BasicButton from '~/components/BasicButton';
 import Geolocation from 'react-native-geolocation-service';
 import {Platform, PermissionsAndroid} from 'react-native';
 import CategotyCheckbox from '~/components/Registraion/CategotyCheckbox';
-type Props = {};
+
 const categoryList = [
   {
     name: '일반쓰레기',
@@ -97,6 +97,7 @@ const RegistrationCategory = ({navigation}: {navigation: any}) => {
   const [groupValue, setGroupValue] = useState([]);
   const [category, setcategory] = useState(categoryList);
   const [location, setLocation] = useState<ILocation | undefined>(undefined);
+
   useEffect(() => {
     requestPermission().then(result => {
       if (result === 'granted') {
@@ -151,7 +152,7 @@ const RegistrationCategory = ({navigation}: {navigation: any}) => {
           />
           <Button
             onPress={() => {
-              navigation.navigate('Camera', {
+              navigation.navigate('CameraScreen', {
                 name: inputName,
                 checkList: groupValue,
               });

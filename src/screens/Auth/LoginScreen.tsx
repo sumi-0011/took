@@ -103,7 +103,7 @@ function LoginScreen({navigation}: any) {
               variant="unstyled"
               w={'96'}
               padding={'4'}
-              onPress={() => navigation.navigate('Regist')}>
+              onPress={() => navigation.navigate('RegisterScreen')}>
               <Text color={'black'} fontSize={'16px'}>
                 회원가입
               </Text>
