@@ -2,12 +2,12 @@ import {Center, Pressable, Text} from 'native-base';
 import React, {ReactNode} from 'react';
 import styled from 'styled-components/native';
 
-type Props = {
+interface IButton {
   children: ReactNode;
   onPress?: () => any;
-};
+}
 
-const BasicButton = ({onPress, children}: Props) => {
+function BasicButton({onPress, children}: IButton) {
   return (
     <TookButton>
       <Pressable onPress={onPress}>
@@ -17,11 +17,13 @@ const BasicButton = ({onPress, children}: Props) => {
       </Pressable>
     </TookButton>
   );
-};
+}
+
 const TookButton = styled(Center)`
   background-color: #68de7b;
   padding: 10px;
   border-radius: 10px;
   margin: 10px 0;
 `;
+
 export default BasicButton;

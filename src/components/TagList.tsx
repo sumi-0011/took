@@ -1,20 +1,22 @@
-import {Flex, HStack, Text} from 'native-base';
 import React from 'react';
+import {HStack, Text} from 'native-base';
 
-type Props = {
+interface ITag {
   list: Array<String>;
-  style?: Object;
-};
+  color: string;
+  fontSize: string;
+}
 
-const TagList = ({list, style}: Props) => {
+function TagList({list, ...rest}: ITag) {
   return (
     <HStack>
       {list.map((item, index) => (
-        <Text key={index} {...style}>
+        <Text key={index} {...rest}>
           #{item}
         </Text>
       ))}
     </HStack>
   );
-};
+}
+
 export default TagList;
