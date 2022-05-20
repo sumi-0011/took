@@ -22,7 +22,7 @@ const BadgeList = ({data}: Props) => {
     </HStack>
   );
 };
-// const Wrapper = styled(HStack)``;
+
 const Badge = styled(Text)`
   background-color: #d1d5db;
 `;

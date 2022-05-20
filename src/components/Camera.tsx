@@ -1,10 +1,10 @@
-import {Box, Button, Center, Image, Text} from 'native-base';
-import React, {useState} from 'react';
+import {Box, Button, Text} from 'native-base';
+import React from 'react';
 import CameraRoll from '@react-native-community/cameraroll';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {View} from 'react-native';
 import {RNCamera} from 'react-native-camera';
 import {PermissionsAndroid, Platform} from 'react-native';
-type Props = {};
+
 const PendingView = () => (
   <View
     style={{

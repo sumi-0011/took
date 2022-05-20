@@ -1,11 +1,13 @@
-import {Box, Text} from 'native-base';
 import React, {ReactNode} from 'react';
 import {ImageBackground, View} from 'react-native';
 import styled from 'styled-components/native';
 
-type Props = {children: ReactNode; img: string};
+interface IBackgroundImage {
+  children: ReactNode;
+  img: string;
+}
 
-function ImageBg({children, img}: Props) {
+function BackgroundImage({children, img}: IBackgroundImage) {
   return (
     <ImageBackground
       source={{
@@ -18,10 +20,12 @@ function ImageBg({children, img}: Props) {
     </ImageBackground>
   );
 }
+
 const Bg = styled(View)`
   width: 100%;
   height: 100%;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.4);
 `;
-export default ImageBg;
+
+export default BackgroundImage;
