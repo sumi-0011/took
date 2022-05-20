@@ -3,7 +3,14 @@ import React from 'react';
 import CameraRoll from '@react-native-community/cameraroll';
 import {View} from 'react-native';
 import {RNCamera} from 'react-native-camera';
-import {PermissionsAndroid, Platform} from 'react-native';
+import {Platform} from 'react-native';
+import {hasAndroidPermission} from '~/common/utils/permission';
+
+interface ICamera {
+  imageURL: string;
+  setImageURL: (arg0: string) => void;
+  nextPage: (arg: string) => void;
+}
 
 const PendingView = () => (
   <View
@@ -16,12 +23,8 @@ const PendingView = () => (
     <Text>Waiting</Text>
   </View>
 );
-interface ICamera {
-  imageURL: string;
-  setImageURL: (arg0: string) => void;
-  nextPage: (arg: string) => void;
-}
-const Camera = ({imageURL, setImageURL, nextPage}: ICamera) => {
+
+function Camera({imageURL, setImageURL, nextPage}: ICamera) {
   const getPhotos = async () => {
     //갤러리에서 사진을 가져오는 부분
     try {
@@ -34,6 +37,7 @@ const Camera = ({imageURL, setImageURL, nextPage}: ICamera) => {
       console.log('getPhoto', error);
     }
   };
+
   const takePicture = async (camera: RNCamera) => {
     const options = {quality: 0.5, base64: true};
     const data = await camera.takePictureAsync(options);
@@ -49,6 +53,7 @@ const Camera = ({imageURL, setImageURL, nextPage}: ICamera) => {
       nextPage(data.uri);
     }
   };
+
   return (
     <Box flex={1}>
       <RNCamera
@@ -79,20 +84,8 @@ const Camera = ({imageURL, setImageURL, nextPage}: ICamera) => {
           );
         }}
       </RNCamera>
-      {/* </Box> */}
     </Box>
   );
-};
-
-async function hasAndroidPermission() {
-  const permission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
-
-  const hasPermission = await PermissionsAndroid.check(permission);
-  if (hasPermission) {
-    return true;
-  }
-
-  const status = await PermissionsAndroid.request(permission);
-  return status === 'granted';
 }
+
 export default Camera;

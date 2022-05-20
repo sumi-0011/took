@@ -9,7 +9,6 @@ import {
   HStack,
   Icon,
   Image,
-  NativeBaseProvider,
   Pressable,
   SunIcon,
   Text,
@@ -59,15 +58,14 @@ const MapScreen = ({navigation}: any) => {
     });
   }, []);
   return (
-    <NativeBaseProvider>
-      <Wrapper>
-        <BackBtn
-          borderRadius="full"
-          onPress={() => {
-            navigation.pop();
-          }}>
-          <ChevronLeftIcon />
-          {/* <Icon
+    <Wrapper>
+      <BackBtn
+        borderRadius="full"
+        onPress={() => {
+          navigation.pop();
+        }}>
+        <ChevronLeftIcon />
+        {/* <Icon
             as={AntDesign}
             name="left-outlined"
             color="coolGray.800"
@@ -75,29 +73,29 @@ const MapScreen = ({navigation}: any) => {
               color: 'warmGray.50',
             }}
           /> */}
-        </BackBtn>
-        <>
-          <View style={{flex: 1}}>
-            {location && (
-              <MapView
-                style={{flex: 1}}
-                initialRegion={{
+      </BackBtn>
+      <>
+        <View style={{flex: 1}}>
+          {location && (
+            <MapView
+              style={{flex: 1}}
+              initialRegion={{
+                latitude: location.latitude,
+                longitude: location.longitude,
+                latitudeDelta: 0.05,
+                longitudeDelta: 0.05,
+              }}>
+              <Marker
+                coordinate={{
                   latitude: location.latitude,
                   longitude: location.longitude,
-                  latitudeDelta: 0.05,
-                  longitudeDelta: 0.05,
-                }}>
-                <Marker
-                  coordinate={{
-                    latitude: location.latitude,
-                    longitude: location.longitude,
-                  }}
-                />
-              </MapView>
-            )}
-          </View>
-        </>
-        {/*<Modal borderTopRadius="20" p={5}>
+                }}
+              />
+            </MapView>
+          )}
+        </View>
+      </>
+      {/*<Modal borderTopRadius="20" p={5}>
           <Detail paddingY={2} borderBottomWidth="1" borderColor="coolGray.200">
             <DetailText
               name="공대 5호관 1층"
@@ -124,8 +122,7 @@ const MapScreen = ({navigation}: any) => {
             </Pressable>
           </TookButton>
                 </Modal>*/}
-      </Wrapper>
-    </NativeBaseProvider>
+    </Wrapper>
   );
 };
 const DetailText = ({

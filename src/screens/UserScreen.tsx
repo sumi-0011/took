@@ -1,12 +1,8 @@
-import {NativeBaseProvider, Text} from 'native-base';
 import React from 'react';
+import {Text} from 'native-base';
 
 function UserScreen() {
-  return (
-    <NativeBaseProvider>
-      <Text>UserScreen</Text>
-    </NativeBaseProvider>
-  );
+  return <Text>UserScreen</Text>;
 }
 
 export default UserScreen;

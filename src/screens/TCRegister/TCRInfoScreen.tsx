@@ -3,14 +3,20 @@ import React, {useState} from 'react';
 import BadgeList from '~/components/BadgeList';
 import BasicButton from '~/components/BasicButton';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {postAxios} from '~/api/registation';
+import {postAxios} from '~/common/api/registation';
 interface IRegistraionInput {
   checkList: Array<string>;
   name: string;
   imageUrl: string;
 }
 
-type Props = NativeStackScreenProps<{state: IRegistraionInput}>;
+interface InfoProps {
+  name: string;
+  address: string;
+  image: string;
+  trashImage: string;
+  tagList: Array<string>;
+}
 
 const dummyInfo = {
   name: '대전역 건너 버스정류장teststest',
@@ -21,14 +27,8 @@ const dummyInfo = {
     'https://mediahub.seoul.go.kr/uploads/mediahub/2021/09/tpuykXsdsBZQXeTWToBZZEYuYyQSMNof.jpeg',
   tagList: ['플라스틱', '유리병'],
 };
-interface InfoProps {
-  name: string;
-  address: string;
-  image: string;
-  trashImage: string;
-  tagList: Array<string>;
-}
-const RegistrationInfo = ({route, navigation}: any) => {
+
+function RegistrationInfo({route, navigation}: any) {
   const {name, checkList, imageUrl} = route.params as IRegistraionInput;
   const [info, setInfo] = useState<InfoProps>({
     ...dummyInfo,
@@ -44,15 +44,14 @@ const RegistrationInfo = ({route, navigation}: any) => {
     navigation.navigate('TOOK');
   };
   return (
-    <NativeBaseProvider>
-      <Box p={5} bg={'#fff'} height={'100%'} justifyContent="space-between">
-        <PlaceInfo name={info.name} address={info.address} image={info.image} />
-        <TrashBoxInfo image={info.trashImage} tagList={info.tagList} />
-        <BasicButton onPress={handleSubmit}>등록하기</BasicButton>
-      </Box>
-    </NativeBaseProvider>
+    <Box p={5} bg={'#fff'} height={'100%'} justifyContent="space-between">
+      <PlaceInfo name={info.name} address={info.address} image={info.image} />
+      <TrashBoxInfo image={info.trashImage} tagList={info.tagList} />
+      <BasicButton onPress={handleSubmit}>등록하기</BasicButton>
+    </Box>
   );
-};
+}
+
 export default RegistrationInfo;
 
 const PlaceInfo = ({
