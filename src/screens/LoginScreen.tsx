@@ -14,6 +14,7 @@ import {useForm, Controller} from 'react-hook-form';
 import ErrorMsg from '~/components/ErrorMsg';
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
+import {signIn} from '~/api/fireAuth';
 
 interface FormData {
   email: string;
@@ -28,7 +29,11 @@ function LoginScreen({navigation}: any) {
 
   const formOptions = {resolver: yupResolver(schema)};
 
-  const onSubmit = (data: FormData) => console.log(data);
+  const onSubmit = (data: FormData) => {
+    const result = signIn(data);
+
+    console.log(result);
+  };
 
   const {
     control,
