@@ -1,7 +1,7 @@
 import {Box, HStack, Image, NativeBaseProvider, Text} from 'native-base';
 import React, {useState} from 'react';
 import BadgeList from '~/components/BadgeList';
-import BasicButton from '~/components/BasicButton';
+import BasicButton from '~/components/Button';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {postAxios} from '~/common/api/registation';
 interface IRegistraionInput {
