@@ -7,7 +7,7 @@ interface IButton {
   onPress?: () => any;
 }
 
-function BasicButton({onPress, children}: IButton) {
+function Button({onPress, children}: IButton) {
   return (
     <TookButton>
       <Pressable onPress={onPress}>
@@ -26,4 +26,4 @@ const TookButton = styled(Center)`
   margin: 10px 0;
 `;
 
-export default BasicButton;
+export default Button;

@@ -2,10 +2,10 @@
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import {Box, Button, Input, NativeBaseProvider, Text, View} from 'native-base';
 import React, {useEffect, useState} from 'react';
-import BasicButton from '~/components/BasicButton';
+import BasicButton from '~/components/Button';
 import Geolocation from 'react-native-geolocation-service';
 import {Platform, PermissionsAndroid} from 'react-native';
-import CategotyCheckbox from '~/components/Registraion/CategotyCheckbox';
+import CategotyCheckbox from '~/components/CategoryCheckbox';
 import {categoryList} from '~/common/utils/categoryList';
 
 interface ILocation {
