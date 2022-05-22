@@ -11,11 +11,7 @@ function HomeScreen({navigation}: any) {
     <Box w="100%" bg="white" h="100%" p={5} alignContent="center">
       <VStack justifyContent="space-evenly" space={5} h="100%">
         <Header onPress={() => console.log('clicked')} />
-        <PressableBox
-          flex={1.5}
-          bg="coolGray.100"
-          paddingX={8}
-          onPress={() => navigation.navigate('UserScreen')}>
+        <PressableBox flex={1.5} bg="coolGray.100" paddingX={8}>
           <Profile />
         </PressableBox>
         <HStack w="100%" space={5} flex={2}>
@@ -82,7 +78,7 @@ function HomeScreen({navigation}: any) {
           <PressableBox
             bg="coolGray.100"
             flex={1}
-            onPress={() => console.log('clicked')}>
+            onPress={() => navigation.navigate('UserScreen')}>
             <Center>
               <Text fontSize="lg" bold>
                 MY TOOK

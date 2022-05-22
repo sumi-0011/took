@@ -4,9 +4,9 @@ import {RecoilState, useRecoilState} from 'recoil';
 
 export const useAsyncStorageQuery = <T,>(
   key: string,
-  initialState: RecoilState<T[]>,
+  initialState: RecoilState<T>,
 ) => {
-  const [data, setData] = useRecoilState<T[]>(initialState);
+  const [data, setData] = useRecoilState<T>(initialState);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState<unknown>();
@@ -18,7 +18,7 @@ export const useAsyncStorageQuery = <T,>(
         const jsonValue = await AsyncStorage.getItem(key);
 
         if (jsonValue) {
-          const value: T[] = jsonValue != null ? JSON.parse(jsonValue) : null;
+          const value: T = jsonValue != null ? JSON.parse(jsonValue) : null;
           setData(value);
         }
 

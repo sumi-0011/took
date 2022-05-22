@@ -1,7 +1,16 @@
 import auth from '@react-native-firebase/auth';
 
-export async function isLoggedIn() {
+export function isLoggedIn() {
   return auth().currentUser ? true : false;
+}
+
+export function getUserInfo() {
+  const user = auth().currentUser;
+  return {
+    photoURL: user?.photoURL,
+    displayName: user?.displayName,
+    uid: user?.uid,
+  };
 }
 
 export async function signIn(email: string, password: string) {
@@ -21,7 +30,7 @@ export async function signUp(email: string, password: string, name: string) {
       password,
     );
 
-    await changeProfile(name);
+    await changeProfile({name});
 
     return {statusCode: 200, ...response};
   } catch (error) {
@@ -29,10 +38,10 @@ export async function signUp(email: string, password: string, name: string) {
   }
 }
 
-export async function changeProfile(info) {
+export async function changeProfile({name}: {name: string}) {
   try {
     const response = await auth().currentUser?.updateProfile({
-      displayName: info,
+      displayName: name,
     });
 
     console.log(response);

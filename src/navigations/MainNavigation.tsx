@@ -4,6 +4,7 @@ import HomeScreen from '~/screens/HomeScreen';
 import MapScreen from '~/screens/MapScreen';
 import AuthNaviagtion from '~/navigations/AuthNavigation';
 import TCRegisterNavigation from '~/navigations/TCRegisterNavigation';
+import UserScreen from '~/screens/UserScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,7 +28,7 @@ function MainNavigation() {
       />
       <Stack.Screen
         name="UserScreen"
-        component={AuthNaviagtion}
+        component={UserScreen}
         options={{
           headerShown: false,
         }}
@@ -35,6 +36,13 @@ function MainNavigation() {
       <Stack.Screen
         name="TCRScreen"
         component={TCRegisterNavigation}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Auth"
+        component={AuthNaviagtion}
         options={{
           headerShown: false,
         }}
