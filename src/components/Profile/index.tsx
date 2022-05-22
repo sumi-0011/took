@@ -1,27 +1,30 @@
 import {Box, HStack, Image, Progress, Text, VStack} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import {getUserInfo} from '~/common/api/fireAuth';
-
 import defaultAvata from '~/images/user.png';
+
+interface UserInfo {
+  name: string;
+  userId: string;
+  avata: string;
+}
 
 function Profile() {
   const [isLoading, setIsLoading] = useState(false);
-  const [name, setName] = useState<string>();
-  const [avata, setAvata] = useState<string>();
-  const [userId, setUserId] = useState<string>();
+  const [userInfo, setUserInfo] = useState<UserInfo>();
 
   useEffect(() => {
     setIsLoading(true);
     const {photoURL, displayName, uid} = getUserInfo();
 
-    setName(displayName ?? '');
-    setAvata(photoURL ?? '');
-    setUserId(uid);
+    setUserInfo({
+      avata: photoURL ?? '',
+      name: displayName ?? '',
+      userId: uid ?? '',
+    });
 
-    if (userId) {
-      setIsLoading(false);
-    }
-  }, [userId]);
+    setIsLoading(false);
+  }, []);
 
   if (isLoading) {
     return <Box>loading</Box>;
@@ -32,7 +35,7 @@ function Profile() {
       <HStack justifyContent="space-between" alignItems="center">
         <Image
           size={16}
-          source={avata ? {uri: avata} : defaultAvata}
+          source={userInfo?.avata ? {uri: userInfo.avata} : defaultAvata}
           rounded="full"
           alt="avata"
         />
@@ -43,7 +46,7 @@ function Profile() {
           justifyContent="space-evenly"
           marginTop={3}
           h={25}>
-          <Text fontSize="lg">{name} 님 안녕하세요! 😚</Text>
+          <Text fontSize="lg">{userInfo?.name} 님 안녕하세요! 😚</Text>
         </HStack>
       </HStack>
       <Progress value={45} size="lg" marginY={5} colorScheme="tertiary" />

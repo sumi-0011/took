@@ -1,4 +1,4 @@
-import {PermissionsAndroid} from 'react-native';
+import {Platform, PermissionsAndroid} from 'react-native';
 
 export async function hasAndroidPermission() {
   const permission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
@@ -10,4 +10,16 @@ export async function hasAndroidPermission() {
 
   const status = await PermissionsAndroid.request(permission);
   return status === 'granted';
+}
+
+export async function requestPermission() {
+  try {
+    if (Platform.OS === 'android') {
+      return await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      );
+    }
+  } catch (e) {
+    console.log(e);
+  }
 }
