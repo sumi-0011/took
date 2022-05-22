@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
-import {Box, Button, Input, NativeBaseProvider, Text, View} from 'native-base';
+import {Box, Button, Input, Text, View} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import BasicButton from '~/components/Button';
 import Geolocation from 'react-native-geolocation-service';
-import {Platform, PermissionsAndroid} from 'react-native';
 import CategotyCheckbox from '~/components/CategoryCheckbox';
 import {categoryList} from '~/common/utils/categoryList';
+import {requestPermission} from '~/common/utils/permission';
 
 interface ILocation {
   latitude: number;
@@ -21,18 +21,6 @@ export interface ICategory {
 interface IRegistraionInput {
   checks: Array<string>;
   name: string;
-}
-
-async function requestPermission() {
-  try {
-    if (Platform.OS === 'android') {
-      return await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-      );
-    }
-  } catch (e) {
-    console.log(e);
-  }
 }
 
 function RegistrationCategory({navigation}: any) {

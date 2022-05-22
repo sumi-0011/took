@@ -1,9 +1,9 @@
-import {Box, HStack, Image, NativeBaseProvider, Text} from 'native-base';
+import {Box, HStack, Image, Text} from 'native-base';
 import React, {useState} from 'react';
 import BadgeList from '~/components/BadgeList';
 import BasicButton from '~/components/Button';
-import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {postAxios} from '~/common/api/registation';
+
 interface IRegistraionInput {
   checkList: Array<string>;
   name: string;
@@ -36,13 +36,14 @@ function RegistrationInfo({route, navigation}: any) {
     tagList: checkList,
     trashImage: imageUrl,
   });
-  console.log(name, checkList, imageUrl);
+
   const handleSubmit = () => {
     postAxios('test', info);
     console.log('등록되었습니다');
 
     navigation.navigate('TOOK');
   };
+
   return (
     <Box p={5} bg={'#fff'} height={'100%'} justifyContent="space-between">
       <PlaceInfo name={info.name} address={info.address} image={info.image} />
