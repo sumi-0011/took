@@ -1,5 +1,9 @@
 import auth from '@react-native-firebase/auth';
 
+export async function isLoggedIn() {
+  return auth().currentUser ? true : false;
+}
+
 export async function signIn(email: string, password: string) {
   try {
     const response = await auth().signInWithEmailAndPassword(email, password);
