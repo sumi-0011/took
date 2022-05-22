@@ -1,11 +1,11 @@
-import {Box, Button, HStack, Icon, Text, VStack} from 'native-base';
 import React from 'react';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import Input from '~/components/Input';
-import {useForm, Controller} from 'react-hook-form';
-import ErrorMsg from '~/components/ErrorMsg';
 import * as yup from 'yup';
+import {Box, Button, HStack, Icon, Text, VStack} from 'native-base';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
+import Input from '~/components/Input';
+import ErrorMsg from '~/components/ErrorMsg';
 import {signIn} from '~/common/api/fireAuth';
 
 interface FormData {
@@ -22,7 +22,7 @@ function LoginScreen({navigation}: any) {
   const formOptions = {resolver: yupResolver(schema)};
 
   const onSubmit = (data: FormData) => {
-    const result = signIn(data);
+    const result = signIn(data.email, data.password);
 
     console.log(result);
   };

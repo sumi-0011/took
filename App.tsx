@@ -1,8 +1,8 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {NativeBaseProvider} from 'native-base';
-import MainNavigation from '~/navigations/MainNavigation';
 import {RecoilRoot} from 'recoil';
+import {NativeBaseProvider} from 'native-base';
+import {NavigationContainer} from '@react-navigation/native';
+import MainNavigation from '~/navigations/MainNavigation';
 
 function App() {
   return (

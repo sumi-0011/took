@@ -6,7 +6,7 @@ interface IPressableBox {
   bg?: string;
   children: ReactNode;
   paddingX?: number;
-  onPress: () => void;
+  onPress?: () => void;
 }
 
 function PressableBox({children, onPress, ...rest}: IPressableBox) {

@@ -16,7 +16,7 @@ function AuthNaviagtion() {
       <Stack.Screen
         name="RegisterScreen"
         component={RegisterScren}
-        options={{headerShown: false}}
+        // options={{headerShown: false}}
       />
     </Stack.Navigator>
   );
