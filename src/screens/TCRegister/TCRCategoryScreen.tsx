@@ -55,8 +55,20 @@ function RegistrationCategory({navigation}: any) {
             initialRegion={{
               latitude: location.latitude,
               longitude: location.longitude,
-              latitudeDelta: 0.05,
-              longitudeDelta: 0.05,
+              latitudeDelta: 0.003,
+              longitudeDelta: 0.003,
+            }}
+            onRegionChange={region => {
+              setLocation({
+                latitude: region.latitude,
+                longitude: region.longitude,
+              });
+            }}
+            onRegionChangeComplete={region => {
+              setLocation({
+                latitude: region.latitude,
+                longitude: region.longitude,
+              });
             }}>
             <Marker
               coordinate={{
