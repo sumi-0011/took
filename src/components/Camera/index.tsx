@@ -4,7 +4,7 @@ import CameraRoll from '@react-native-community/cameraroll';
 import {View} from 'react-native';
 import {RNCamera} from 'react-native-camera';
 import {Platform} from 'react-native';
-import {hasAndroidPermission} from '~/common/utils/permission';
+import {hasAndroidPermission} from '@common/utils/permission';
 
 interface ICamera {
   imageURL: string;

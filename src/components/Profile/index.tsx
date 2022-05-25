@@ -1,7 +1,7 @@
 import {Box, HStack, Image, Progress, Text, VStack} from 'native-base';
 import React, {useEffect, useState} from 'react';
-import {getUserInfo} from '~/common/api/fireAuth';
-import defaultAvata from '~/images/user.png';
+import {getUserInfo} from '@common/api/fireAuth';
+import defaultAvata from '@images/user.png';
 
 interface UserInfo {
   name: string;

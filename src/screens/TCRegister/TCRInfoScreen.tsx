@@ -1,8 +1,8 @@
 import {Box, HStack, Image, Text} from 'native-base';
 import React, {useState} from 'react';
-import BadgeList from '~/components/BadgeList';
-import BasicButton from '~/components/Button';
-import {postAxios} from '~/common/api/registation';
+import BadgeList from '@components/BadgeList';
+import BasicButton from '@components/Button';
+import {postAxios} from '@common/api/registation';
 
 interface IRegistraionInput {
   checkList: Array<string>;

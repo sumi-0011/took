@@ -17,7 +17,7 @@ import {
 } from 'native-base';
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components/native';
-import BadgeList from '~/components/BadgeList';
+import BadgeList from '@components/BadgeList';
 // import {AntDesign} from '@expo/vector-icons';
 import {AntDesign} from '@native-base/icons';
 import {color} from 'native-base/lib/typescript/theme/styled-system';

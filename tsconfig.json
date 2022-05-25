@@ -12,11 +12,11 @@
     "target": "esnext",
     "baseUrl": "./src",
     "paths": {
-      "~/*": ["./*"],
       "@components/*": ["components/*"],
       "@screens/*": ["screens/*"],
-      "@assets/*": ["assets/*"],
-      "@query/*": ["query/*"]
+      "@images/*": ["images/*"],
+      "@common/*": ["common/*"],
+      "@navigations/*": ["navigations/*"]
     }
   },
   "exclude": [

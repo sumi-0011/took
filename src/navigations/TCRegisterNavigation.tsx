@@ -1,8 +1,8 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import CameraScreen from '~/screens/TCRegister/CameraScreen';
-import TCRCategoryScreen from '~/screens/TCRegister/TCRCategoryScreen';
-import TCRInfoScreen from '~/screens/TCRegister/TCRInfoScreen';
+import CameraScreen from '@screens/TCRegister/CameraScreen';
+import TCRCategoryScreen from '@screens/TCRegister/TCRCategoryScreen';
+import TCRInfoScreen from '@screens/TCRegister/TCRInfoScreen';
 
 const Stack = createNativeStackNavigator();
 

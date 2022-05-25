@@ -4,9 +4,9 @@ import {Box, Button, HStack, Icon, Text, VStack} from 'native-base';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
-import Input from '~/components/Input';
-import ErrorMsg from '~/components/ErrorMsg';
-import {signIn} from '~/common/api/fireAuth';
+import Input from '@components/Input';
+import ErrorMsg from '@components/ErrorMsg';
+import {signIn} from '@common/api/fireAuth';
 
 interface FormData {
   email: string;

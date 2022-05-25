@@ -3,9 +3,9 @@ import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {useForm, Controller} from 'react-hook-form';
 import {Box, Button, Text, VStack} from 'native-base';
-import {signUp} from '~/common/api/fireAuth';
-import Input from '~/components/Input';
-import ErrorMsg from '~/components/ErrorMsg';
+import {signUp} from '@common/api/fireAuth';
+import Input from '@components/Input';
+import ErrorMsg from '@components/ErrorMsg';
 
 interface FormData {
   email: string;
