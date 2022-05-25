@@ -12,6 +12,6 @@ module.exports = {
     '^@navigations/(.*)': '<rootDir>/navigations/$1',
   },
   transformIgnorePatterns: [
-    'node_modules/(?!(@react-native|react-native|react-native-vector-icons)/)',
+    'node_modules/(?!(@react-native|react-native|react-native-vector-icons|@react-native-community/cameraroll|react-native-camera|react-native-maps|react-native-geolocation-service)/)',
   ],
 };
