@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Camera from '~/components/Camera';
+import Camera from '@components/Camera';
 
 interface IRegistraionInput {
   checkList: Array<string>;

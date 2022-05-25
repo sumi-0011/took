@@ -1,7 +1,7 @@
 import {Box, HStack, Image} from 'native-base';
 import React from 'react';
 import {SettingIcon} from '../Icon';
-import logo from '~/images/logo.png';
+import logo from '@images/logo.png';
 
 interface IHeader {
   onPress: () => void;
