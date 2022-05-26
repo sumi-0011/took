@@ -21,8 +21,8 @@ function LoginScreen({navigation}: any) {
 
   const formOptions = {resolver: yupResolver(schema)};
 
-  const onSubmit = (data: FormData) => {
-    const result = signIn(data.email, data.password);
+  const onSubmit = async (data: FormData) => {
+    const result = await signIn(data.email, data.password);
 
     console.log(result);
   };

@@ -32,9 +32,9 @@ export async function signUp(email: string, password: string, name: string) {
 
     await changeProfile({name});
 
-    return {statusCode: 200, ...response};
+    return {status: 'success', ...response};
   } catch (error) {
-    console.log(error);
+    return {status: 'fail', error};
   }
 }
 
@@ -44,7 +44,6 @@ export async function changeProfile({name}: {name: string}) {
       displayName: name,
     });
 
-    console.log(response);
     return response;
   } catch (error) {
     console.log(error);
