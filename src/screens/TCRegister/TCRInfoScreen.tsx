@@ -111,7 +111,7 @@ export const TrashBoxInfo = ({
         marginY={5}
         borderRadius={10}
         alt="쓰레기통 이미지"
-        testID="trashImage"
+        accessibilityLabel="쓰레기통 이미지"
       />
       <HStack>
         <BadgeList data={tagList} />

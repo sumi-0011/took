@@ -1,7 +1,10 @@
 import React from 'react';
 import 'react-native';
 import {fireEvent, render} from '@testing-library/react-native';
-import TCRInfoScreen, {PlaceInfo} from '@screens/TCRegister/TCRInfoScreen';
+import TCRInfoScreen, {
+  PlaceInfo,
+  TrashBoxInfo,
+} from '@screens/TCRegister/TCRInfoScreen';
 import {NativeBaseProvider} from 'native-base';
 const inset = {
   frame: {x: 0, y: 0, width: 0, height: 0},
@@ -26,33 +29,63 @@ const dummyInfo = {
 
   tagList: ['플라스틱', '유리병'],
 };
-function getComponent(props) {
-  return (
+// function getComponent(props) {
+//   return (
+
+//   );
+// }
+describe('쓰레기통 위치 정보 렌더링 ...', () => {
+  const props = {
+    name: dummyInfo.name,
+    address: dummyInfo.address,
+    image: dummyInfo.image,
+  };
+  const component = (
     <NativeBaseProvider initialWindowMetrics={inset}>
-      <PlaceInfo
-        name={dummyInfo.name}
-        address={dummyInfo.address}
-        image={dummyInfo.image}
-      />
+      <PlaceInfo {...props} />
     </NativeBaseProvider>
   );
-}
-describe('쓰레기통 info 렌더링 ...', () => {
-  const props = {};
-  const component = getComponent(props);
+
   test('쓰레기통 info name 존재', () => {
     const {getByLabelText} = render(component);
     const element = getByLabelText('place-name');
     expect(element).toBeTruthy();
   });
+
   test('쓰레기통 info address 존재', () => {
     const {getByLabelText} = render(component);
     const element = getByLabelText('place-address');
     expect(element).toBeTruthy();
   });
+
   test('쓰레기통 info img 존재', () => {
     const {getByLabelText} = render(component);
     const element = getByLabelText('쓰레기통 위치');
     expect(element).toBeTruthy();
+  });
+});
+
+describe('쓰레기통 정보 렌더링 ...', () => {
+  const props = {
+    image: dummyInfo.image,
+    tagList: dummyInfo.tagList,
+  };
+
+  const component = (
+    <NativeBaseProvider initialWindowMetrics={inset}>
+      <TrashBoxInfo {...props} />
+    </NativeBaseProvider>
+  );
+
+  test('쓰레기통 info name 존재', () => {
+    const {getByLabelText} = render(component);
+    const element = getByLabelText('쓰레기통 이미지');
+    expect(element).toBeTruthy();
+  });
+
+  test('쓰레기통 info tag 존재', () => {
+    const {getAllByTestId} = render(component);
+    const element = getAllByTestId('trash-tag');
+    expect(element).toHaveLength(dummyInfo.tagList.length);
   });
 });
