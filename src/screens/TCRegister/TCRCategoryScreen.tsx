@@ -89,10 +89,7 @@ function RegistrationCategory({navigation}: any) {
           value={inputName}
           onChangeText={text => setInputName(text)}
         />
-        <CategotyCheckbox
-          // groupValue={groupValue}
-          setGroupValue={setGroupValue}
-        />
+        <CategotyCheckbox setGroupValue={setGroupValue} />
         <Button
           onPress={() => {
             navigation.navigate('CameraScreen', {
@@ -100,7 +97,7 @@ function RegistrationCategory({navigation}: any) {
               checkList: groupValue,
             });
           }}>
-          Camera
+          사진 촬영
         </Button>
         {/*
           <BasicButton

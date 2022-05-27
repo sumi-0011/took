@@ -19,7 +19,7 @@ interface InfoProps {
 }
 
 const dummyInfo = {
-  name: '대전역 건너 버스정류장teststest',
+  name: '대전역 건너 버스정류장',
   address: '대전광역시 동구 중앙로 211(장동)',
   image:
     'https://spi.maps.daum.net/map2/map/imageservice?IW=600&IH=350&MX=400205&MY=-11702&SCALE=2.5&service=open',
@@ -29,12 +29,12 @@ const dummyInfo = {
 };
 
 function RegistrationInfo({route, navigation}: any) {
-  const {name, checkList, imageUrl} = route.params as IRegistraionInput;
+  // const {name, checkList, imageUrl} = route.params as any;
   const [info, setInfo] = useState<InfoProps>({
     ...dummyInfo,
-    name,
-    tagList: checkList,
-    trashImage: imageUrl,
+    // name,
+    // tagList: checkList,
+    // trashImage: imageUrl,
   });
 
   const handleSubmit = () => {
@@ -55,7 +55,7 @@ function RegistrationInfo({route, navigation}: any) {
 
 export default RegistrationInfo;
 
-const PlaceInfo = ({
+export const PlaceInfo = ({
   name,
   address,
   image,
@@ -66,16 +66,17 @@ const PlaceInfo = ({
 }) => {
   return (
     <Box>
-      <Text bold fontSize={'lg'}>
+      <Text bold fontSize={'lg'} testID="placename">
         {name}
       </Text>
-      <Text fontSize={'xs'} color="coolGray.500">
+      <Text fontSize={'xs'} color="coolGray.500" testID="placename">
         {address}
       </Text>
       <Image
         source={{
           uri: image,
         }}
+        testID="placename"
         width={'100%'}
         height={150}
         marginTop={5}
@@ -86,7 +87,7 @@ const PlaceInfo = ({
   );
 };
 
-const TrashBoxInfo = ({
+export const TrashBoxInfo = ({
   image,
   tagList,
 }: {
@@ -107,6 +108,7 @@ const TrashBoxInfo = ({
         marginY={5}
         borderRadius={10}
         alt="쓰레기통 이미지"
+        testID="trashImage"
       />
       <HStack>
         <BadgeList data={tagList} />
