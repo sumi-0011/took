@@ -66,22 +66,25 @@ export const PlaceInfo = ({
 }) => {
   return (
     <Box>
-      <Text bold fontSize={'lg'} testID="placename">
+      <Text bold fontSize={'lg'} accessibilityLabel="place-name">
         {name}
       </Text>
-      <Text fontSize={'xs'} color="coolGray.500" testID="placename">
+      <Text
+        fontSize={'xs'}
+        color="coolGray.500"
+        accessibilityLabel="place-address">
         {address}
       </Text>
       <Image
         source={{
           uri: image,
         }}
-        testID="placename"
+        accessibilityLabel="쓰레기통 위치"
         width={'100%'}
         height={150}
         marginTop={5}
         borderRadius={10}
-        alt="위치"
+        alt="쓰레기통 위치"
       />
     </Box>
   );

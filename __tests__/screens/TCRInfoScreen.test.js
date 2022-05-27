@@ -26,19 +26,33 @@ const dummyInfo = {
 
   tagList: ['플라스틱', '유리병'],
 };
-
+function getComponent(props) {
+  return (
+    <NativeBaseProvider initialWindowMetrics={inset}>
+      <PlaceInfo
+        name={dummyInfo.name}
+        address={dummyInfo.address}
+        image={dummyInfo.image}
+      />
+    </NativeBaseProvider>
+  );
+}
 describe('쓰레기통 info 렌더링 ...', () => {
+  const props = {};
+  const component = getComponent(props);
   test('쓰레기통 info name 존재', () => {
-    const {getByText} = render(
-      <NativeBaseProvider>
-        <PlaceInfo
-          name={dummyInfo.name}
-          address={dummyInfo.address}
-          image={dummyInfo.image}
-        />
-      </NativeBaseProvider>,
-    );
-    const element = getByText(dummyInfo.name);
+    const {getByLabelText} = render(component);
+    const element = getByLabelText('place-name');
+    expect(element).toBeTruthy();
+  });
+  test('쓰레기통 info address 존재', () => {
+    const {getByLabelText} = render(component);
+    const element = getByLabelText('place-address');
+    expect(element).toBeTruthy();
+  });
+  test('쓰레기통 info img 존재', () => {
+    const {getByLabelText} = render(component);
+    const element = getByLabelText('쓰레기통 위치');
     expect(element).toBeTruthy();
   });
 });
