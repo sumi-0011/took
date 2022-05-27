@@ -19,7 +19,7 @@ function Profile() {
 
     setUserInfo({
       avata: photoURL ?? '',
-      name: displayName ?? '',
+      name: displayName ?? '회원',
       userId: uid ?? '',
     });
 
