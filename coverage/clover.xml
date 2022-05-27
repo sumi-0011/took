@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1653563477383" clover="3.2.0">
+  <project timestamp="1653563477383" name="All files">
+    <metrics statements="214" coveredstatements="67" conditionals="62" coveredconditionals="17" methods="92" coveredmethods="24" elements="368" coveredelements="108" complexity="0" loc="214" ncloc="214" packages="20" files="30" classes="30"/>
+    <package name="took">
+      <metrics statements="4" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+      <file name="App.tsx" path="/Users/jeonbyeongmin/project/project/took/App.tsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="7" count="1" type="stmt"/>
+      </file>
+      <file name="assetsTransformer.js" path="/Users/jeonbyeongmin/project/project/took/assetsTransformer.js">
+        <metrics statements="3" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="took.src.common.HOC">
+      <metrics statements="3" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+      <file name="AuthHOC.tsx" path="/Users/jeonbyeongmin/project/project/took/src/common/HOC/AuthHOC.tsx">
+        <metrics statements="3" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="took.src.common.api">
+      <metrics statements="47" coveredstatements="5" conditionals="10" coveredconditionals="0" methods="13" coveredmethods="1"/>
+      <file name="fireAuth.tsx" path="/Users/jeonbyeongmin/project/project/took/src/common/api/fireAuth.tsx">
+        <metrics statements="19" coveredstatements="2" conditionals="2" coveredconditionals="0" methods="7" coveredmethods="1"/>
+        <line num="4" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+      </file>
+      <file name="registation.tsx" path="/Users/jeonbyeongmin/project/project/took/src/common/api/registation.tsx">
+        <metrics statements="28" coveredstatements="3" conditionals="8" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="12" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="35" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="took.src.common.utils">
+      <metrics statements="11" coveredstatements="1" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="categoryList.ts" path="/Users/jeonbyeongmin/project/project/took/src/common/utils/categoryList.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="permission.tsx" path="/Users/jeonbyeongmin/project/project/took/src/common/utils/permission.tsx">
+        <metrics statements="10" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="took.src.components.BackgroundImage">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="index.tsx" path="/Users/jeonbyeongmin/project/project/took/src/components/BackgroundImage/index.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="took.src.components.BadgeList">
+      <metrics statements="3" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="index.tsx" path="/Users/jeonbyeongmin/project/project/took/src/components/BadgeList/index.tsx">
+        <metrics statements="3" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="took.src.components.Button">
+      <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="index.tsx" path="/Users/jeonbyeongmin/project/project/took/src/components/Button/index.tsx">
+        <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="took.src.components.Camera">
+      <metrics statements="21" coveredstatements="1" conditionals="8" coveredconditionals="0" methods="6" coveredmethods="0"/>
+      <file name="index.tsx" path="/Users/jeonbyeongmin/project/project/took/src/components/Camera/index.tsx">
+        <metrics statements="21" coveredstatements="1" conditionals="8" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="45" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="46" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="77" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="80" count="0" type="stmt"/>
+        <line num="82" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="took.src.components.CategoryCheckbox">
+      <metrics statements="3" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <file name="index.tsx" path="/Users/jeonbyeongmin/project/project/took/src/components/CategoryCheckbox/index.tsx">
+        <metrics statements="3" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="17" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="23" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="took.src.components.ErrorMsg">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="index.tsx" path="/Users/jeonbyeongmin/project/project/took/src/components/ErrorMsg/index.tsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="9" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="took.src.components.Header">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="index.tsx" path="/Users/jeonbyeongmin/project/project/took/src/components/Header/index.tsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="11" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="took.src.components.Icon">
+      <metrics statements="4" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="1"/>
+      <file name="index.tsx" path="/Users/jeonbyeongmin/project/project/took/src/components/Icon/index.tsx">
+        <metrics statements="4" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="1"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="took.src.components.Input">
+      <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <file name="index.tsx" path="/Users/jeonbyeongmin/project/project/took/src/components/Input/index.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="14" count="34" type="cond" truecount="1" falsecount="1"/>
+        <line num="19" count="34" type="stmt"/>
+      </file>
+    </package>
+    <package name="took.src.components.PressableBox">
+      <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
+      <file name="index.tsx" path="/Users/jeonbyeongmin/project/project/took/src/components/PressableBox/index.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
+        <line num="13" count="6" type="stmt"/>
+        <line num="24" count="6" type="cond" truecount="1" falsecount="1"/>
+      </file>
+    </package>
+    <package name="took.src.components.Profile">
+      <metrics statements="10" coveredstatements="9" conditionals="10" coveredconditionals="8" methods="2" coveredmethods="2"/>
+      <file name="index.tsx" path="/Users/jeonbyeongmin/project/project/took/src/components/Profile/index.tsx">
+        <metrics statements="10" coveredstatements="9" conditionals="10" coveredconditionals="8" methods="2" coveredmethods="2"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="29" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="took.src.components.TagList">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="index.tsx" path="/Users/jeonbyeongmin/project/project/took/src/components/TagList/index.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="took.src.navigations">
+      <metrics statements="6" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
+      <file name="AuthNavigation.tsx" path="/Users/jeonbyeongmin/project/project/took/src/navigations/AuthNavigation.tsx">
+        <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="MainNavigation.tsx" path="/Users/jeonbyeongmin/project/project/took/src/navigations/MainNavigation.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+      </file>
+      <file name="TCRegisterNavigation.tsx" path="/Users/jeonbyeongmin/project/project/took/src/navigations/TCRegisterNavigation.tsx">
+        <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="took.src.screens">
+      <metrics statements="34" coveredstatements="11" conditionals="6" coveredconditionals="0" methods="17" coveredmethods="1"/>
+      <file name="HomeScreen.tsx" path="/Users/jeonbyeongmin/project/project/took/src/screens/HomeScreen.tsx">
+        <metrics statements="7" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="1"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="91" count="0" type="stmt"/>
+      </file>
+      <file name="MapScreen.tsx" path="/Users/jeonbyeongmin/project/project/took/src/screens/MapScreen.tsx">
+        <metrics statements="26" coveredstatements="10" conditionals="6" coveredconditionals="0" methods="9" coveredmethods="0"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="46" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="128" count="1" type="stmt"/>
+        <line num="137" count="0" type="stmt"/>
+        <line num="151" count="1" type="stmt"/>
+        <line num="152" count="0" type="stmt"/>
+        <line num="166" count="1" type="stmt"/>
+        <line num="172" count="1" type="stmt"/>
+        <line num="176" count="1" type="stmt"/>
+        <line num="181" count="1" type="stmt"/>
+        <line num="188" count="1" type="stmt"/>
+        <line num="192" count="1" type="stmt"/>
+        <line num="196" count="1" type="stmt"/>
+      </file>
+      <file name="UserScreen.tsx" path="/Users/jeonbyeongmin/project/project/took/src/screens/UserScreen.tsx">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="took.src.screens.Auth">
+      <metrics statements="23" coveredstatements="16" conditionals="14" coveredconditionals="7" methods="12" coveredmethods="8"/>
+      <file name="LoginScreen.tsx" path="/Users/jeonbyeongmin/project/project/took/src/screens/Auth/LoginScreen.tsx">
+        <metrics statements="11" coveredstatements="7" conditionals="4" coveredconditionals="2" methods="6" coveredmethods="3"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="97" count="0" type="stmt"/>
+        <line num="108" count="0" type="stmt"/>
+      </file>
+      <file name="RegisterScreen.tsx" path="/Users/jeonbyeongmin/project/project/took/src/screens/Auth/RegisterScreen.tsx">
+        <metrics statements="12" coveredstatements="9" conditionals="10" coveredconditionals="5" methods="6" coveredmethods="5"/>
+        <line num="18" count="7" type="stmt"/>
+        <line num="28" count="7" type="stmt"/>
+        <line num="30" count="7" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="33" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="42" count="7" type="stmt"/>
+        <line num="44" count="7" type="stmt"/>
+        <line num="54" count="8" type="stmt"/>
+        <line num="77" count="8" type="stmt"/>
+        <line num="99" count="8" type="stmt"/>
+        <line num="122" count="8" type="stmt"/>
+      </file>
+    </package>
+    <package name="took.src.screens.TCRegister">
+      <metrics statements="33" coveredstatements="3" conditionals="4" coveredconditionals="0" methods="15" coveredmethods="0"/>
+      <file name="CameraScreen.tsx" path="/Users/jeonbyeongmin/project/project/took/src/screens/TCRegister/CameraScreen.tsx">
+        <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+      </file>
+      <file name="TCRCategoryScreen.tsx" path="/Users/jeonbyeongmin/project/project/took/src/screens/TCRegister/TCRCategoryScreen.tsx">
+        <metrics statements="16" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="9" coveredmethods="0"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="89" count="0" type="stmt"/>
+        <line num="97" count="0" type="stmt"/>
+      </file>
+      <file name="TCRInfoScreen.tsx" path="/Users/jeonbyeongmin/project/project/took/src/screens/TCRegister/TCRInfoScreen.tsx">
+        <metrics statements="12" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="89" count="1" type="stmt"/>
+        <line num="96" count="0" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

@@ -30,8 +30,8 @@ function RegisterScreen({navigation}: any) {
   const onSubmit = async (data: FormData) => {
     const res = await signUp(data.email, data.password, data.name);
 
-    if (res?.statusCode === 200) {
-      navigation.replace('TOOK');
+    if (res?.status === 'success') {
+      navigation.replace('HomeScreen');
     }
   };
 
