@@ -48,7 +48,7 @@ function RegistrationCategory({navigation}: any) {
 
   return (
     <Box height={'100%'}>
-      <View style={{flex: 1}}>
+      <Box style={{flex: 1}}>
         {location && (
           <MapView
             style={{flex: 1}}
@@ -78,18 +78,19 @@ function RegistrationCategory({navigation}: any) {
             />
           </MapView>
         )}
-      </View>
+      </Box>
       <Box p={5} bg={'#fff'}>
         <Text>쓰레기통 이름</Text>
         <Input
           size="lg"
-          placeholder="lg Input"
+          placeholder="쓰레기통 이름을 입력해주세요"
+          name="trashName"
           marginY={2}
           value={inputName}
           onChangeText={text => setInputName(text)}
         />
         <CategotyCheckbox
-          groupValue={groupValue}
+          // groupValue={groupValue}
           setGroupValue={setGroupValue}
         />
         <Button
@@ -101,7 +102,7 @@ function RegistrationCategory({navigation}: any) {
           }}>
           Camera
         </Button>
-        {/* 
+        {/*
           <BasicButton
             onPress={() => {
               navigation.navigate('RegistrationInfo', {
