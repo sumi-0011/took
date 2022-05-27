@@ -3,10 +3,9 @@ import {isLoggedIn} from '@common/api/fireAuth';
 
 export default function <P extends object>(Component: ComponentType<P>) {
   function AuthenticationCheck({...props}) {
-    // if (isLoggedIn() === false) {
-    //   props.navigation.replace('Auth');
-    // }
-    props.navigation.replace('Auth');
+    if (isLoggedIn() === false) {
+      props.navigation.replace('Auth');
+    }
 
     return <Component {...(props as P)} />;
   }

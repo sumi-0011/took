@@ -3,7 +3,6 @@ import auth from '@react-native-firebase/auth';
 export function isLoggedIn() {
   return auth().currentUser ? true : false;
 }
-
 export function getUserInfo() {
   const user = auth().currentUser;
   return {
@@ -16,10 +15,9 @@ export function getUserInfo() {
 export async function signIn(email: string, password: string) {
   try {
     const response = await auth().signInWithEmailAndPassword(email, password);
-    return response;
+    return {status: 'success', ...response};
   } catch (error) {
-    console.log(error);
-    return error;
+    return {status: 'fail', error};
   }
 }
 
