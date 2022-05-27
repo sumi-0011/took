@@ -6,8 +6,12 @@ export default () => ({
       return {status: 'fail'};
     }
   }),
-  createUserWithEmailAndPassword: jest.fn(() => {
-    console.log('ad');
+  createUserWithEmailAndPassword: jest.fn((email, password) => {
+    if (email === 'qudals7613@gmail.com') {
+      return {status: 'fail'};
+    } else {
+      return {status: 'success'};
+    }
   }),
   signOut: jest.fn(),
   sendPasswordResetEmail: jest.fn(),
