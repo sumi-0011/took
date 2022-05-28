@@ -94,6 +94,7 @@ function RegistrationCategory({navigation}: any) {
         />
         <CategotyCheckbox setGroupValue={setGroupValue} />
         <Button
+          disabled
           onPress={() => {
             navigation.navigate('CameraScreen', {
               name: inputName,
