@@ -53,27 +53,17 @@ describe('쓰레기통 등록 가능 여부 ...', () => {
   const component = getComponent(props);
   const checkTrashBoxAddress = jest.fn();
 
-  // test('사진 촬영 버튼이 존재', () => {
-  //   const {getByTestId} = render(
-  //     <NativeBaseProvider initialWindowMetrics={inset}>
-  //       <View>
-  //         <Button disabled testID="button" title="submit" onPress={e => e} />
-  //       </View>
-  //     </NativeBaseProvider>,
-  //   );
-
-  //   expect(getByTestId('button')).toBeDisabled();
-  // });
-
-  test('쓰레기통 위치 설정 후, 버튼 활성화', () => {
+  test('쓰레기통 이름, 위치 설정 후, 버튼 활성화', () => {
     checkTrashBoxAddress.mockResolvedValue(false);
-    const {getByLabelText, getByText} = render(component);
+    const {getByLabelText, getByText, getByPlaceholderText} = render(component);
+    const tcName = getByPlaceholderText('쓰레기통 이름을 입력해주세요');
     const tcPlaceText = getByLabelText('쓰레기통 위치');
     const button = getByText('사진 촬영');
 
     expect(button).toBeDisabled();
     // expect(button).toHaveProp('disabled');
 
+    fireEvent.changeText(tcName, ' 궁동');
     fireEvent.changeText(tcPlaceText, ' 211(장동)');
 
     fireEvent.press(button);
