@@ -32,3 +32,18 @@ describe('쓰레기통 등록 Form 렌더링 ...', () => {
     expect(input).toBeTruthy();
   });
 });
+describe('쓰레기통 등록 가능 여부 ...', () => {
+  const props = {};
+  const component = getComponent(props);
+
+  // test('쓰레기통 이름이 중복되었을 때', () => {
+  //   const {getByPlaceholderText} = render(component);
+  //   const input = getByPlaceholderText('쓰레기통 이름을 입력해주세요');
+  //   expect(input).toBeTruthy();
+  // });
+  test('쓰레기통 위치가 중복되었을 때', () => {
+    const {getAllByLabelText} = render(component);
+    const input = getAllByLabelText('쓰레기통 위치');
+    expect(input).toBeTruthy();
+  });
+});

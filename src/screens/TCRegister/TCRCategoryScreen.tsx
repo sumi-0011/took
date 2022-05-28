@@ -78,6 +78,9 @@ function RegistrationCategory({navigation}: any) {
             />
           </MapView>
         )}
+        <Text accessibilityLabel="쓰레기통 위치">
+          대전광역시 동구 중앙로 211(장동)
+        </Text>
       </Box>
       <Box p={5} bg={'#fff'}>
         <Text>쓰레기통 이름</Text>
