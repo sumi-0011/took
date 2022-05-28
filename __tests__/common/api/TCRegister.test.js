@@ -10,10 +10,10 @@ const trashList = [
     tagList: ['플라스틱', '유리병'],
   },
 ];
-const checkTrashBoxName = jest.fn();
-checkTrashBoxName.mockImplementation(name => {
+const checkTrashBoxAddress = jest.fn();
+checkTrashBoxAddress.mockImplementation(address => {
   for (let x of trashList) {
-    if (x.name === name) {
+    if (x.address === address) {
       return false;
     }
   }
@@ -22,12 +22,12 @@ checkTrashBoxName.mockImplementation(name => {
 
 describe('쓰레기통 입력 정보 ', () => {
   test('쓰레기통 리스트에 존재하지 않는 쓰레기통 이름, 입력 가능', async () => {
-    const res = await checkTrashBoxName('새로운 쓰레기통');
+    const res = await checkTrashBoxAddress('새로운 쓰레기통');
     expect(res).toEqual(true);
   });
 
   test('쓰레기통 리스트에 존재하는 쓰레기통 이름, 입력 불가능', async () => {
-    const res = await checkTrashBoxName('대전역 건너 버스정류장');
+    const res = await checkTrashBoxAddress('대전광역시 동구 중앙로 211(장동)');
     expect(res).toEqual(false);
   });
 });

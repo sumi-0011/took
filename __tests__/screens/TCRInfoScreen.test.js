@@ -11,14 +11,7 @@ const inset = {
   insets: {top: 0, left: 0, right: 0, bottom: 0},
 };
 
-// function getComponent(props) {
-//   return (
-//     <NativeBaseProvider initialWindowMetrics={inset}>
-//       <TCRInfoScreen {...props} />
-//     </NativeBaseProvider>
 //   );
-// }
-
 const dummyInfo = {
   name: '대전역 건너 버스정류장',
   address: '대전광역시 동구 중앙로 211(장동)',
@@ -29,11 +22,7 @@ const dummyInfo = {
 
   tagList: ['플라스틱', '유리병'],
 };
-// function getComponent(props) {
-//   return (
 
-//   );
-// }
 describe('쓰레기통 위치 정보 렌더링 ...', () => {
   const props = {
     name: dummyInfo.name,
