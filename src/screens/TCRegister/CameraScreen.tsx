@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import Camera from '@components/Camera';
+import {TCRegistSelect} from '@components/test';
+import {useRecoilState} from 'recoil'; // 훅 import
 
 interface IRegistraionInput {
   checkList: Array<string>;
@@ -9,9 +11,11 @@ interface IRegistraionInput {
 function CameraPage({route, navigation}: any) {
   const {name, checkList} = route.params as IRegistraionInput;
   const [imageURL, setImageURL] = useState<string>('');
+  const [registData, setRegistData] = useRecoilState(TCRegistSelect);
 
+  console.log('camera page', registData);
   const nextPage = (image: string) => {
-    navigation.navigate('RegistrationInfo', {
+    navigation.navigate('TCRInfoScreen', {
       imageUrl: image,
       name: name,
       checkList: checkList,

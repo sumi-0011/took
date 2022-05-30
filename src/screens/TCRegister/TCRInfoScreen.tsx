@@ -3,7 +3,8 @@ import React, {useState} from 'react';
 import BadgeList from '@components/BadgeList';
 import BasicButton from '@components/Button';
 import {postAxios} from '@common/api/registation';
-
+import {TCRegistSelect} from '@components/test';
+import {useRecoilState} from 'recoil'; // 훅 import
 interface IRegistraionInput {
   checkList: Array<string>;
   name: string;
@@ -29,25 +30,31 @@ const dummyInfo = {
 };
 
 function RegistrationInfo({route, navigation}: any) {
-  const {name, checkList, imageUrl} = route.params as IRegistraionInput;
-  const [info, setInfo] = useState<InfoProps>({
-    ...dummyInfo,
-    name,
-    tagList: checkList,
-    trashImage: imageUrl,
-  });
+  // const {name, checkList, imageUrl} = route.params as IRegistraionInput;
+  const [info, setInfo] = useRecoilState(TCRegistSelect);
 
+  console.log('info : ', info);
+  // const [info, setInfo] = useState<InfoProps>({
+  //   ...dummyInfo,
+  //   name,
+  //   tagList: checkList,
+  //   trashImage: imageUrl,
+  // });
   const handleSubmit = () => {
     postAxios('test', info);
     console.log('등록되었습니다');
 
-    navigation.navigate('TOOK');
+    navigation.navigate('HomeScreen');
   };
 
   return (
     <Box p={5} bg={'#fff'} height={'100%'} justifyContent="space-between">
-      <PlaceInfo name={info.name} address={info.address} image={info.image} />
-      <TrashBoxInfo image={info.trashImage} tagList={info.tagList} />
+      <PlaceInfo
+        name={info.name}
+        address={`${info.coordinate[0]} + ${info.coordinate[1]}`}
+        image={info.image}
+      />
+      <TrashBoxInfo image={info.trashImage} tagList={info.tags} />
       <BasicButton onPress={handleSubmit}>등록하기</BasicButton>
     </Box>
   );

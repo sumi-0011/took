@@ -7,6 +7,9 @@ import Geolocation from 'react-native-geolocation-service';
 import CategotyCheckbox from '@components/CategoryCheckbox';
 import {categoryList} from '@common/utils/categoryList';
 import {requestPermission} from '@common/utils/permission';
+import {TCRegistSelect} from '@components/test';
+import {useRecoilState} from 'recoil'; // 훅 import
+import {string} from 'yup';
 
 interface ILocation {
   latitude: number;
@@ -28,6 +31,8 @@ function RegistrationCategory({navigation}: any) {
   const [groupValue, setGroupValue] = useState([]);
   const [category, setcategory] = useState(categoryList);
   const [location, setLocation] = useState<ILocation | undefined>(undefined);
+
+  const [registData, setRegistData] = useRecoilState(TCRegistSelect);
 
   useEffect(() => {
     requestPermission().then(result => {
@@ -95,6 +100,13 @@ function RegistrationCategory({navigation}: any) {
         />
         <Button
           onPress={() => {
+            // setState
+            const tcrRegistData: {name: string; checkList: Array<any>} = {
+              name: inputName,
+              checkList: groupValue,
+            };
+            setRegistData({...registData, ...tcrRegistData});
+            console.log(registData);
             navigation.navigate('CameraScreen', {
               name: inputName,
               checkList: groupValue,
@@ -102,16 +114,6 @@ function RegistrationCategory({navigation}: any) {
           }}>
           Camera
         </Button>
-        {/*
-          <BasicButton
-            onPress={() => {
-              navigation.navigate('RegistrationInfo', {
-                name: inputName,
-                checkList: groupValue,
-              });
-            }}>
-            사진 촬영
-          </BasicButton> */}
       </Box>
     </Box>
   );
