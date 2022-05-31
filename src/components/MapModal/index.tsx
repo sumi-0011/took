@@ -1,19 +1,60 @@
+import {updateStar, getUser} from '@common/api/user';
 import BadgeList from '@components/BadgeList';
-import {HeartOutlineIcon, ReportIcon} from '@components/Icon';
+import {HearFilltIcon, HeartOutlineIcon, ReportIcon} from '@components/Icon';
 import IconBtn from '@components/IconBtn';
 import {Box, Center, HStack, Image, Pressable, Text} from 'native-base';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import {useRecoilState} from 'recoil';
 import styled from 'styled-components';
+import {IUserInfo} from 'types/User';
+import {user} from '../../recoil/user';
 
 type Props = {};
 
 function MapModal({}: Props) {
-  const handleStarClick = () => {
-    console.log('좋아요 클릭');
+  const [isStar, setIsStar] = useState<boolean>(false);
+  const [userInfo, setUserInfo] = useRecoilState<IUserInfo>(user);
+
+  const currentTCId = 1;
+
+  useEffect(() => {
+    const index = userInfo?.stars.findIndex(ele => {
+      ele === currentTCId;
+    });
+    if (index !== -1) {
+      setIsStar(true);
+    }
+  }, [userInfo?.stars]);
+
+  const _updateStar = async (id: string, stars: number[]) => {
+    await updateStar(id, stars);
+    //update
+    const result = await getUser(userInfo.uid);
+    result && setUserInfo(result);
+    setIsStar(true);
   };
+
+  const handleStarClick = () => {
+    if (!userInfo) {
+      console.log('로그인이 필요합니다. ');
+      return;
+    }
+    // console.log('좋아요 클릭');
+    const index = userInfo?.stars.findIndex(ele => ele == currentTCId);
+    //좋아요 toggle firestore에 저장
+    if (index === -1) {
+      _updateStar(userInfo.id, [...userInfo.stars, currentTCId]);
+    } else {
+      const filterStars = userInfo.stars.filter(star => star !== currentTCId);
+      _updateStar(userInfo.id, filterStars);
+      setIsStar(!isStar);
+    }
+  };
+
   const handleReportClick = () => {
     console.log('신고하기 버튼 클릭');
   };
+
   return (
     <Modal borderTopRadius="20" p={5}>
       <Detail paddingY={2} borderBottomWidth="1" borderColor="coolGray.200">
@@ -27,7 +68,13 @@ function MapModal({}: Props) {
       <HStack paddingY={3}>
         <IconBtn
           text="MY TOOK"
-          icon={<HeartOutlineIcon size={25} />}
+          icon={
+            isStar ? (
+              <HearFilltIcon size={25} />
+            ) : (
+              <HeartOutlineIcon size={25} />
+            )
+          }
           onPress={handleStarClick}
         />
         <IconBtn

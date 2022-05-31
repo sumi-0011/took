@@ -8,16 +8,22 @@ import firestore from '@react-native-firebase/firestore';
 import {requestAccessLocationPermission} from '@common/utils/permission';
 import {getUserInfo} from '@common/api/fireAuth';
 import {getUser} from '@common/api/user';
+import {IUserInfo} from 'types/User';
+import {useRecoilState} from 'recoil';
+import {user} from '../recoil/user';
 
 const MapScreen = ({navigation}: any) => {
   const {photoURL, displayName, uid} = getUserInfo();
-  const [userInfo, setUserInfo] = useState();
+  const [userInfo, setUserInfo] = useRecoilState<IUserInfo>(user);
+
   useEffect(() => {
+    //현재 로그인 된 사용자의 정보를 가지고 온다.
     const _getUser = async () => {
       const result = await getUser(uid ?? 'LVert06OcdS5LxDPRM37iflYdFu1');
       console.log('out', result);
-      setUserInfo(result);
+      result && setUserInfo(result);
     };
+
     _getUser();
   }, []);
 
@@ -32,7 +38,7 @@ const MapScreen = ({navigation}: any) => {
       </BackBtn>
       <Text>{userInfo?.uid}</Text>
       <MapContainer />
-      <MapModal />
+      <MapModal userInfo={userInfo} />
     </Wrapper>
   );
 };
