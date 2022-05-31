@@ -5,11 +5,12 @@ import styled from 'styled-components';
 type IIconButton = {
   icon: any;
   text: string;
+  onPress?: () => void;
 };
 
-function IconBtn({icon, text}: IIconButton) {
+function IconBtn({icon, text, onPress}: IIconButton) {
   return (
-    <IconButtonWrapper p={3}>
+    <IconButtonWrapper p={3} onPress={onPress}>
       {icon}
       <IconText>{text}</IconText>
     </IconButtonWrapper>

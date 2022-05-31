@@ -8,6 +8,12 @@ import styled from 'styled-components';
 type Props = {};
 
 function MapModal({}: Props) {
+  const handleStarClick = () => {
+    console.log('좋아요 클릭');
+  };
+  const handleReportClick = () => {
+    console.log('신고하기 버튼 클릭');
+  };
   return (
     <Modal borderTopRadius="20" p={5}>
       <Detail paddingY={2} borderBottomWidth="1" borderColor="coolGray.200">
@@ -19,8 +25,16 @@ function MapModal({}: Props) {
         <DetailImage url={'https://wallpaperaccess.com/full/317501.jpg'} />
       </Detail>
       <HStack paddingY={3}>
-        <IconBtn text="MY TOOK" icon={<HeartOutlineIcon size={25} />} />
-        <IconBtn text="신고하기" icon={<ReportIcon size={20} />} />
+        <IconBtn
+          text="MY TOOK"
+          icon={<HeartOutlineIcon size={25} />}
+          onPress={handleStarClick}
+        />
+        <IconBtn
+          text="신고하기"
+          icon={<ReportIcon size={20} />}
+          onPress={handleReportClick}
+        />
       </HStack>
       <TookButton>
         <Pressable onPress={() => console.log('버리기 버튼 클릭')}>
