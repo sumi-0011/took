@@ -3,12 +3,24 @@ import {Box, Button, ChevronLeftIcon, Text, View} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components/native';
 import Geolocation from 'react-native-geolocation-service';
-import {Platform, PermissionsAndroid, TextInput} from 'react-native';
 import MapModal from '@components/MapModal';
 import firestore from '@react-native-firebase/firestore';
 import {requestAccessLocationPermission} from '@common/utils/permission';
+import {getUserInfo} from '@common/api/fireAuth';
+import {getUser} from '@common/api/user';
 
 const MapScreen = ({navigation}: any) => {
+  const {photoURL, displayName, uid} = getUserInfo();
+  const [userInfo, setUserInfo] = useState();
+  useEffect(() => {
+    const _getUser = async () => {
+      const result = await getUser(uid ?? 'LVert06OcdS5LxDPRM37iflYdFu1');
+      console.log('out', result);
+      setUserInfo(result);
+    };
+    _getUser();
+  }, []);
+
   return (
     <Wrapper>
       <BackBtn
@@ -18,6 +30,7 @@ const MapScreen = ({navigation}: any) => {
         }}>
         <ChevronLeftIcon />
       </BackBtn>
+      <Text>{userInfo?.uid}</Text>
       <MapContainer />
       <MapModal />
     </Wrapper>
