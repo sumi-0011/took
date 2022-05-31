@@ -1,5 +1,5 @@
 import axios from 'axios';
-const HOST_ADDRESS = 'http://10.0.2.2:4000';
+const HOST_ADDRESS = 'http://10.0.2.2:3000';
 
 export const getAxios = async (address: string) => {
   const response = await axios
@@ -24,11 +24,11 @@ export const getAxios = async (address: string) => {
 };
 
 export const postAxios = async (address: string, data: any) => {
-  console.log('post data', data);
+  // console.log('post data', `${HOST_ADDRESS}/${address}`, data);
   const response = await axios
     .post(`${HOST_ADDRESS}/${address}`, data)
     .then(res => {
-      console.log(res);
+      console.log('result', res);
       return res.data;
     })
     .catch(error => {

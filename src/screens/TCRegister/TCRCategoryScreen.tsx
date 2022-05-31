@@ -2,11 +2,12 @@
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import {Box, Button, Input, Text, View} from 'native-base';
 import React, {useEffect, useState} from 'react';
-import BasicButton from '@components/Button';
 import Geolocation from 'react-native-geolocation-service';
 import CategotyCheckbox from '@components/CategoryCheckbox';
-import {categoryList} from '@common/utils/categoryList';
 import {requestPermission} from '@common/utils/permission';
+import {TCRegistSelect} from '../../recoil/TCRegist';
+import {useRecoilState} from 'recoil'; // 훅 import
+import {string} from 'yup';
 
 interface ILocation {
   latitude: number;
@@ -18,16 +19,13 @@ export interface ICategory {
   key: string;
 }
 
-interface IRegistraionInput {
-  checks: Array<string>;
-  name: string;
-}
-
 function RegistrationCategory({navigation}: any) {
   const [inputName, setInputName] = useState('');
   const [groupValue, setGroupValue] = useState([]);
-  const [category, setcategory] = useState(categoryList);
   const [location, setLocation] = useState<ILocation | undefined>(undefined);
+
+  const [registData, setRegistData] = useRecoilState(TCRegistSelect);
+
   const [isSubmit, setIsSubmit] = useState<boolean>(false);
   useEffect(() => {
     requestPermission().then(result => {
@@ -45,7 +43,14 @@ function RegistrationCategory({navigation}: any) {
       }
     });
   }, []);
-
+  const handleCameraBtnClick = () => {
+    const tcrRegistData: {name: string; tags: Array<string>} = {
+      name: inputName,
+      tags: groupValue,
+    };
+    setRegistData({...registData, ...tcrRegistData});
+    navigation.navigate('CameraScreen');
+  };
   return (
     <Box height={'100%'}>
       <Box style={{flex: 1}}>
@@ -96,26 +101,7 @@ function RegistrationCategory({navigation}: any) {
           onChangeText={text => setInputName(text)}
         />
         <CategotyCheckbox setGroupValue={setGroupValue} />
-        <Button
-          disabled={!isSubmit || inputName === ''}
-          onPress={() => {
-            navigation.navigate('CameraScreen', {
-              name: inputName,
-              checkList: groupValue,
-            });
-          }}>
-          사진 촬영
-        </Button>
-        {/*
-          <BasicButton
-            onPress={() => {
-              navigation.navigate('RegistrationInfo', {
-                name: inputName,
-                checkList: groupValue,
-              });
-            }}>
-            사진 촬영
-          </BasicButton> */}
+        <Button onPress={handleCameraBtnClick}>사진 촬영</Button>
       </Box>
     </Box>
   );
