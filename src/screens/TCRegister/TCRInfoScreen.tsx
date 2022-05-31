@@ -1,48 +1,17 @@
 import {Box, HStack, Image, Text} from 'native-base';
-import React, {useState} from 'react';
+import React from 'react';
 import BadgeList from '@components/BadgeList';
 import BasicButton from '@components/Button';
 import {postAxios} from '@common/api/registation';
-import {TCRegistSelect} from '@components/test';
-import {useRecoilState} from 'recoil'; // 훅 import
-interface IRegistraionInput {
-  checkList: Array<string>;
-  name: string;
-  imageUrl: string;
-}
+import {TCRegistSelect} from '../../recoil/TCRegist';
+import {useRecoilValue} from 'recoil'; // 훅 import
 
-interface InfoProps {
-  name: string;
-  address: string;
-  image: string;
-  trashImage: string;
-  tagList: Array<string>;
-}
+function RegistrationInfo({navigation}: any) {
+  const info = useRecoilValue(TCRegistSelect);
 
-const dummyInfo = {
-  name: '대전역 건너 버스정류장teststest',
-  address: '대전광역시 동구 중앙로 211(장동)',
-  image:
-    'https://spi.maps.daum.net/map2/map/imageservice?IW=600&IH=350&MX=400205&MY=-11702&SCALE=2.5&service=open',
-  trashImage:
-    'https://mediahub.seoul.go.kr/uploads/mediahub/2021/09/tpuykXsdsBZQXeTWToBZZEYuYyQSMNof.jpeg',
-  tagList: ['플라스틱', '유리병'],
-};
-
-function RegistrationInfo({route, navigation}: any) {
-  // const {name, checkList, imageUrl} = route.params as IRegistraionInput;
-  const [info, setInfo] = useRecoilState(TCRegistSelect);
-
-  console.log('info : ', info);
-  // const [info, setInfo] = useState<InfoProps>({
-  //   ...dummyInfo,
-  //   name,
-  //   tagList: checkList,
-  //   trashImage: imageUrl,
-  // });
   const handleSubmit = () => {
-    postAxios('test', info);
-    console.log('등록되었습니다');
+    const res = postAxios('TCRegist', info);
+    console.log('등록되었습니다', res);
 
     navigation.navigate('HomeScreen');
   };

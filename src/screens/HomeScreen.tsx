@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Box, Center, HStack, Text, VStack} from 'native-base';
 import Header from '@components/Header';
 import PressableBox from '@components/PressableBox';
