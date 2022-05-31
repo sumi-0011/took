@@ -25,6 +25,6 @@ const IconButtonWrapper = styled(Pressable)`
   justify-content: center;
   align-items: center;
   flex: 1;
-  color: #767676;
+  /* color: #767676; */
 `;
 export default IconBtn;
