@@ -3,23 +3,10 @@ import {Box, Button, ChevronLeftIcon, Text, View} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components/native';
 import Geolocation from 'react-native-geolocation-service';
-import {Platform, PermissionsAndroid} from 'react-native';
+import {Platform, PermissionsAndroid, TextInput} from 'react-native';
 import MapModal from '@components/MapModal';
-async function requestPermission() {
-  try {
-    if (Platform.OS === 'android') {
-      return await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-      );
-    }
-  } catch (e) {
-    console.log(e);
-  }
-}
-interface ILocation {
-  latitude: number;
-  longitude: number;
-}
+import firestore from '@react-native-firebase/firestore';
+import {requestAccessLocationPermission} from '@common/utils/permission';
 
 const MapScreen = ({navigation}: any) => {
   return (
@@ -32,7 +19,6 @@ const MapScreen = ({navigation}: any) => {
         <ChevronLeftIcon />
       </BackBtn>
       <MapContainer />
-
       <MapModal />
     </Wrapper>
   );
@@ -40,7 +26,7 @@ const MapScreen = ({navigation}: any) => {
 function MapContainer() {
   const [location, setLocation] = useState<ILocation | undefined>(undefined);
   useEffect(() => {
-    requestPermission().then(result => {
+    requestAccessLocationPermission().then(result => {
       if (result === 'granted') {
         Geolocation.getCurrentPosition(
           pos => {
