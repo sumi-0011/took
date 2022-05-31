@@ -31,7 +31,7 @@ function RegistrationInfo({navigation}: any) {
 
 export default RegistrationInfo;
 
-const PlaceInfo = ({
+export const PlaceInfo = ({
   name,
   address,
   image,
@@ -42,27 +42,31 @@ const PlaceInfo = ({
 }) => {
   return (
     <Box>
-      <Text bold fontSize={'lg'}>
+      <Text bold fontSize={'lg'} accessibilityLabel="place-name">
         {name}
       </Text>
-      <Text fontSize={'xs'} color="coolGray.500">
+      <Text
+        fontSize={'xs'}
+        color="coolGray.500"
+        accessibilityLabel="place-address">
         {address}
       </Text>
       <Image
         source={{
           uri: image,
         }}
+        accessibilityLabel="쓰레기통 위치"
         width={'100%'}
         height={150}
         marginTop={5}
         borderRadius={10}
-        alt="위치"
+        alt="쓰레기통 위치"
       />
     </Box>
   );
 };
 
-const TrashBoxInfo = ({
+export const TrashBoxInfo = ({
   image,
   tagList,
 }: {
@@ -83,6 +87,7 @@ const TrashBoxInfo = ({
         marginY={5}
         borderRadius={10}
         alt="쓰레기통 이미지"
+        accessibilityLabel="쓰레기통 이미지"
       />
       <HStack>
         <BadgeList data={tagList} />

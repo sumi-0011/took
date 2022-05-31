@@ -26,6 +26,7 @@ function RegistrationCategory({navigation}: any) {
 
   const [registData, setRegistData] = useRecoilState(TCRegistSelect);
 
+  const [isSubmit, setIsSubmit] = useState<boolean>(false);
   useEffect(() => {
     requestPermission().then(result => {
       if (result === 'granted') {
@@ -82,9 +83,15 @@ function RegistrationCategory({navigation}: any) {
             />
           </MapView>
         )}
+        <Input
+          accessibilityLabel="쓰레기통 위치"
+          onChange={() => setIsSubmit(true)}>
+          대전광역시 동구 중앙로 211(장동)
+        </Input>
       </Box>
       <Box p={5} bg={'#fff'}>
         <Text>쓰레기통 이름</Text>
+
         <Input
           size="lg"
           placeholder="쓰레기통 이름을 입력해주세요"
