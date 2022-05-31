@@ -83,11 +83,11 @@ function RegistrationCategory({navigation}: any) {
             />
           </MapView>
         )}
-        <Input
+        {/* <Input
           accessibilityLabel="쓰레기통 위치"
           onChange={() => setIsSubmit(true)}>
           대전광역시 동구 중앙로 211(장동)
-        </Input>
+        </Input> */}
       </Box>
       <Box p={5} bg={'#fff'}>
         <Text>쓰레기통 이름</Text>
