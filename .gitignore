@@ -60,3 +60,4 @@ buck-out/
 /ios/Pods/
 /vendor/bundle/
 android/app/src/main/AndroidManifest.xml
+android/app/src/main/AndroidManifest.xml

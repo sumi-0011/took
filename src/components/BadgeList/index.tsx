@@ -15,7 +15,8 @@ function BadgeList({data}: IBadgeList) {
           paddingX={2}
           paddingY={1}
           borderRadius={5}
-          fontSize="xs">
+          fontSize="xs"
+          testID="trash-tag">
           {item}
         </Badge>
       ))}

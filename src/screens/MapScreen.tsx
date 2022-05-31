@@ -1,26 +1,20 @@
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import {
-  AddIcon,
   Box,
   Button,
   Center,
   ChevronLeftIcon,
-  Fab,
-  HStack,
-  Icon,
   Image,
   Pressable,
-  SunIcon,
   Text,
   View,
-  WarningTwoIcon,
 } from 'native-base';
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components/native';
 import BadgeList from '@components/BadgeList';
 // import {AntDesign} from '@expo/vector-icons';
-import {AntDesign} from '@native-base/icons';
-import {color} from 'native-base/lib/typescript/theme/styled-system';
+// import {AntDesign} from '@native-base/icons';
+// import {color} from 'native-base/lib/typescript/theme/styled-system';
 import Geolocation from 'react-native-geolocation-service';
 import {Platform, PermissionsAndroid} from 'react-native';
 async function requestPermission() {
