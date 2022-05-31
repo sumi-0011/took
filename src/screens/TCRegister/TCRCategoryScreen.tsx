@@ -28,7 +28,7 @@ function RegistrationCategory({navigation}: any) {
   const [groupValue, setGroupValue] = useState([]);
   const [category, setcategory] = useState(categoryList);
   const [location, setLocation] = useState<ILocation | undefined>(undefined);
-
+  const [isSubmit, setIsSubmit] = useState<boolean>(false);
   useEffect(() => {
     requestPermission().then(result => {
       if (result === 'granted') {
@@ -78,9 +78,15 @@ function RegistrationCategory({navigation}: any) {
             />
           </MapView>
         )}
+        <Input
+          accessibilityLabel="쓰레기통 위치"
+          onChange={() => setIsSubmit(true)}>
+          대전광역시 동구 중앙로 211(장동)
+        </Input>
       </Box>
       <Box p={5} bg={'#fff'}>
         <Text>쓰레기통 이름</Text>
+
         <Input
           size="lg"
           placeholder="쓰레기통 이름을 입력해주세요"
@@ -89,18 +95,16 @@ function RegistrationCategory({navigation}: any) {
           value={inputName}
           onChangeText={text => setInputName(text)}
         />
-        <CategotyCheckbox
-          // groupValue={groupValue}
-          setGroupValue={setGroupValue}
-        />
+        <CategotyCheckbox setGroupValue={setGroupValue} />
         <Button
+          disabled={!isSubmit || inputName === ''}
           onPress={() => {
             navigation.navigate('CameraScreen', {
               name: inputName,
               checkList: groupValue,
             });
           }}>
-          Camera
+          사진 촬영
         </Button>
         {/*
           <BasicButton

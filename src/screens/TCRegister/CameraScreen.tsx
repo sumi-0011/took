@@ -11,7 +11,7 @@ function CameraPage({route, navigation}: any) {
   const [imageURL, setImageURL] = useState<string>('');
 
   const nextPage = (image: string) => {
-    navigation.navigate('RegistrationInfo', {
+    navigation.navigate('TCRInfoScreen', {
       imageUrl: image,
       name: name,
       checkList: checkList,
