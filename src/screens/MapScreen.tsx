@@ -65,14 +65,6 @@ const MapScreen = ({navigation}: any) => {
           navigation.pop();
         }}>
         <ChevronLeftIcon />
-        {/* <Icon
-            as={AntDesign}
-            name="left-outlined"
-            color="coolGray.800"
-            _dark={{
-              color: 'warmGray.50',
-            }}
-          /> */}
       </BackBtn>
       <>
         <View style={{flex: 1}}>
@@ -168,6 +160,10 @@ const BackBtn = styled(Button)`
   height: 50px;
   background-color: #fff;
   margin: 10px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 10;
 `;
 const IconText = styled(Text)`
   color: #767676;
