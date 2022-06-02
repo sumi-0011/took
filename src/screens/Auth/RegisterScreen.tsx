@@ -3,9 +3,9 @@ import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {useForm, Controller} from 'react-hook-form';
 import {Box, Button, Text, VStack} from 'native-base';
-import {signUp} from '~/common/api/fireAuth';
-import Input from '~/components/Input';
-import ErrorMsg from '~/components/ErrorMsg';
+import {signUp} from '@common/api/fireAuth';
+import Input from '@components/Input';
+import ErrorMsg from '@components/ErrorMsg';
 
 interface FormData {
   email: string;
@@ -30,8 +30,8 @@ function RegisterScreen({navigation}: any) {
   const onSubmit = async (data: FormData) => {
     const res = await signUp(data.email, data.password, data.name);
 
-    if (res?.statusCode === 200) {
-      navigation.replace('TOOK');
+    if (res?.status === 'success') {
+      navigation.replace('HomeScreen');
     }
   };
 

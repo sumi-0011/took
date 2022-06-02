@@ -4,9 +4,9 @@ import {Box, Button, HStack, Icon, Text, VStack} from 'native-base';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
-import Input from '~/components/Input';
-import ErrorMsg from '~/components/ErrorMsg';
-import {signIn} from '~/common/api/fireAuth';
+import Input from '@components/Input';
+import ErrorMsg from '@components/ErrorMsg';
+import {signIn} from '@common/api/fireAuth';
 
 interface FormData {
   email: string;
@@ -21,8 +21,8 @@ function LoginScreen({navigation}: any) {
 
   const formOptions = {resolver: yupResolver(schema)};
 
-  const onSubmit = (data: FormData) => {
-    const result = signIn(data.email, data.password);
+  const onSubmit = async (data: FormData) => {
+    const result = await signIn(data.email, data.password);
 
     console.log(result);
   };

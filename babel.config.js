@@ -17,13 +17,14 @@ module.exports = {
           '.json',
         ],
         alias: {
-          '~': './src',
           '@components': './src/components',
           '@screens': './src/screens',
-          '@assets': './src/assets',
-          '@query': './src/query',
+          '@images': './src/images',
+          '@common': './src/common',
+          '@navigations': './src/navigations',
         },
       },
     ],
+    'react-native-reanimated/plugin',
   ],
 };

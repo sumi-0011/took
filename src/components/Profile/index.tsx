@@ -1,13 +1,8 @@
 import {Box, HStack, Image, Progress, Text, VStack} from 'native-base';
 import React, {useEffect, useState} from 'react';
-import {getUserInfo} from '~/common/api/fireAuth';
-import defaultAvata from '~/images/user.png';
-
-interface UserInfo {
-  name: string;
-  userId: string;
-  avata: string;
-}
+import {getUserInfo} from '@common/api/fireAuth';
+import defaultAvata from '@images/user.png';
+import {UserInfo} from '@common/types/UserInfo';
 
 function Profile() {
   const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +14,7 @@ function Profile() {
 
     setUserInfo({
       avata: photoURL ?? '',
-      name: displayName ?? '',
+      name: displayName ?? '회원',
       userId: uid ?? '',
     });
 

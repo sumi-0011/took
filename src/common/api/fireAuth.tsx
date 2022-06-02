@@ -3,9 +3,9 @@ import auth from '@react-native-firebase/auth';
 export function isLoggedIn() {
   return auth().currentUser ? true : false;
 }
-
 export function getUserInfo() {
   const user = auth().currentUser;
+  console.log(user);
   return {
     photoURL: user?.photoURL,
     displayName: user?.displayName,
@@ -16,10 +16,9 @@ export function getUserInfo() {
 export async function signIn(email: string, password: string) {
   try {
     const response = await auth().signInWithEmailAndPassword(email, password);
-    return response;
+    return {status: 'success', ...response};
   } catch (error) {
-    console.log(error);
-    return error;
+    return {status: 'fail', error};
   }
 }
 
@@ -32,9 +31,9 @@ export async function signUp(email: string, password: string, name: string) {
 
     await changeProfile({name});
 
-    return {statusCode: 200, ...response};
+    return {status: 'success', ...response};
   } catch (error) {
-    console.log(error);
+    return {status: 'fail', error};
   }
 }
 
@@ -44,7 +43,6 @@ export async function changeProfile({name}: {name: string}) {
       displayName: name,
     });
 
-    console.log(response);
     return response;
   } catch (error) {
     console.log(error);

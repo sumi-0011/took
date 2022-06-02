@@ -1,10 +1,11 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import HomeScreen from '~/screens/HomeScreen';
-import MapScreen from '~/screens/MapScreen';
-import AuthNaviagtion from '~/navigations/AuthNavigation';
-import TCRegisterNavigation from '~/navigations/TCRegisterNavigation';
-import UserScreen from '~/screens/UserScreen';
+import HomeScreen from '@screens/HomeScreen';
+import MapScreen from '@screens/MapScreen';
+import AuthNaviagtion from '@navigations/AuthNavigation';
+import TCRegisterNavigation from '@navigations/TCRegisterNavigation';
+import UserScreen from '@screens/User/UserScreen';
+import AuthHOC from '@common/HOC/AuthHOC';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,7 +29,7 @@ function MainNavigation() {
       />
       <Stack.Screen
         name="UserScreen"
-        component={UserScreen}
+        component={AuthHOC(UserScreen)}
         options={{
           headerShown: false,
         }}
