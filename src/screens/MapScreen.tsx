@@ -38,7 +38,7 @@ const MapScreen = ({navigation}: any) => {
       </BackBtn>
       <Text>{userInfo?.uid}</Text>
       <MapContainer />
-      <MapModal userInfo={userInfo} />
+      <MapModal />
     </Wrapper>
   );
 };
