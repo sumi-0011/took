@@ -1,8 +1,8 @@
-import {updateStar, getUser} from '@common/api/user';
+import {updateStar, getUser, updateLastTookTime} from '@common/api/user';
 import BadgeList from '@components/BadgeList';
 import {HearFilltIcon, HeartOutlineIcon, ReportIcon} from '@components/Icon';
 import IconBtn from '@components/IconBtn';
-import {Box, Center, HStack, Image, Pressable, Text} from 'native-base';
+import {Box, Button, Center, HStack, Image, Pressable, Text} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import {useRecoilState} from 'recoil';
 import styled from 'styled-components';
@@ -14,10 +14,10 @@ type Props = {};
 function MapModal({}: Props) {
   const [isStar, setIsStar] = useState<boolean>(false);
   const [userInfo, setUserInfo] = useRecoilState<IUserInfo>(user);
-
   const currentTCId = 1;
-
+  const [isTook, setIsTook] = useState<boolean>(false);
   useEffect(() => {
+    //즐겨찾기
     const index = userInfo?.stars.findIndex(ele => {
       ele === currentTCId;
     });
@@ -26,6 +26,21 @@ function MapModal({}: Props) {
     }
   }, [userInfo?.stars]);
 
+  useEffect(() => {
+    const currentDate = new Date();
+    const lastDate = new Date(userInfo?.lastTookTime.seconds * 1000);
+    const diffTime =
+      (currentDate.getTime() - lastDate.getTime()) / (1000 * 60 * 60);
+    if (diffTime >= 24) {
+      console.log('하루 이상 차이, 버튼 활성화');
+      setIsTook(true);
+    } else {
+      setIsTook(false);
+      console.log('버튼 비활성화');
+    }
+    console.log(diffTime);
+  }, [userInfo?.lastTookTime]);
+
   const _updateStar = async (id: string, stars: number[]) => {
     await updateStar(id, stars);
     //update
@@ -33,13 +48,18 @@ function MapModal({}: Props) {
     result && setUserInfo(result);
     setIsStar(true);
   };
-
+  const _updateLastTookTime = async (id: string) => {
+    await updateLastTookTime(id);
+    //update
+    const result = await getUser(userInfo.uid);
+    result && setUserInfo(result);
+    setIsStar(true);
+  };
   const handleStarClick = () => {
     if (!userInfo) {
-      console.log('로그인이 필요합니다. ');
+      console.log('로그인이 필요합니다.');
       return;
     }
-    // console.log('좋아요 클릭');
     const index = userInfo?.stars.findIndex(ele => ele == currentTCId);
     //좋아요 toggle firestore에 저장
     if (index === -1) {
@@ -51,6 +71,10 @@ function MapModal({}: Props) {
     }
   };
 
+  const handleTookBtnClick = () => {
+    console.log('버리기 버튼 클릭');
+    _updateLastTookTime(userInfo.id);
+  };
   const handleReportClick = () => {
     console.log('신고하기 버튼 클릭');
   };
@@ -83,13 +107,23 @@ function MapModal({}: Props) {
           onPress={handleReportClick}
         />
       </HStack>
-      <TookButton>
-        <Pressable onPress={() => console.log('버리기 버튼 클릭')}>
+      <TookButton
+        onPress={handleTookBtnClick}
+        isDisabled={!isTook}
+        _text={{
+          color: '#fff',
+          fontSize: 'lg',
+          fontWeight: 'bold',
+        }}>
+        TOOK 버리기
+      </TookButton>
+      {/* <Pressable
+          disabled={isTook}
+          onPress={() => console.log('버리기 버튼 클릭')}>
           <Text color={'#fff'} fontSize="lg" bold>
             TOOK 버리기
           </Text>
-        </Pressable>
-      </TookButton>
+        </Pressable> */}
     </Modal>
   );
 }
@@ -134,7 +168,7 @@ const DetailImage = ({url}: {url: string}) => {
   );
 };
 
-const TookButton = styled(Center)`
+const TookButton = styled(Button)`
   background-color: #68de7b;
   padding: 10px;
   border-radius: 10px;
