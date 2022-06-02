@@ -16,11 +16,15 @@ function MapModal({}: Props) {
   const [userInfo, setUserInfo] = useRecoilState<IUserInfo>(user);
   const currentTCId = 1;
   const [isTook, setIsTook] = useState<boolean>(false);
+
+  const fetchData = async () => {
+    const result = await getUser(userInfo.uid);
+    result && setUserInfo(result);
+  };
   useEffect(() => {
     //즐겨찾기
-    const index = userInfo?.stars.findIndex(ele => {
-      ele === currentTCId;
-    });
+    const index = userInfo?.stars.findIndex(ele => ele === currentTCId);
+
     if (index !== -1) {
       setIsStar(true);
     }
@@ -31,50 +35,44 @@ function MapModal({}: Props) {
     const lastDate = new Date(userInfo?.lastTookTime.seconds * 1000);
     const diffTime =
       (currentDate.getTime() - lastDate.getTime()) / (1000 * 60 * 60);
+
     if (diffTime >= 24) {
-      console.log('하루 이상 차이, 버튼 활성화');
       setIsTook(true);
     } else {
       setIsTook(false);
-      console.log('버튼 비활성화');
     }
-    console.log(diffTime);
   }, [userInfo?.lastTookTime]);
 
   const _updateStar = async (id: string, stars: number[]) => {
     await updateStar(id, stars);
-    //update
-    const result = await getUser(userInfo.uid);
-    result && setUserInfo(result);
-    setIsStar(true);
+    fetchData();
+    setIsStar(!isStar);
   };
-  const _updateLastTookTime = async (id: string) => {
-    await updateLastTookTime(id);
-    //update
-    const result = await getUser(userInfo.uid);
-    result && setUserInfo(result);
-    setIsStar(true);
+
+  const _updateLastTookTime = async () => {
+    await updateLastTookTime(userInfo.id, userInfo.tookCnt);
+    fetchData();
   };
+
   const handleStarClick = () => {
     if (!userInfo) {
       console.log('로그인이 필요합니다.');
       return;
     }
+
     const index = userInfo?.stars.findIndex(ele => ele == currentTCId);
-    //좋아요 toggle firestore에 저장
     if (index === -1) {
       _updateStar(userInfo.id, [...userInfo.stars, currentTCId]);
     } else {
       const filterStars = userInfo.stars.filter(star => star !== currentTCId);
       _updateStar(userInfo.id, filterStars);
-      setIsStar(!isStar);
     }
   };
 
   const handleTookBtnClick = () => {
-    console.log('버리기 버튼 클릭');
-    _updateLastTookTime(userInfo.id);
+    _updateLastTookTime();
   };
+
   const handleReportClick = () => {
     console.log('신고하기 버튼 클릭');
   };

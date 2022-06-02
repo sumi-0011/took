@@ -33,11 +33,12 @@ export async function updateStar(dosId: string, newStars: any) {
     });
 }
 
-export async function updateLastTookTime(dosId: string) {
+export async function updateLastTookTime(dosId: string, tookCnt: number) {
   await users
     .doc(dosId)
     .update({
       lastTookTime: new Date(),
+      tookCnt: tookCnt + 1,
     })
     .then(res => {
       console.log('update lastTookTime', res);
