@@ -5,6 +5,7 @@ export function isLoggedIn() {
 }
 export function getUserInfo() {
   const user = auth().currentUser;
+  console.log(user);
   return {
     photoURL: user?.photoURL,
     displayName: user?.displayName,

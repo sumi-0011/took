@@ -2,13 +2,14 @@ import React from 'react';
 import {
   Box,
   Button,
-  Container,
   Heading,
   HStack,
   Image,
   Pressable,
+  VStack,
 } from 'native-base';
 import defaultImg from '@images/defaultImg.png';
+import Tag from '@components/Tag';
 
 interface ITCCard {
   title: string;
@@ -19,33 +20,45 @@ interface ITCCard {
   onRemove: (id: number) => void;
 }
 
-function TCCard({title, imageUrl, id, onPress, onRemove}: ITCCard) {
+function TCCard({title, category, imageUrl, id, onPress, onRemove}: ITCCard) {
   return (
-    <Container>
+    <Box flex={1}>
       <Pressable onPress={onPress}>
         {({isPressed}) => {
           return (
             <Box overflow="hidden" bg={isPressed ? 'coolGray.100' : 'white'}>
-              <HStack space={5} alignItems="center" paddingX={4} paddingY={4}>
-                <Image
-                  opacity={isPressed ? '0.6' : '1'}
-                  source={defaultImg}
-                  alt="image"
-                  resizeMode="cover"
-                  rounded="lg"
-                  w={40}
-                  h={24}
-                />
-                <Heading size="sm" numberOfLines={2} marginBottom={'5px'}>
-                  {title}
-                </Heading>
+              <HStack
+                alignItems="center"
+                justifyContent="space-between"
+                paddingY={4}>
+                <HStack space={5} alignItems="center">
+                  <Image
+                    opacity={isPressed ? '0.6' : '1'}
+                    source={defaultImg}
+                    alt="image"
+                    resizeMode="cover"
+                    rounded="md"
+                    w="32"
+                    h="24"
+                  />
+                  <VStack space={4}>
+                    <Heading size="sm" numberOfLines={2} marginBottom={'5px'}>
+                      {title}
+                    </Heading>
+                    <HStack space={1}>
+                      {category.map((item, idx) => (
+                        <Tag key={idx} item={item} />
+                      ))}
+                    </HStack>
+                  </VStack>
+                </HStack>
                 <Button onPress={() => onRemove(id)}>삭제</Button>
               </HStack>
             </Box>
           );
         }}
       </Pressable>
-    </Container>
+    </Box>
   );
 }
 
