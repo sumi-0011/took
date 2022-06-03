@@ -8,6 +8,7 @@ import {requestPermission} from '@common/utils/permission';
 import {TCRegistSelect} from '../../recoil/TCRegist';
 import {useRecoilState} from 'recoil'; // 훅 import
 import {string} from 'yup';
+import {ITCRegisterInfo} from 'types/TCRegist';
 
 interface ILocation {
   latitude: number;
@@ -24,7 +25,8 @@ function RegistrationCategory({navigation}: any) {
   const [groupValue, setGroupValue] = useState([]);
   const [location, setLocation] = useState<ILocation | undefined>(undefined);
 
-  const [registData, setRegistData] = useRecoilState(TCRegistSelect);
+  const [registData, setRegistData] =
+    useRecoilState<ITCRegisterInfo>(TCRegistSelect);
 
   const [isSubmit, setIsSubmit] = useState<boolean>(false);
   useEffect(() => {
@@ -44,16 +46,24 @@ function RegistrationCategory({navigation}: any) {
     });
   }, []);
   const handleCameraBtnClick = () => {
-    const tcrRegistData: {name: string; tags: Array<string>} = {
+    if (!location) {
+      return;
+    }
+    const tcrRegistData: {
+      name: string;
+      tags: Array<string>;
+      coordinate: {latitude: number; longitude: number};
+    } = {
       name: inputName,
       tags: groupValue,
+      coordinate: location,
     };
     setRegistData({...registData, ...tcrRegistData});
     navigation.navigate('CameraScreen');
   };
   return (
     <Box height={'100%'}>
-      <Box style={{flex: 1}}>
+      <Box flex={1}>
         {location && (
           <MapView
             style={{flex: 1}}

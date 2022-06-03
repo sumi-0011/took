@@ -4,7 +4,6 @@ import React, {useEffect, useState} from 'react';
 import styled from 'styled-components/native';
 import Geolocation from 'react-native-geolocation-service';
 import MapModal from '@components/MapModal';
-import firestore from '@react-native-firebase/firestore';
 import {requestAccessLocationPermission} from '@common/utils/permission';
 import {getUserInfo} from '@common/api/fireAuth';
 import {getUser} from '@common/api/user';
