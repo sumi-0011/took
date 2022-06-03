@@ -18,13 +18,16 @@ function MapModal({}: Props) {
   const [isTook, setIsTook] = useState<boolean>(false);
 
   const fetchData = async () => {
-    const result = await getUser(userInfo.uid);
-    result && setUserInfo(result);
+    getUser(userInfo.uid)
+      .then(res => {
+        res && setUserInfo(res);
+      })
+      .catch(e => {
+        console.log(e);
+      });
   };
   useEffect(() => {
-    //즐겨찾기
     const index = userInfo?.stars.findIndex(ele => ele === currentTCId);
-
     if (index !== -1) {
       setIsStar(true);
     }
@@ -43,15 +46,11 @@ function MapModal({}: Props) {
     }
   }, [userInfo?.lastTookTime]);
 
-  const _updateStar = async (id: string, stars: number[]) => {
-    await updateStar(id, stars);
-    fetchData();
-    setIsStar(!isStar);
-  };
-
-  const _updateLastTookTime = async () => {
-    await updateLastTookTime(userInfo.id, userInfo.tookCnt);
-    fetchData();
+  const _updateStar = (id: string, stars: number[]) => {
+    updateStar(id, stars).then(res => {
+      fetchData();
+      setIsStar(!isStar);
+    });
   };
 
   const handleStarClick = () => {
@@ -70,7 +69,9 @@ function MapModal({}: Props) {
   };
 
   const handleTookBtnClick = () => {
-    _updateLastTookTime();
+    updateLastTookTime(userInfo.id, userInfo.tookCnt).then(() => {
+      fetchData();
+    });
   };
 
   const handleReportClick = () => {
