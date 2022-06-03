@@ -1,4 +1,4 @@
-import {Box, HStack, Image} from 'native-base';
+import {Box, Button, HStack, Image} from 'native-base';
 import React from 'react';
 import {SettingIcon} from '../Icon';
 import logo from '@images/logo.png';
@@ -18,7 +18,9 @@ function Header({onPress}: IHeader) {
           width="1/5"
           height="auto"
         />
-        <SettingIcon onPress={onPress} />
+        <Button onPress={onPress} variant="unstyled">
+          <SettingIcon />
+        </Button>
       </HStack>
     </Box>
   );
