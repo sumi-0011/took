@@ -25,7 +25,6 @@ export async function updateStar(dosId: string, newStars: any) {
       stars: newStars,
     })
     .then(res => {
-      console.log('add star', res);
       return res;
     })
     .catch(e => {
@@ -41,7 +40,6 @@ export async function updateLastTookTime(dosId: string, tookCnt: number) {
       tookCnt: tookCnt + 1,
     })
     .then(res => {
-      console.log('update lastTookTime', res);
       return res;
     })
     .catch(e => {
