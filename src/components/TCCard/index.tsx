@@ -6,10 +6,12 @@ import {
   HStack,
   Image,
   Pressable,
+  Text,
   VStack,
 } from 'native-base';
 import defaultImg from '@images/defaultImg.png';
 import BadgeList from '@components/BadgeList';
+import {RemoveIcon} from '@components/Icon';
 
 interface ITCCard {
   title: string;
@@ -26,7 +28,10 @@ function TCCard({title, category, imageUrl, id, onPress, onRemove}: ITCCard) {
       <Pressable onPress={onPress}>
         {({isPressed}) => {
           return (
-            <Box overflow="hidden" bg={isPressed ? 'coolGray.100' : 'white'}>
+            <Box
+              paddingX={5}
+              overflow="hidden"
+              bg={isPressed ? 'coolGray.100' : 'white'}>
               <HStack
                 alignItems="center"
                 justifyContent="space-between"
@@ -41,16 +46,24 @@ function TCCard({title, category, imageUrl, id, onPress, onRemove}: ITCCard) {
                     w="32"
                     h="24"
                   />
-                  <VStack space={4}>
+                  <VStack space={3}>
                     <Heading size="sm" numberOfLines={2} marginBottom={'5px'}>
                       {title}
                     </Heading>
                     <HStack space={1}>
-                      <BadgeList data={['tag1', 'tag2']} />
+                      <BadgeList data={category} />
                     </HStack>
                   </VStack>
                 </HStack>
-                <Button onPress={() => onRemove(id)}>삭제</Button>
+
+                <Button
+                  onPress={() => onRemove(id)}
+                  variant="outline"
+                  colorScheme="trueGray"
+                  borderRadius="lg"
+                  size="sm">
+                  삭제
+                </Button>
               </HStack>
             </Box>
           );
