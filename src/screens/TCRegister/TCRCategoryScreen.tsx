@@ -63,12 +63,12 @@ function RegistrationCategory({navigation}: any) {
               latitudeDelta: 0.003,
               longitudeDelta: 0.003,
             }}
-            onRegionChange={region => {
+            /*onRegionChange={region => {
               setLocation({
                 latitude: region.latitude,
                 longitude: region.longitude,
               });
-            }}
+            }} */
             onRegionChangeComplete={region => {
               setLocation({
                 latitude: region.latitude,

@@ -32,7 +32,7 @@ export function HeartOutlineIcon({
   return <Ionicons name="heart-outline" size={size} color={color} />;
 }
 
-export function HearFilltIcon({size = INIT_SIZE, color = 'eb0626'}: IIcon) {
+export function HearFilltIcon({size = INIT_SIZE, color = '#525252'}: IIcon) {
   return <Ionicons name="heart" color={color} size={size} />;
 }
 

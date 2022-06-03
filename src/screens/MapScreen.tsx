@@ -3,25 +3,30 @@ import {Box, Button, ChevronLeftIcon, Text, View} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components/native';
 import Geolocation from 'react-native-geolocation-service';
-import {Platform, PermissionsAndroid} from 'react-native';
 import MapModal from '@components/MapModal';
-async function requestPermission() {
-  try {
-    if (Platform.OS === 'android') {
-      return await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-      );
-    }
-  } catch (e) {
-    console.log(e);
-  }
-}
-interface ILocation {
-  latitude: number;
-  longitude: number;
-}
+import firestore from '@react-native-firebase/firestore';
+import {requestAccessLocationPermission} from '@common/utils/permission';
+import {getUserInfo} from '@common/api/fireAuth';
+import {getUser} from '@common/api/user';
+import {IUserInfo} from 'types/User';
+import {useRecoilState} from 'recoil';
+import {user} from '../recoil/user';
 
 const MapScreen = ({navigation}: any) => {
+  const {photoURL, displayName, uid} = getUserInfo();
+  const [userInfo, setUserInfo] = useRecoilState<IUserInfo>(user);
+
+  useEffect(() => {
+    //현재 로그인 된 사용자의 정보를 가지고 온다.
+    const _getUser = async () => {
+      const result = await getUser(uid ?? 'LVert06OcdS5LxDPRM37iflYdFu1');
+      console.log('out', result);
+      result && setUserInfo(result);
+    };
+
+    _getUser();
+  }, []);
+
   return (
     <Wrapper>
       <BackBtn
@@ -31,8 +36,8 @@ const MapScreen = ({navigation}: any) => {
         }}>
         <ChevronLeftIcon />
       </BackBtn>
+      <Text>{userInfo?.uid}</Text>
       <MapContainer />
-
       <MapModal />
     </Wrapper>
   );
@@ -40,7 +45,7 @@ const MapScreen = ({navigation}: any) => {
 function MapContainer() {
   const [location, setLocation] = useState<ILocation | undefined>(undefined);
   useEffect(() => {
-    requestPermission().then(result => {
+    requestAccessLocationPermission().then(result => {
       if (result === 'granted') {
         Geolocation.getCurrentPosition(
           pos => {
