@@ -1,10 +1,14 @@
 import auth from '@react-native-firebase/auth';
+import {firebase} from '@react-native-firebase/firestore';
+
+const users = firebase.firestore().collection('users');
 
 export function isLoggedIn() {
   return auth().currentUser ? true : false;
 }
 export function getUserInfo() {
   const user = auth().currentUser;
+  console.log(user);
   return {
     photoURL: user?.photoURL,
     displayName: user?.displayName,
@@ -29,6 +33,8 @@ export async function signUp(email: string, password: string, name: string) {
     );
 
     await changeProfile({name});
+
+    // users.doc(response.user.uid).set();
 
     return {status: 'success', ...response};
   } catch (error) {

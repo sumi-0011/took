@@ -76,4 +76,52 @@ export const RegistersMock: ITCInfo[] = [
     category: ['asdf', 'asdf'],
     id: 10,
   },
+  {
+    title: '충남대학교 공대 7호관',
+    imageUrl: 'https://randomuser.me/api/portraits/women/1.jpg',
+    category: ['asdf', 'asdf'],
+    id: 11,
+  },
+  {
+    title: '충남대학교 공대 8호관',
+    imageUrl: 'https://randomuser.me/api/portraits/women/1.jpg',
+    category: ['asdf', 'asdf'],
+    id: 12,
+  },
+  {
+    title: '충남대학교 공대 9호관',
+    imageUrl: 'https://randomuser.me/api/portraits/women/1.jpg',
+    category: ['asdf', 'asdf'],
+    id: 13,
+  },
+  {
+    title: '충남대학교 공대 10호관',
+    imageUrl: 'https://randomuser.me/api/portraits/women/1.jpg',
+    category: ['asdf', 'asdf'],
+    id: 14,
+  },
+  {
+    title: '충남대학교 공대 7호관',
+    imageUrl: 'https://randomuser.me/api/portraits/women/1.jpg',
+    category: ['asdf', 'asdf'],
+    id: 15,
+  },
+  {
+    title: '충남대학교 공대 8호관',
+    imageUrl: 'https://randomuser.me/api/portraits/women/1.jpg',
+    category: ['asdf', 'asdf'],
+    id: 16,
+  },
+  {
+    title: '충남대학교 공대 9호관',
+    imageUrl: 'https://randomuser.me/api/portraits/women/1.jpg',
+    category: ['asdf', 'asdf'],
+    id: 17,
+  },
+  {
+    title: '충남대학교 공대 10호관',
+    imageUrl: 'https://randomuser.me/api/portraits/women/1.jpg',
+    category: ['asdf', 'asdf'],
+    id: 18,
+  },
 ];

@@ -43,3 +43,7 @@ export function SunIcon({size = INIT_SIZE, color = INIT_COLOR}: IIcon) {
 export function ReportIcon({size = INIT_SIZE, color = INIT_COLOR}: IIcon) {
   return <Octicons name="report" color={color} size={size} />;
 }
+
+export function RemoveIcon({size = INIT_SIZE, color = INIT_COLOR}: IIcon) {
+  return <Ionicons name="close-outline" color={color} size={size} />;
+}
