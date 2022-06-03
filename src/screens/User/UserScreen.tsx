@@ -3,6 +3,7 @@ import StickyParallaxHeader from 'react-native-sticky-parallax-header';
 import UserInfoScreen from './UserInfoScreen';
 import UserFlatList from './UserFlatList';
 import {Animated, StyleSheet} from 'react-native';
+import {BookmarksMock, RegistersMock} from '@common/mocks/UserScreenMock';
 
 const {event, ValueXY} = Animated;
 const scrollY = new ValueXY();
@@ -84,11 +85,11 @@ function UserScreen() {
           title: '등록한 쓰레기통',
 
           // card 컴포넌트 정제하기
-          content: <UserFlatList />,
+          content: <UserFlatList data={RegistersMock} />,
         },
         {
           title: '즐겨찾기',
-          content: <UserFlatList />,
+          content: <UserFlatList data={BookmarksMock} />,
         },
       ]}
     />

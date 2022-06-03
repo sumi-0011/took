@@ -9,7 +9,7 @@ import {
   VStack,
 } from 'native-base';
 import defaultImg from '@images/defaultImg.png';
-import Tag from '@components/Tag';
+import BadgeList from '@components/BadgeList';
 
 interface ITCCard {
   title: string;
@@ -46,9 +46,7 @@ function TCCard({title, category, imageUrl, id, onPress, onRemove}: ITCCard) {
                       {title}
                     </Heading>
                     <HStack space={1}>
-                      {category.map((item, idx) => (
-                        <Tag key={idx} item={item} />
-                      ))}
+                      <BadgeList data={['tag1', 'tag2']} />
                     </HStack>
                   </VStack>
                 </HStack>
