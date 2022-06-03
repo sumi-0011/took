@@ -5,19 +5,15 @@ import BasicButton from '@components/Button';
 import {postAxios} from '@common/api/registation';
 import {TCRegistSelect} from '../../recoil/TCRegist';
 import {useRecoilValue} from 'recoil'; // 훅 import
+import {addTC} from '@common/api/TCRegist';
 
 function RegistrationInfo({navigation}: any) {
   const info = useRecoilValue(TCRegistSelect);
 
   console.log('info : ', info);
-  // const [info, setInfo] = useState<InfoProps>({
-  //   ...dummyInfo,
-  //   name,
-  //   tagList: checkList,
-  //   trashImage: imageUrl,
-  // });
   const handleSubmit = () => {
-    const res = postAxios('TCRegist', info);
+    // const res = postAxios('TCRegist', info);
+    const res = addTC(info);
     console.log('등록되었습니다', res);
 
     navigation.navigate('HomeScreen');
