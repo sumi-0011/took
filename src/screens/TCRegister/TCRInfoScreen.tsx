@@ -2,7 +2,6 @@ import {Box, HStack, Image, Text} from 'native-base';
 import React from 'react';
 import BadgeList from '@components/BadgeList';
 import BasicButton from '@components/Button';
-import {postAxios} from '@common/api/registation';
 import {TCRegistSelect} from '../../recoil/TCRegist';
 import {useRecoilValue} from 'recoil'; // 훅 import
 import {addTC} from '@common/api/TCRegist';
@@ -12,10 +11,8 @@ function RegistrationInfo({navigation}: any) {
 
   console.log('info : ', info);
   const handleSubmit = () => {
-    // const res = postAxios('TCRegist', info);
     const res = addTC(info);
     console.log('등록되었습니다', res);
-
     navigation.navigate('HomeScreen');
   };
 
@@ -23,7 +20,8 @@ function RegistrationInfo({navigation}: any) {
     <Box p={5} bg={'#fff'} height={'100%'} justifyContent="space-between">
       <PlaceInfo
         name={info.name}
-        address={`${info.coordinate[0]} + ${info.coordinate[1]}`}
+        coordinate={info.coordinate}
+        address={`${info.coordinate.latitude} + ${info.coordinate.longitude}`}
         image={info.image}
       />
       <TrashBoxInfo image={info.trashImage} tagList={info.tags} />
@@ -38,10 +36,12 @@ export const PlaceInfo = ({
   name,
   address,
   image,
+  coordinate,
 }: {
   name: string;
   address: string;
   image: string;
+  coordinate: {latitude: number; longitude: number};
 }) => {
   return (
     <Box>

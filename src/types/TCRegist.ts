@@ -2,7 +2,7 @@ export interface ITCRegisterInfo {
   name: string;
   address?: string;
   tags: Array<string>;
-  coordinate: [number, number];
+  coordinate: {latitude: number; longitude: number};
   image: string;
   trashImage: string;
 }
