@@ -17,10 +17,11 @@ const MapScreen = ({navigation}: any) => {
   const [userInfo, setUserInfo] = useRecoilState<IUserInfo>(user);
 
   useEffect(() => {
-    getUser(uid ?? 'LVert06OcdS5LxDPRM37iflYdFu1').then(res => {
-      // console.log('ret success', res);
-      res && setUserInfo(res);
-    });
+    // console.log(uid);
+    uid &&
+      getUser(uid).then(res => {
+        res && setUserInfo(res);
+      });
   }, []);
 
   return (
@@ -32,7 +33,6 @@ const MapScreen = ({navigation}: any) => {
         }}>
         <ChevronLeftIcon />
       </BackBtn>
-      <Text>{userInfo?.uid}</Text>
       <MapContainer />
       <MapModal />
     </Wrapper>

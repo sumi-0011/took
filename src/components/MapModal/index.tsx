@@ -47,7 +47,7 @@ function MapModal({}: Props) {
   }, [userInfo?.lastTookTime]);
 
   const _updateStar = (id: string, stars: number[]) => {
-    updateStar(id, stars).then(res => {
+    updateStar(id, stars).then(() => {
       fetchData();
       setIsStar(!isStar);
     });
