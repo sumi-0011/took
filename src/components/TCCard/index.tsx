@@ -6,12 +6,10 @@ import {
   HStack,
   Image,
   Pressable,
-  Text,
   VStack,
 } from 'native-base';
 import defaultImg from '@images/defaultImg.png';
 import BadgeList from '@components/BadgeList';
-import {RemoveIcon} from '@components/Icon';
 
 interface ITCCard {
   title: string;
