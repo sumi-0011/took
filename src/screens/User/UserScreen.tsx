@@ -1,8 +1,8 @@
 import React from 'react';
-import {Animated, StyleSheet} from 'react-native';
 import StickyParallaxHeader from 'react-native-sticky-parallax-header';
 import UserInfoScreen from './UserInfoScreen';
 import UserFlatList from './UserFlatList';
+import {Animated, StyleSheet} from 'react-native';
 
 const {event, ValueXY} = Animated;
 const scrollY = new ValueXY();
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const CutomHeaderScreen = () => {
+function UserScreen() {
   return (
     <StickyParallaxHeader
       headerType="TabbedHeader"
@@ -93,5 +93,5 @@ const CutomHeaderScreen = () => {
       ]}
     />
   );
-};
-export default CutomHeaderScreen;
+}
+export default UserScreen;
