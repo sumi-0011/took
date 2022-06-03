@@ -1,31 +1,49 @@
 import React from 'react';
-import {Button} from 'native-base';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Octicons from 'react-native-vector-icons/Octicons';
 
 interface IIcon {
-  onPress: (() => void) | undefined;
+  size?: number;
+  color?: string;
+  onPress?: (() => void) | undefined;
 }
 
-export function BackIcon({onPress}: IIcon) {
+const INIT_COLOR = '#353535';
+const INIT_SIZE = 25;
+
+export function BackIcon({size, color}: IIcon) {
   return (
-    <Button variant="unstyled" onPress={onPress}>
-      <Ionicons name="chevron-back-outline" size={25} />
-    </Button>
+    <Ionicons
+      name="chevron-back-outline"
+      size={size ?? INIT_SIZE}
+      color={color ?? INIT_COLOR}
+    />
   );
 }
 
-export function SettingIcon({onPress}: IIcon) {
-  return (
-    <Button onPress={onPress} variant="unstyled">
-      <Ionicons name="options-outline" size={25} color="#000" />
-    </Button>
-  );
+export function SettingIcon({size = INIT_SIZE, color = INIT_COLOR}: IIcon) {
+  return <Ionicons name="options-outline" size={size} color={color} />;
 }
 
-export function HeartOutlineIcon() {
-  return <Ionicons name="heart-outline" size={25} />;
+export function HeartOutlineIcon({
+  size = INIT_SIZE,
+  color = INIT_COLOR,
+}: IIcon) {
+  return <Ionicons name="heart-outline" size={size} color={color} />;
 }
 
-export function HeartIcon() {
-  return <Ionicons name="heart" color={'#eb0626'} size={25} />;
+export function HearFilltIcon({size = INIT_SIZE, color = '#525252'}: IIcon) {
+  return <Ionicons name="heart" color={color} size={size} />;
+}
+
+export function SunIcon({size = INIT_SIZE, color = INIT_COLOR}: IIcon) {
+  return <Ionicons name="sunny-outline" color={color} size={size} />;
+}
+
+export function ReportIcon({size = INIT_SIZE, color = INIT_COLOR}: IIcon) {
+  return <Octicons name="report" color={color} size={size} />;
+}
+
+export function RemoveIcon({size = INIT_SIZE, color = INIT_COLOR}: IIcon) {
+  return <Ionicons name="close-outline" color={color} size={size} />;
 }

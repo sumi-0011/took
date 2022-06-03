@@ -1,8 +1,9 @@
 import React from 'react';
-import {Animated, StyleSheet} from 'react-native';
 import StickyParallaxHeader from 'react-native-sticky-parallax-header';
 import UserInfoScreen from './UserInfoScreen';
 import UserFlatList from './UserFlatList';
+import {Animated, StyleSheet} from 'react-native';
+import {BookmarksMock, RegistersMock} from '@common/mocks/UserScreenMock';
 
 const {event, ValueXY} = Animated;
 const scrollY = new ValueXY();
@@ -43,7 +44,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   contentContiner: {
-    paddingHorizontal: 25,
     paddingVertical: 20,
     backgroundColor: 'white',
   },
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const CutomHeaderScreen = () => {
+function UserScreen() {
   return (
     <StickyParallaxHeader
       headerType="TabbedHeader"
@@ -84,14 +84,14 @@ const CutomHeaderScreen = () => {
           title: '등록한 쓰레기통',
 
           // card 컴포넌트 정제하기
-          content: <UserFlatList />,
+          content: <UserFlatList data={RegistersMock} />,
         },
         {
           title: '즐겨찾기',
-          content: <UserFlatList />,
+          content: <UserFlatList data={BookmarksMock} />,
         },
       ]}
     />
   );
-};
-export default CutomHeaderScreen;
+}
+export default UserScreen;

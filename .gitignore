@@ -59,4 +59,6 @@ buck-out/
 # Ruby / CocoaPods
 /ios/Pods/
 /vendor/bundle/
-android/app/src/main/AndroidManifest.xml
+
+# API_Keys
+.env

@@ -23,3 +23,15 @@ export async function requestPermission() {
     console.log(e);
   }
 }
+
+export async function requestAccessLocationPermission() {
+  try {
+    if (Platform.OS === 'android') {
+      return await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      );
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}

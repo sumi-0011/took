@@ -1,9 +1,9 @@
-import {RegistersMock} from '@common/mocks/UserScreenMock';
+import {ITCInfo} from '@common/types/TCInfo';
 import TCCard from '@components/TCCard';
 import {FlatList} from 'native-base';
 import React, {useCallback} from 'react';
 
-function UserFlatList() {
+function UserFlatList({data}: {data: ITCInfo[]}) {
   const renderItem = useCallback(
     ({item}) => (
       <TCCard
@@ -11,16 +11,17 @@ function UserFlatList() {
         title={item.title}
         category={item.category}
         imageUrl={item.imageUrl}
-        onRemove={() => {}}
+        onRemove={() => console.log('!')}
       />
     ),
     [],
   );
 
-  const keyExtractor = useCallback(item => item.id + '', []);
+  const keyExtractor = useCallback(item => item.id + item.title, []);
+
   return (
     <FlatList
-      data={RegistersMock}
+      data={data}
       keyExtractor={keyExtractor}
       renderItem={renderItem}
       maxToRenderPerBatch={8}

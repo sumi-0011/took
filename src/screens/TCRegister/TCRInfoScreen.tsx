@@ -1,53 +1,30 @@
 import {Box, HStack, Image, Text} from 'native-base';
-import React, {useState} from 'react';
+import React from 'react';
 import BadgeList from '@components/BadgeList';
 import BasicButton from '@components/Button';
-import {postAxios} from '@common/api/registation';
+import {TCRegistSelect} from '../../recoil/TCRegist';
+import {useRecoilValue} from 'recoil'; // 훅 import
+import {addTC} from '@common/api/TCRegist';
 
-interface IRegistraionInput {
-  checkList: Array<string>;
-  name: string;
-  imageUrl: string;
-}
+function RegistrationInfo({navigation}: any) {
+  const info = useRecoilValue(TCRegistSelect);
 
-interface InfoProps {
-  name: string;
-  address: string;
-  image: string;
-  trashImage: string;
-  tagList: Array<string>;
-}
-
-const dummyInfo = {
-  name: '대전역 건너 버스정류장teststest',
-  address: '대전광역시 동구 중앙로 211(장동)',
-  image:
-    'https://spi.maps.daum.net/map2/map/imageservice?IW=600&IH=350&MX=400205&MY=-11702&SCALE=2.5&service=open',
-  trashImage:
-    'https://mediahub.seoul.go.kr/uploads/mediahub/2021/09/tpuykXsdsBZQXeTWToBZZEYuYyQSMNof.jpeg',
-  tagList: ['플라스틱', '유리병'],
-};
-
-function RegistrationInfo({route, navigation}: any) {
-  const {name, checkList, imageUrl} = route.params as IRegistraionInput;
-  const [info, setInfo] = useState<InfoProps>({
-    ...dummyInfo,
-    name,
-    tagList: checkList,
-    trashImage: imageUrl,
-  });
-
+  console.log('info : ', info);
   const handleSubmit = () => {
-    postAxios('test', info);
-    console.log('등록되었습니다');
-
-    navigation.navigate('TOOK');
+    const res = addTC(info);
+    console.log('등록되었습니다', res);
+    navigation.navigate('HomeScreen');
   };
 
   return (
     <Box p={5} bg={'#fff'} height={'100%'} justifyContent="space-between">
-      <PlaceInfo name={info.name} address={info.address} image={info.image} />
-      <TrashBoxInfo image={info.trashImage} tagList={info.tagList} />
+      <PlaceInfo
+        name={info.name}
+        coordinate={info.coordinate}
+        address={`${info.coordinate.latitude} + ${info.coordinate.longitude}`}
+        image={info.image}
+      />
+      <TrashBoxInfo image={info.trashImage} tagList={info.tags} />
       <BasicButton onPress={handleSubmit}>등록하기</BasicButton>
     </Box>
   );
@@ -55,38 +32,44 @@ function RegistrationInfo({route, navigation}: any) {
 
 export default RegistrationInfo;
 
-const PlaceInfo = ({
+export const PlaceInfo = ({
   name,
   address,
   image,
+  coordinate,
 }: {
   name: string;
   address: string;
   image: string;
+  coordinate: {latitude: number; longitude: number};
 }) => {
   return (
     <Box>
-      <Text bold fontSize={'lg'}>
+      <Text bold fontSize={'lg'} accessibilityLabel="place-name">
         {name}
       </Text>
-      <Text fontSize={'xs'} color="coolGray.500">
+      <Text
+        fontSize={'xs'}
+        color="coolGray.500"
+        accessibilityLabel="place-address">
         {address}
       </Text>
       <Image
         source={{
           uri: image,
         }}
+        accessibilityLabel="쓰레기통 위치"
         width={'100%'}
         height={150}
         marginTop={5}
         borderRadius={10}
-        alt="위치"
+        alt="쓰레기통 위치"
       />
     </Box>
   );
 };
 
-const TrashBoxInfo = ({
+export const TrashBoxInfo = ({
   image,
   tagList,
 }: {
@@ -107,6 +90,7 @@ const TrashBoxInfo = ({
         marginY={5}
         borderRadius={10}
         alt="쓰레기통 이미지"
+        accessibilityLabel="쓰레기통 이미지"
       />
       <HStack>
         <BadgeList data={tagList} />
