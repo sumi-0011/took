@@ -34,7 +34,7 @@ export async function signUp(email: string, password: string, name: string) {
 
     await changeProfile({name});
 
-    users.doc(response.user.uid).set();
+    // users.doc(response.user.uid).set();
 
     return {status: 'success', ...response};
   } catch (error) {
