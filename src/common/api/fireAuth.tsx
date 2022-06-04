@@ -6,6 +6,7 @@ const users = firebase.firestore().collection('users');
 export function isLoggedIn() {
   return auth().currentUser ? true : false;
 }
+
 export function getUserInfo() {
   const user = auth().currentUser;
 
@@ -35,10 +36,11 @@ export async function signUp(email: string, password: string, name: string) {
     await changeProfile({name});
 
     await users.doc(response.user.uid).set({
-      tookCount: 0,
+      tookCnt: 0,
       lastTookTime: new Date(),
-      bookmarks: [],
+      stars: [],
       registedTrashCans: [],
+      uid: response.user.uid,
     });
 
     return {status: 'success', ...response};
