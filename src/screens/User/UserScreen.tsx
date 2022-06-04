@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
 });
 
-function UserScreen() {
+function UserScreen({navigation}: any) {
   return (
     <StickyParallaxHeader
       headerType="TabbedHeader"
@@ -78,7 +78,7 @@ function UserScreen() {
         {
           title: '내 정보',
           // content 에 내 정보 이쁘게 만들어서 넣기
-          content: <UserInfoScreen />,
+          content: <UserInfoScreen navigation={navigation} />,
         },
         {
           title: '등록한 쓰레기통',

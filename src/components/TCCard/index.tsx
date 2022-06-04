@@ -12,15 +12,15 @@ import defaultImg from '@images/defaultImg.png';
 import BadgeList from '@components/BadgeList';
 
 interface ITCCard {
-  title: string;
-  category: string[];
-  imageUrl: string;
+  name: string;
+  tags: string[];
+  trashImage: string;
   id: number;
   onPress?: () => void;
   onRemove: (id: number) => void;
 }
 
-function TCCard({title, category, imageUrl, id, onPress, onRemove}: ITCCard) {
+function TCCard({name, tags, trashImage, id, onPress, onRemove}: ITCCard) {
   return (
     <Box flex={1}>
       <Pressable onPress={onPress}>
@@ -46,10 +46,10 @@ function TCCard({title, category, imageUrl, id, onPress, onRemove}: ITCCard) {
                   />
                   <VStack space={3}>
                     <Heading size="sm" numberOfLines={2} marginBottom={'5px'}>
-                      {title}
+                      {name}
                     </Heading>
                     <HStack space={1}>
-                      <BadgeList data={category} />
+                      <BadgeList data={tags} />
                     </HStack>
                   </VStack>
                 </HStack>
