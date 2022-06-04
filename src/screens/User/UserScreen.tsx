@@ -1,14 +1,35 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import StickyParallaxHeader from 'react-native-sticky-parallax-header';
 import UserInfoScreen from './UserInfoScreen';
 import UserFlatList from './UserFlatList';
 import {Animated, StyleSheet} from 'react-native';
 import {BookmarksMock, RegistersMock} from '@common/mocks/UserScreenMock';
+import {getRegisterTrashCans, getStaredTrashCans} from '@common/api/trashCan';
+import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
 
 const {event, ValueXY} = Animated;
 const scrollY = new ValueXY();
 
 function UserScreen({navigation}: any) {
+  const [staredTrashCans, setStaredTrashCans] = useState<
+    FirebaseFirestoreTypes.DocumentData | undefined
+  >();
+  const [registedTrashCans, setRegistedTrashCans] = useState<
+    FirebaseFirestoreTypes.DocumentData | undefined
+  >();
+
+  useEffect(() => {
+    async function fetchData() {
+      const stared = await getStaredTrashCans();
+      const registed = await getRegisterTrashCans();
+
+      setStaredTrashCans(stared);
+      setRegistedTrashCans(registed);
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <StickyParallaxHeader
       headerType="TabbedHeader"
@@ -44,7 +65,7 @@ function UserScreen({navigation}: any) {
         },
         {
           title: '즐겨찾기',
-          content: <UserFlatList data={BookmarksMock} />,
+          content: <UserFlatList data={staredTrashCans} />,
         },
       ]}
     />

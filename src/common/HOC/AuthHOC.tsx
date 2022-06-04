@@ -6,7 +6,7 @@ export default function <P extends object>(Component: ComponentType<P>) {
     if (isLoggedIn() === false) {
       props.navigation.replace('Auth');
     }
-    props.navigation.replace('Auth');
+
     return <Component {...(props as P)} />;
   }
   return AuthenticationCheck;
