@@ -1,7 +1,7 @@
 import {atom} from 'recoil';
-import {ITCRegisterInfo} from 'types/TCRegist';
+import {ITrashCanInfo} from 'types/TrashCan';
 
-export const TCRegistSelect = atom<ITCRegisterInfo>({
+export const TCRegistSelect = atom<ITrashCanInfo>({
   key: 'TCRegist',
   default: {
     name: 'test name',

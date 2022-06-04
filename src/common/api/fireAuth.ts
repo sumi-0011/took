@@ -6,9 +6,10 @@ const users = firebase.firestore().collection('users');
 export function isLoggedIn() {
   return auth().currentUser ? true : false;
 }
+
 export function getUserInfo() {
   const user = auth().currentUser;
-  console.log(user);
+
   return {
     photoURL: user?.photoURL,
     displayName: user?.displayName,
@@ -34,7 +35,13 @@ export async function signUp(email: string, password: string, name: string) {
 
     await changeProfile({name});
 
-    // users.doc(response.user.uid).set();
+    await users.doc(response.user.uid).set({
+      tookCnt: 0,
+      lastTookTime: new Date(),
+      stars: [],
+      registedTrashCans: [],
+      uid: response.user.uid,
+    });
 
     return {status: 'success', ...response};
   } catch (error) {
@@ -60,4 +67,20 @@ export function subscribeAuth(callback: () => void) {
 
 export function signOut() {
   return auth().signOut();
+}
+
+export async function withdrawal() {
+  try {
+    const user = auth().currentUser;
+    users.doc(user?.uid).delete();
+
+    // TODO : 회원탈퇴전에 재로그인을 해야함
+    const response = await user?.delete();
+
+    console.log(response);
+
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
 }
