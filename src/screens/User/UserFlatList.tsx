@@ -3,7 +3,7 @@ import {FlatList} from 'native-base';
 import React, {useCallback} from 'react';
 import {ITrashCanInfo} from 'types/TrashCan';
 
-function UserFlatList({data}: {data: ITrashCanInfo[]}) {
+function UserFlatList({data}: {data: ITrashCanInfo[] | undefined}) {
   const renderItem = useCallback(
     ({item}) => (
       <TCCard
@@ -17,7 +17,7 @@ function UserFlatList({data}: {data: ITrashCanInfo[]}) {
     [],
   );
 
-  const keyExtractor = useCallback(item => item.id + item.title, []);
+  const keyExtractor = useCallback(item => item.id + item.name, []);
 
   return (
     <FlatList

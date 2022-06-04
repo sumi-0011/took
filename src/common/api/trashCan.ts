@@ -1,7 +1,5 @@
-import {
-  firebase,
-  FirebaseFirestoreTypes,
-} from '@react-native-firebase/firestore';
+import {firebase} from '@react-native-firebase/firestore';
+import {ITrashCanInfo} from 'types/TrashCan';
 import {getUserInfo} from './fireAuth';
 
 const trashCans = firebase.firestore().collection('trashCans');
@@ -14,13 +12,12 @@ export async function getStaredTrashCans() {
     const userData = userDoc.data();
     const stars = userData?.stars;
 
-    const staredTrashCans: (FirebaseFirestoreTypes.DocumentData | undefined)[] =
-      [];
+    const staredTrashCans: ITrashCanInfo[] = [];
 
     for (const staredItemId of stars) {
       const trashCanDoc = await trashCans.doc(staredItemId).get();
       const trashCanData = trashCanDoc.data();
-      staredTrashCans.push(trashCanData);
+      staredTrashCans.push(trashCanData as ITrashCanInfo);
     }
 
     return staredTrashCans;
@@ -34,15 +31,12 @@ export async function getRegisterTrashCans() {
     const userDoc = await users.doc(uid).get();
     const userData = userDoc.data();
     const registed = userData?.registedTrashCans;
-    const registedTrashCans: (
-      | FirebaseFirestoreTypes.DocumentData
-      | undefined
-    )[] = [];
+    const registedTrashCans: ITrashCanInfo[] = [];
 
-    for (const staredItemId of registed) {
-      const trashCanDoc = await trashCans.doc(staredItemId).get();
+    for (const registedItemId of registed) {
+      const trashCanDoc = await trashCans.doc(registedItemId).get();
       const trashCanData = trashCanDoc.data();
-      registedTrashCans.push(trashCanData);
+      registedTrashCans.push(trashCanData as ITrashCanInfo);
     }
 
     return registedTrashCans;

@@ -15,9 +15,9 @@ interface ITCCard {
   name: string;
   tags: string[];
   trashImage: string;
-  id: number;
+  id: string;
   onPress?: () => void;
-  onRemove: (id: number) => void;
+  onRemove: (id: string) => void;
 }
 
 function TCCard({name, tags, trashImage, id, onPress, onRemove}: ITCCard) {

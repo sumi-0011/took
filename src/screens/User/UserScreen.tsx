@@ -3,20 +3,15 @@ import StickyParallaxHeader from 'react-native-sticky-parallax-header';
 import UserInfoScreen from './UserInfoScreen';
 import UserFlatList from './UserFlatList';
 import {Animated, StyleSheet} from 'react-native';
-import {BookmarksMock, RegistersMock} from '@common/mocks/UserScreenMock';
 import {getRegisterTrashCans, getStaredTrashCans} from '@common/api/trashCan';
-import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
+import {ITrashCanInfo} from 'types/TrashCan';
 
 const {event, ValueXY} = Animated;
 const scrollY = new ValueXY();
 
 function UserScreen({navigation}: any) {
-  const [staredTrashCans, setStaredTrashCans] = useState<
-    FirebaseFirestoreTypes.DocumentData | undefined
-  >();
-  const [registedTrashCans, setRegistedTrashCans] = useState<
-    FirebaseFirestoreTypes.DocumentData | undefined
-  >();
+  const [staredTrashCans, setStaredTrashCans] = useState<ITrashCanInfo[]>();
+  const [registedTrashCans, setRegistedTrashCans] = useState<ITrashCanInfo[]>();
 
   useEffect(() => {
     async function fetchData() {
@@ -61,7 +56,7 @@ function UserScreen({navigation}: any) {
           title: '등록한 쓰레기통',
 
           // card 컴포넌트 정제하기
-          content: <UserFlatList data={RegistersMock} />,
+          content: <UserFlatList data={registedTrashCans} />,
         },
         {
           title: '즐겨찾기',
