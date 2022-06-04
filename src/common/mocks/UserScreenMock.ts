@@ -15,7 +15,7 @@ export const BookmarksMock: ITrashCanInfo[] = [
   },
 ];
 
-export const RegistersMock: ITrashCan[] = [
+export const RegistersMock: ITrashCanInfo[] = [
   {
     name: '충남대학교 공대 1호관',
     trashImage: 'https://randomuser.me/api/portraits/women/1.jpg',

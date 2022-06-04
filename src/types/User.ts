@@ -5,8 +5,8 @@ export interface IUser {
 }
 
 export interface IUserInfo extends IUser {
-  tookCount: number;
+  tookCnt: number;
   lastTookTime: Date;
-  bookmarks: number[];
+  stars: number[];
   registTrashBoxs: number[];
 }

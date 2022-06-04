@@ -1,9 +1,9 @@
 import TCCard from '@components/TCCard';
 import {FlatList} from 'native-base';
 import React, {useCallback} from 'react';
-import {ITrashCan} from 'types/TrashCan';
+import {ITrashCan, ITrashCanInfo} from 'types/TrashCan';
 
-function UserFlatList({data}: {data: ITrashCan[]}) {
+function UserFlatList({data}: {data: ITrashCanInfo[]}) {
   const renderItem = useCallback(
     ({item}) => (
       <TCCard
