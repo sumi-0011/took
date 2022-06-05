@@ -1,4 +1,4 @@
-import {withdrawal} from '@common/api/fireAuth';
+import {signOut, withdrawal} from '@common/api/fireAuth';
 import {Button, Heading, ScrollView} from 'native-base';
 import React from 'react';
 
@@ -9,6 +9,10 @@ function UserInfoScreen({navigation}: any) {
 
     navigation.replace('HomeScreen');
   };
+  const onSignOut = async () => {
+    signOut();
+    navigation.replace('HomeScreen');
+  };
 
   return (
     <ScrollView>
@@ -16,12 +20,12 @@ function UserInfoScreen({navigation}: any) {
         내 정보
       </Heading>
       <Button
-        onPress={() => console.log('비밀번호 변경')}
+        onPress={onSignOut}
         marginX="10"
         marginY="3"
         colorScheme="green"
         variant="outline">
-        비밀번호 변경
+        로그아웃
       </Button>
       <Button
         onPress={onWithdrawal}
