@@ -11,11 +11,14 @@ import {IUserInfo} from 'types/User';
 import {useRecoilState} from 'recoil';
 import {user} from '../recoil/user';
 import {getTrashCans} from '@common/api/trashCan';
+import {ITrashCan} from 'types/TrashCan';
+import {TrashCan} from 'recoil/trahCan';
 
 const MapScreen = ({navigation}: any) => {
   const {uid} = getUserInfo();
   const [userInfo, setUserInfo] = useRecoilState<IUserInfo>(user);
-  const [trashCanList, setTrashCanList] = useState<Array<any>>();
+  const [trashCanList, setTrashCanList] = useState<ITrashCan[]>();
+  const [selectTC, setSelectTC] = useRecoilState<ITrashCan>(TrashCan); //클릭한 쓰레기통 정보
 
   useEffect(() => {
     uid &&
@@ -23,14 +26,11 @@ const MapScreen = ({navigation}: any) => {
         res && setUserInfo(res);
       });
   }, []);
+
   useEffect(() => {
     getTrashCans().then(res => {
       res && setTrashCanList(res);
     });
-
-    // trashCanList?.forEach(trashcan => {
-    //   console.log(trashcan);
-    // });
   }, []);
   return (
     <Wrapper>
@@ -69,6 +69,7 @@ function MapContainer() {
       }
     });
   }, []);
+
   return (
     <View style={{flex: 1}}>
       {location && (
