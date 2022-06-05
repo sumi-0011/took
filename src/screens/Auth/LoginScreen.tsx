@@ -22,9 +22,11 @@ function LoginScreen({navigation}: any) {
   const formOptions = {resolver: yupResolver(schema)};
 
   const onSubmit = async (data: FormData) => {
-    const result = await signIn(data.email, data.password);
+    const res = await signIn(data.email, data.password);
 
-    console.log(result);
+    if (res?.status === 'success') {
+      navigation.replace('HomeScreen');
+    }
   };
 
   const {
