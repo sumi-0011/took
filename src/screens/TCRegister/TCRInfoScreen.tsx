@@ -5,9 +5,10 @@ import BasicButton from '@components/Button';
 import {TCRegistSelect} from '../../recoil/TCRegist';
 import {useRecoilValue} from 'recoil'; // 훅 import
 import {addTC} from '@common/api/TCRegist';
+import {ITrashCanInfo} from 'types/TrashCan';
 
 function RegistrationInfo({navigation}: any) {
-  const info = useRecoilValue(TCRegistSelect);
+  const info = useRecoilValue<ITrashCanInfo>(TCRegistSelect);
 
   console.log('info : ', info);
   const handleSubmit = () => {
@@ -22,7 +23,7 @@ function RegistrationInfo({navigation}: any) {
         name={info.name}
         coordinate={info.coordinate}
         address={`${info.coordinate.latitude} + ${info.coordinate.longitude}`}
-        image={info.image}
+        // image={info.image}
       />
       <TrashBoxInfo image={info.trashImage} tagList={info.tags} />
       <BasicButton onPress={handleSubmit}>등록하기</BasicButton>
@@ -35,7 +36,6 @@ export default RegistrationInfo;
 export const PlaceInfo = ({
   name,
   address,
-  image,
   coordinate,
 }: {
   name: string;
@@ -54,7 +54,10 @@ export const PlaceInfo = ({
         accessibilityLabel="place-address">
         {address}
       </Text>
-      <Image
+      <Box width={'100%'} height={150} marginTop={5} borderRadius={10}>
+        쓰레기통 map (props의 좌표 사용)
+      </Box>
+      {/* <Image
         source={{
           uri: image,
         }}
@@ -64,7 +67,7 @@ export const PlaceInfo = ({
         marginTop={5}
         borderRadius={10}
         alt="쓰레기통 위치"
-      />
+      /> */}
     </Box>
   );
 };
