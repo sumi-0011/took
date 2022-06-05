@@ -7,8 +7,7 @@ import CategotyCheckbox from '@components/CategoryCheckbox';
 import {requestPermission} from '@common/utils/permission';
 import {TCRegistSelect} from '../../recoil/TCRegist';
 import {useRecoilState} from 'recoil'; // 훅 import
-import {string} from 'yup';
-import {ITCRegisterInfo} from 'types/TCRegist';
+import {ITrashCanInfo} from 'types/TrashCan';
 
 interface ILocation {
   latitude: number;
@@ -26,7 +25,7 @@ function RegistrationCategory({navigation}: any) {
   const [location, setLocation] = useState<ILocation | undefined>(undefined);
 
   const [registData, setRegistData] =
-    useRecoilState<ITCRegisterInfo>(TCRegistSelect);
+    useRecoilState<ITrashCanInfo>(TCRegistSelect);
 
   const [isSubmit, setIsSubmit] = useState<boolean>(false);
   useEffect(() => {

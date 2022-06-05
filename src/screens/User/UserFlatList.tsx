@@ -1,23 +1,23 @@
-import {ITCInfo} from '@common/types/TCInfo';
 import TCCard from '@components/TCCard';
 import {FlatList} from 'native-base';
 import React, {useCallback} from 'react';
+import {ITrashCanInfo} from 'types/TrashCan';
 
-function UserFlatList({data}: {data: ITCInfo[]}) {
+function UserFlatList({data}: {data: ITrashCanInfo[] | undefined}) {
   const renderItem = useCallback(
     ({item}) => (
       <TCCard
         id={item.id}
-        title={item.title}
-        category={item.category}
-        imageUrl={item.imageUrl}
+        name={item.name}
+        tags={item.tags}
+        trashImage={item.trashImage}
         onRemove={() => console.log('!')}
       />
     ),
     [],
   );
 
-  const keyExtractor = useCallback(item => item.id + item.title, []);
+  const keyExtractor = useCallback(item => item.id + item.name, []);
 
   return (
     <FlatList
