@@ -28,7 +28,26 @@ export async function getStaredTrashCans() {
     console.log(error);
   }
 }
+//모든 쓰레기통
+export async function getTrashCans() {
+  const trashCanList: any[] = [];
 
+  await trashCans
+    .get()
+    .then(res => {
+      console.log(res);
+      res.forEach(function (doc) {
+        // console.log(doc);
+        trashCanList.push({
+          ...doc.data(),
+          id: doc.id,
+        });
+      });
+    })
+    .catch(e => console.log(e));
+
+  return trashCanList;
+}
 export async function getRegisterTrashCans() {
   try {
     const userDoc = await users.doc(uid).get();

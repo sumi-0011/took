@@ -10,21 +10,34 @@ import {getUser} from '@common/api/user';
 import {IUserInfo} from 'types/User';
 import {useRecoilState} from 'recoil';
 import {user} from '../recoil/user';
+import {getTrashCans} from '@common/api/trashCan';
 
 const MapScreen = ({navigation}: any) => {
   const {uid} = getUserInfo();
   const [userInfo, setUserInfo] = useRecoilState<IUserInfo>(user);
+  const [trashCanList, setTrashCanList] = useState<Array<any>>();
 
   useEffect(() => {
-    // console.log(uid);
     uid &&
       getUser(uid).then(res => {
         res && setUserInfo(res);
       });
   }, []);
+  useEffect(() => {
+    getTrashCans().then(res => {
+      res && setTrashCanList(res);
+    });
 
+    // trashCanList?.forEach(trashcan => {
+    //   console.log(trashcan);
+    // });
+  }, []);
   return (
     <Wrapper>
+      <Button
+        onPress={() => console.log(trashCanList[0], trashCanList?.length)}>
+        trashCanList
+      </Button>
       <BackBtn
         borderRadius="full"
         onPress={() => {
@@ -39,6 +52,7 @@ const MapScreen = ({navigation}: any) => {
 };
 function MapContainer() {
   const [location, setLocation] = useState<ILocation | undefined>(undefined);
+
   useEffect(() => {
     requestAccessLocationPermission().then(result => {
       if (result === 'granted') {

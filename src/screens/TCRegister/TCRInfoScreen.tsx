@@ -40,7 +40,7 @@ export const PlaceInfo = ({
 }: {
   name: string;
   address: string;
-  image: string;
+  // image: string;
   coordinate: {latitude: number; longitude: number};
 }) => {
   return (
