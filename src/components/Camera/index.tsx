@@ -79,7 +79,9 @@ function Camera({imageURL, setImageURL, nextPage}: ICamera) {
           }
           return (
             <Box>
-              <Button onPress={() => takePicture(camera)}>SNAP</Button>
+              <Button onPress={() => takePicture(camera)} bgColor="#68de7b">
+                SNAP
+              </Button>
             </Box>
           );
         }}
