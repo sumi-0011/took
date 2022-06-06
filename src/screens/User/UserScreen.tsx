@@ -1,114 +1,51 @@
-import React, {useEffect, useState} from 'react';
-import StickyParallaxHeader from 'react-native-sticky-parallax-header';
-import UserInfoScreen from './UserInfoScreen';
-import UserFlatList from './UserFlatList';
-import {Animated, StyleSheet} from 'react-native';
-import {getRegisterTrashCans, getStaredTrashCans} from '@common/api/trashCan';
-import {ITrashCanInfo} from 'types/TrashCan';
-
-const {event, ValueXY} = Animated;
-const scrollY = new ValueXY();
+import React from 'react';
+import {ScrollView, Text, VStack} from 'native-base';
+import {LogoutIcon, PushIcon, StarIcon} from '@components/Icon';
+import IconTextMenu from '@components/IconTextMenu';
+import Profile from '@components/Profile';
+import {signOut} from '@common/api/fireAuth';
 
 function UserScreen({navigation}: any) {
-  const [staredTrashCans, setStaredTrashCans] = useState<ITrashCanInfo[]>();
-  const [registedTrashCans, setRegistedTrashCans] = useState<ITrashCanInfo[]>();
-
-  useEffect(() => {
-    async function fetchData() {
-      const stared = await getStaredTrashCans();
-      const registed = await getRegisterTrashCans();
-
-      setStaredTrashCans(stared);
-      setRegistedTrashCans(registed);
-    }
-
-    fetchData();
-  }, []);
+  const onSignout = () => {
+    signOut();
+    navigation.replace('HomeScreen');
+  };
 
   return (
-    <StickyParallaxHeader
-      headerType="TabbedHeader"
-      backgroundColor={'#56bf66'}
-      bounces={true}
-      contentContainerStyles={styles.contentContiner}
-      foregroundImage={{
-        uri: 'https://avatars.githubusercontent.com/u/28756358?v=4',
-      }}
-      headerHeight={40}
-      parallaxHeight={250}
-      title={'Byeongmin Jeon'}
-      titleStyle={styles.titleStyle}
-      rememberTabScrollPosition={true}
-      tabTextContainerActiveStyle={styles.tabTextContainerActiveStyle}
-      tabTextStyle={styles.tabTextStyle}
-      tabTextActiveStyle={styles.tabTextActiveStyle}
-      tabsContainerStyle={styles.tabsContainerStyle}
-      scrollEvent={event([{nativeEvent: {contentOffset: {y: scrollY.y}}}], {
-        useNativeDriver: false,
-      })}
-      tabs={[
-        {
-          title: '내 정보',
-          // content 에 내 정보 이쁘게 만들어서 넣기
-          content: <UserInfoScreen navigation={navigation} />,
-        },
-        {
-          title: '등록한 쓰레기통',
-
-          // card 컴포넌트 정제하기
-          content: <UserFlatList data={registedTrashCans} />,
-        },
-        {
-          title: '즐겨찾기',
-          content: <UserFlatList data={staredTrashCans} />,
-        },
-      ]}
-    />
+    <ScrollView paddingY="5" backgroundColor="white">
+      <Profile onPress={() => navigation.navigate('UserChangeInfoScreen')} />
+      <VStack paddingTop="8">
+        <Text fontSize="lg" paddingX="10" paddingY="4" bold>
+          내 활동
+        </Text>
+        <IconTextMenu
+          onPress={() => navigation.navigate('UserTCRScreen')}
+          icon={<PushIcon />}
+          text="내가 등록한 쓰레기통"
+        />
+        <IconTextMenu
+          onPress={() => navigation.navigate('UserStarScreen')}
+          icon={<StarIcon />}
+          text="즐겨찾기한 쓰레기통"
+        />
+      </VStack>
+      <VStack paddingTop="8">
+        <Text fontSize="lg" paddingX="10" paddingY="4" bold>
+          회원정보
+        </Text>
+        <IconTextMenu
+          onPress={onSignout}
+          icon={<LogoutIcon />}
+          text="로그아웃"
+        />
+        <IconTextMenu
+          onPress={() => navigation.navigate('UserWithdrawalScreen')}
+          icon={<LogoutIcon />}
+          text="회원탈퇴"
+        />
+      </VStack>
+    </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  titleStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    padding: 10,
-    fontSize: 40,
-  },
-  tabTextContainerStyle: {
-    backgroundColor: 'transparent',
-    borderRadius: 18,
-  },
-  tabTextContainerActiveStyle: {
-    backgroundColor: '#ffffff',
-  },
-  tabTextStyle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    lineHeight: 20,
-    paddingHorizontal: 30,
-    paddingVertical: 10,
-    color: 'white',
-  },
-  tabTextActiveStyle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    paddingHorizontal: 30,
-    paddingVertical: 10,
-    color: 'black',
-  },
-  tabWrapperStyle: {
-    paddingVertical: 15,
-  },
-  tabsContainerStyle: {
-    paddingHorizontal: 10,
-  },
-  contentContiner: {
-    paddingVertical: 20,
-    backgroundColor: 'white',
-  },
-  contentText: {
-    fontSize: 18,
-  },
-});
 
 export default UserScreen;

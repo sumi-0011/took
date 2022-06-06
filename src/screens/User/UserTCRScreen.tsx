@@ -1,9 +1,21 @@
+import {getRegisterTrashCans} from '@common/api/trashCan';
 import TCCard from '@components/TCCard';
 import {FlatList} from 'native-base';
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {ITrashCanInfo} from 'types/TrashCan';
 
-function UserFlatList({data}: {data: ITrashCanInfo[] | undefined}) {
+function UserTCRScreen() {
+  const [data, setData] = useState<ITrashCanInfo[] | undefined>();
+
+  useEffect(() => {
+    async function fetchData() {
+      const registed = await getRegisterTrashCans();
+      setData(registed);
+    }
+
+    fetchData();
+  }, []);
+
   const renderItem = useCallback(
     ({item}) => (
       <TCCard
@@ -34,4 +46,4 @@ function UserFlatList({data}: {data: ITrashCanInfo[] | undefined}) {
   );
 }
 
-export default UserFlatList;
+export default UserTCRScreen;

@@ -4,7 +4,7 @@ import HomeScreen from '@screens/HomeScreen';
 import MapScreen from '@screens/MapScreen';
 import AuthNaviagtion from '@navigations/AuthNavigation';
 import TCRegisterNavigation from '@navigations/TCRegisterNavigation';
-import UserScreen from '@screens/User/UserScreen';
+import UserNaviagtion from '@navigations/UserNavigation';
 import AuthHOC from '@common/HOC/AuthHOC';
 
 const Stack = createNativeStackNavigator();
@@ -28,8 +28,8 @@ function MainNavigation() {
         }}
       />
       <Stack.Screen
-        name="UserScreen"
-        component={AuthHOC(UserScreen)}
+        name="UserRootScreen"
+        component={AuthHOC(UserNaviagtion)}
         options={{
           headerShown: false,
         }}
