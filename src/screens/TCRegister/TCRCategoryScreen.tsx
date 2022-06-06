@@ -110,7 +110,9 @@ function RegistrationCategory({navigation}: any) {
           onChangeText={text => setInputName(text)}
         />
         <CategotyCheckbox setGroupValue={setGroupValue} />
-        <Button onPress={handleCameraBtnClick}>사진 촬영</Button>
+        <Button onPress={handleCameraBtnClick} bgColor="#68de7b">
+          사진 촬영
+        </Button>
       </Box>
     </Box>
   );
