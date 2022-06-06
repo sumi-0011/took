@@ -3,7 +3,7 @@ import {Box, Heading, HStack, Image, Stack} from 'native-base';
 import logo from '@images/logo.png';
 
 interface IHeader {
-  name: string;
+  name: string | null | undefined;
 }
 
 function Header({name = '홍길동'}: IHeader) {

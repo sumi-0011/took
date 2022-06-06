@@ -1,16 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Box, Center, HStack, ScrollView, Text, VStack} from 'native-base';
 import Header from '@components/Header';
 import PressableBox from '@components/PressableBox';
 import BackgroundImage from '@components/BackgroundImage';
 import TagList from '@components/TagList';
+import {getUserInfo} from '@common/api/fireAuth';
 
 function HomeScreen({navigation}: any) {
+  const [name] = useState(getUserInfo().displayName);
+
   return (
     <ScrollView bg="white">
       <Box p={6} alignContent="center">
         <VStack justifyContent="space-evenly" space={7} h="100%">
-          <Header name="전병민" />
+          <Header name={name} />
           <HStack w="100%" space={4} height="64">
             <PressableBox
               shadow
@@ -76,13 +79,13 @@ function HomeScreen({navigation}: any) {
               </VStack>
             </BackgroundImage>
           </PressableBox>
-          <HStack space={5} height="32">
+          <HStack space={5} height="32" marginTop="3">
             <PressableBox
               shadow
               bg="trueGray.100"
               flex={1}
               height="32"
-              onPress={() => navigation.navigate('UserScreen')}>
+              onPress={() => navigation.navigate('UserRootScreen')}>
               <Center>
                 <Text fontSize="lg" bold>
                   MY TOOK
@@ -91,7 +94,7 @@ function HomeScreen({navigation}: any) {
             </PressableBox>
             <PressableBox
               shadow
-              bg="trueGray.100"
+              bg="trueGray.200"
               flex={1}
               height="32"
               onPress={() => console.log('clicked')}>
