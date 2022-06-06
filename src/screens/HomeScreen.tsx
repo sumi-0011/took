@@ -94,7 +94,7 @@ function HomeScreen({navigation}: any) {
             </PressableBox>
             <PressableBox
               shadow
-              bg="trueGray.200"
+              bg="trueGray.100"
               flex={1}
               height="32"
               onPress={() => console.log('clicked')}>
