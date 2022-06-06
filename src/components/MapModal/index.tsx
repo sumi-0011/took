@@ -40,6 +40,8 @@ function MapModal({currentTCId}: Props) {
     const index = userInfo?.stars.findIndex(ele => ele === currentTCId);
     if (index !== -1) {
       setIsStar(true);
+    } else {
+      setIsStar(false);
     }
   }, [currentTCId, userInfo?.stars]);
 
