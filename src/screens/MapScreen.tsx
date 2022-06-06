@@ -36,7 +36,7 @@ const MapScreen = ({navigation}: any) => {
         <ChevronLeftIcon />
       </BackBtn>
       <MapContainer />
-      <MapModal />
+      <MapModal currentTCId={selectTC.id ?? 'BnaYaDlFxfiJ12wj1ZbB'} />
     </Wrapper>
   );
 };
@@ -44,9 +44,9 @@ function MapContainer() {
   const [location, setLocation] = useState<any | undefined>(undefined);
   const [trashCanList, setTrashCanList] = useState<Array<any>>();
 
-  useEffect(() => {
-    console.log('trashCanList', trashCanList);
-  }, [trashCanList]);
+  // useEffect(() => {
+  //   console.log('trashCanList', trashCanList);
+  // }, [trashCanList]);
 
   useEffect(() => {
     getTrashCans().then(res => {

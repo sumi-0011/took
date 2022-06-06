@@ -8,6 +8,7 @@ export const user = atom<IUserInfo>({
     // id: '', //dosId
     displayName: '',
     uid: '', //pk
+    email: '',
     photoURL: '',
     tookCnt: 0, //버린 횟수 => 사용자 활동 시각화
     lastTookTime: new Date(), // or Date 마지막으로 쓰레기를 버린 시간

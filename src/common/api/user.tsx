@@ -1,4 +1,5 @@
 import {firebase} from '@react-native-firebase/firestore';
+import {IUserInfo} from 'types/User';
 
 const users = firebase.firestore().collection('users');
 
@@ -10,7 +11,11 @@ export async function getUser(uid: string) {
       res.forEach(function (doc) {
         let docs = doc.data();
         if (docs.uid === uid) {
-          result = {id: doc.id, ...docs};
+          result = {
+            ...docs,
+            uid: doc.id,
+            lastTookTime: new Date(docs.lastTookTime.seconds * 1000),
+          };
         }
       });
     })

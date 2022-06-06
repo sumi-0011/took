@@ -1,3 +1,4 @@
+import {getTrashCan} from '@common/api/trashCan';
 import {updateStar, getUser, updateLastTookTime} from '@common/api/user';
 import BadgeList from '@components/BadgeList';
 import {HearFilltIcon, HeartOutlineIcon, ReportIcon} from '@components/Icon';
@@ -6,17 +7,19 @@ import {Box, Button, Center, HStack, Image, Pressable, Text} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import {useRecoilState} from 'recoil';
 import styled from 'styled-components';
+import {ITrashCanInfo} from 'types/TrashCan';
 import {IUserInfo} from 'types/User';
 import {user} from '../../recoil/user';
 
-type Props = {};
+type Props = {
+  currentTCId: string;
+};
 
-function MapModal({}: Props) {
+function MapModal({currentTCId}: Props) {
   const [isStar, setIsStar] = useState<boolean>(false);
   const [userInfo, setUserInfo] = useRecoilState<IUserInfo>(user);
-  const currentTCId = 'BnaYaDlFxfiJ12wj1ZbB';
   const [isTook, setIsTook] = useState<boolean>(false);
-
+  const [selectTCInfo, setSelectTCInfo] = useState<ITrashCanInfo>();
   const fetchData = async () => {
     getUser(userInfo.uid)
       .then(res => {
@@ -27,28 +30,34 @@ function MapModal({}: Props) {
       });
   };
   useEffect(() => {
+    console.log('currentTCId', currentTCId);
+    getTrashCan(currentTCId).then(res => {
+      console.log('get', currentTCId, res);
+      setSelectTCInfo(res);
+    });
+  }, [currentTCId]);
+  useEffect(() => {
     const index = userInfo?.stars.findIndex(ele => ele === currentTCId);
     if (index !== -1) {
       setIsStar(true);
     }
-  }, [userInfo?.stars]);
+  }, [currentTCId, userInfo?.stars]);
 
   useEffect(() => {
     if (!userInfo) {
       return;
     }
     const currentDate = new Date();
-    const lastDate = userInfo.lastTookTime;
-    console.log(currentDate, lastDate);
-    // const diffTime =
-    //   (currentDate.getTime() - lastDate.getTime()) / (1000 * 60 * 60);
+    const diffTime =
+      (currentDate.getTime() - userInfo.lastTookTime.getTime()) /
+      (1000 * 60 * 60);
 
     // console.log('diffTime', diffTime);
-    // if (diffTime >= 24) {
-    //   setIsTook(true);
-    // } else {
-    //   setIsTook(false);
-    // }
+    if (diffTime >= 3) {
+      setIsTook(true);
+    } else {
+      setIsTook(false);
+    }
   }, [userInfo]);
 
   const _updateStar = (id: string, stars: string[]) => {
@@ -83,15 +92,15 @@ function MapModal({}: Props) {
     console.log('신고하기 버튼 클릭');
   };
 
-  return (
+  return selectTCInfo ? (
     <Modal borderTopRadius="20" p={5}>
       <Detail paddingY={2} borderBottomWidth="1" borderColor="coolGray.200">
         <DetailText
-          name="공대 5호관 1층"
-          address="대전광역시 유성구 대학로 99(궁동)"
-          badgeList={['플라스틱', '유리병']}
+          name={selectTCInfo.name}
+          // address="대전광역시 유성구 대학로 99(궁동)"
+          badgeList={selectTCInfo.tags}
         />
-        <DetailImage url={'https://wallpaperaccess.com/full/317501.jpg'} />
+        <DetailImage url={selectTCInfo.trashImage} />
       </Detail>
       <HStack paddingY={3}>
         <IconBtn
@@ -129,6 +138,8 @@ function MapModal({}: Props) {
           </Text>
         </Pressable> */}
     </Modal>
+  ) : (
+    <Text>정보가없습니다.</Text>
   );
 }
 
@@ -139,7 +150,7 @@ const DetailText = ({
   badgeList,
 }: {
   name: string;
-  address: string;
+  address?: string;
   badgeList: Array<string>;
 }) => {
   return (

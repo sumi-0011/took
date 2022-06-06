@@ -5,7 +5,23 @@ import {getUserInfo} from './fireAuth';
 const trashCans = firebase.firestore().collection('trashCans');
 const users = firebase.firestore().collection('users');
 const {uid} = getUserInfo();
+export async function getTrashCan(TCId: string) {
+  let result;
+  await trashCans
+    .get()
+    .then(res => {
+      res.forEach(function (doc) {
+        if (TCId === doc.id) {
+          const trashCanData = doc.data();
+          // console.log('trashCanData', trashCanData);
+          result = trashCanData;
+        }
+      });
+    })
+    .catch(e => console.log(e));
 
+  return result;
+}
 export async function getStaredTrashCans() {
   try {
     const userDoc = await users.doc(uid).get();

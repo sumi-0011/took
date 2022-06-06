@@ -4,7 +4,7 @@ import {ITrashCanInfo, ITrashCan} from 'types/TrashCan';
 export const TrashCan = atom<ITrashCan>({
   key: 'TCRegist',
   default: {
-    id: '',
+    id: 'hPjgGHwx666n0x3q9Yfk',
     name: '',
     tags: [],
     coordinate: {latitude: 0, longitude: 0},
