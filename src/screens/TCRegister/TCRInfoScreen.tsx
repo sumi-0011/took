@@ -6,6 +6,7 @@ import {TCRegistSelect} from '../../recoil/TCRegist';
 import {useRecoilValue} from 'recoil'; // 훅 import
 import {addTC} from '@common/api/TCRegist';
 import {ITrashCanInfo} from 'types/TrashCan';
+import MapView, {Marker} from 'react-native-maps';
 
 function RegistrationInfo({navigation}: any) {
   const info = useRecoilValue<ITrashCanInfo>(TCRegistSelect);
@@ -55,19 +56,17 @@ export const PlaceInfo = ({
         {address}
       </Text>
       <Box width={'100%'} height={150} marginTop={5} borderRadius={10}>
-        쓰레기통 map (props의 좌표 사용)
+        <MapView
+          style={{flex: 1}}
+          initialRegion={{
+            latitude: coordinate.latitude,
+            longitude: coordinate.longitude,
+            latitudeDelta: 0.003,
+            longitudeDelta: 0.003,
+          }}>
+          <Marker coordinate={coordinate} />
+        </MapView>
       </Box>
-      {/* <Image
-        source={{
-          uri: image,
-        }}
-        accessibilityLabel="쓰레기통 위치"
-        width={'100%'}
-        height={150}
-        marginTop={5}
-        borderRadius={10}
-        alt="쓰레기통 위치"
-      /> */}
     </Box>
   );
 };

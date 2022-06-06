@@ -17,7 +17,6 @@ import {TrashCan} from 'recoil/trahCan';
 const MapScreen = ({navigation}: any) => {
   const {uid} = getUserInfo();
   const [userInfo, setUserInfo] = useRecoilState<IUserInfo>(user);
-  const [trashCanList, setTrashCanList] = useState<ITrashCan[]>();
   const [selectTC, setSelectTC] = useRecoilState<ITrashCan>(TrashCan); //클릭한 쓰레기통 정보
 
   useEffect(() => {
@@ -25,19 +24,10 @@ const MapScreen = ({navigation}: any) => {
       getUser(uid).then(res => {
         res && setUserInfo(res);
       });
-  }, []);
+  }, [setUserInfo, uid]);
 
-  useEffect(() => {
-    getTrashCans().then(res => {
-      res && setTrashCanList(res);
-    });
-  }, []);
   return (
     <Wrapper>
-      <Button
-        onPress={() => console.log(trashCanList[0], trashCanList?.length)}>
-        trashCanList
-      </Button>
       <BackBtn
         borderRadius="full"
         onPress={() => {
@@ -51,7 +41,18 @@ const MapScreen = ({navigation}: any) => {
   );
 };
 function MapContainer() {
-  const [location, setLocation] = useState<ILocation | undefined>(undefined);
+  const [location, setLocation] = useState<any | undefined>(undefined);
+  const [trashCanList, setTrashCanList] = useState<Array<any>>();
+
+  useEffect(() => {
+    console.log('trashCanList', trashCanList);
+  }, [trashCanList]);
+
+  useEffect(() => {
+    getTrashCans().then(res => {
+      res && setTrashCanList(res);
+    });
+  }, []);
 
   useEffect(() => {
     requestAccessLocationPermission().then(result => {
@@ -72,7 +73,7 @@ function MapContainer() {
 
   return (
     <View style={{flex: 1}}>
-      {location && (
+      {location && trashCanList && (
         <MapView
           style={{flex: 1}}
           initialRegion={{
@@ -81,12 +82,18 @@ function MapContainer() {
             latitudeDelta: 0.05,
             longitudeDelta: 0.05,
           }}>
-          <Marker
-            coordinate={{
-              latitude: location.latitude,
-              longitude: location.longitude,
-            }}
-          />
+          <Marker coordinate={location} />
+          {trashCanList &&
+            trashCanList.map((item, index) => {
+              return (
+                <Marker
+                  key={index}
+                  title={item.name}
+                  identifier={item.id}
+                  coordinate={item.coordinate}
+                />
+              );
+            })}
         </MapView>
       )}
     </View>
