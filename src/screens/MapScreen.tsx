@@ -91,6 +91,7 @@ function MapContainer() {
                   title={item.name}
                   identifier={item.id}
                   coordinate={item.coordinate}
+                  image={require('../images/trashCan.png')}
                 />
               );
             })}
