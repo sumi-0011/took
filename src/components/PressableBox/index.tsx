@@ -18,14 +18,14 @@ function PressableBox({children, onPress, shadow, ...rest}: IPressableBox) {
       {({isPressed}) => {
         return (
           <Box
-            style={shadow ? styles.boxWithShadow : []}
+            style={!isPressed && shadow ? styles.boxWithShadow : []}
             h={rest.height}
             bg={rest.bg}
             rounded="2xl"
             paddingX={rest.paddingX}
             justifyContent="center"
             overflow="hidden"
-            opacity={isPressed ? 0.5 : 1}>
+            opacity={isPressed ? 0.8 : 1}>
             {children}
           </Box>
         );
