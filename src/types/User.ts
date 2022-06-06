@@ -2,6 +2,7 @@ export interface IUser {
   displayName: string;
   uid: string;
   photoURL: string;
+  email: string;
 }
 
 export interface IUserInfo extends IUser {

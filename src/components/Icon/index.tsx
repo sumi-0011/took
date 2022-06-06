@@ -47,3 +47,23 @@ export function ReportIcon({size = INIT_SIZE, color = INIT_COLOR}: IIcon) {
 export function RemoveIcon({size = INIT_SIZE, color = INIT_COLOR}: IIcon) {
   return <Ionicons name="close-outline" color={color} size={size} />;
 }
+
+export function MailIcon({size = INIT_SIZE, color = INIT_COLOR}: IIcon) {
+  return <Ionicons name="mail-outline" size={size} color={color} />;
+}
+
+export function LogoutIcon({size = INIT_SIZE, color = INIT_COLOR}: IIcon) {
+  return <Ionicons name="log-out-outline" size={size} color={color} />;
+}
+
+export function StarIcon({size = INIT_SIZE, color = INIT_COLOR}: IIcon) {
+  return <Ionicons name="star-outline" size={size} color={color} />;
+}
+
+export function PushIcon({size = INIT_SIZE, color = INIT_COLOR}: IIcon) {
+  return <Ionicons name="push-outline" size={size} color={color} />;
+}
+
+export function RightArrowIcon({size = INIT_SIZE, color = INIT_COLOR}: IIcon) {
+  return <Ionicons name="chevron-forward-sharp" size={size} color={color} />;
+}

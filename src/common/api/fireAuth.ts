@@ -14,6 +14,7 @@ export function getUserInfo() {
     photoURL: user?.photoURL,
     displayName: user?.displayName,
     uid: user?.uid,
+    email: user?.email,
   };
 }
 

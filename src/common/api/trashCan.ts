@@ -37,7 +37,7 @@ export async function getTrashCans() {
     .then(res => {
       res.forEach(function (doc) {
         const trashCanData = doc.data();
-        console.log('trashCanData', trashCanData);
+        // console.log('trashCanData', trashCanData);
         trashCanList.push({
           id: doc.id,
           name: trashCanData.name,
