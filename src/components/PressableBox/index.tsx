@@ -1,31 +1,43 @@
 import React, {ReactNode} from 'react';
 import {Box, Pressable} from 'native-base';
+import {StyleSheet} from 'react-native';
 
 interface IPressableBox {
-  flex: number;
+  height?: string;
   bg?: string;
-  children: ReactNode;
+  flex?: number;
   paddingX?: number;
+  children: ReactNode;
   onPress?: () => void;
+  shadow?: boolean;
 }
 
-function PressableBox({children, onPress, ...rest}: IPressableBox) {
+function PressableBox({children, onPress, shadow, ...rest}: IPressableBox) {
   return (
-    <Box
-      shadow={0}
-      flex={rest.flex}
-      bg={rest.bg}
-      rounded="xl"
-      paddingX={rest.paddingX}
-      justifyContent="center"
-      overflow="hidden">
-      <Pressable onPress={onPress}>
-        {({isPressed}) => {
-          return <Box opacity={isPressed ? 0.5 : 1}>{children}</Box>;
-        }}
-      </Pressable>
-    </Box>
+    <Pressable onPress={onPress} flex={rest.flex}>
+      {({isPressed}) => {
+        return (
+          <Box
+            style={shadow ? styles.boxWithShadow : []}
+            h={rest.height}
+            bg={rest.bg}
+            rounded="2xl"
+            paddingX={rest.paddingX}
+            justifyContent="center"
+            overflow="hidden"
+            opacity={isPressed ? 0.5 : 1}>
+            {children}
+          </Box>
+        );
+      }}
+    </Pressable>
   );
 }
+
+const styles = StyleSheet.create({
+  boxWithShadow: {
+    elevation: 10,
+  },
+});
 
 export default PressableBox;

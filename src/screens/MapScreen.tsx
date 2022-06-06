@@ -10,18 +10,21 @@ import {getUser} from '@common/api/user';
 import {IUserInfo} from 'types/User';
 import {useRecoilState} from 'recoil';
 import {user} from '../recoil/user';
+import {getTrashCans} from '@common/api/trashCan';
+import {ITrashCan} from 'types/TrashCan';
+import {TrashCan} from 'recoil/trahCan';
 
 const MapScreen = ({navigation}: any) => {
   const {uid} = getUserInfo();
   const [userInfo, setUserInfo] = useRecoilState<IUserInfo>(user);
+  const [selectTC, setSelectTC] = useRecoilState<ITrashCan>(TrashCan); //클릭한 쓰레기통 정보
 
   useEffect(() => {
-    // console.log(uid);
     uid &&
       getUser(uid).then(res => {
         res && setUserInfo(res);
       });
-  }, []);
+  }, [setUserInfo, uid]);
 
   return (
     <Wrapper>
@@ -38,7 +41,19 @@ const MapScreen = ({navigation}: any) => {
   );
 };
 function MapContainer() {
-  const [location, setLocation] = useState<ILocation | undefined>(undefined);
+  const [location, setLocation] = useState<any | undefined>(undefined);
+  const [trashCanList, setTrashCanList] = useState<Array<any>>();
+
+  useEffect(() => {
+    console.log('trashCanList', trashCanList);
+  }, [trashCanList]);
+
+  useEffect(() => {
+    getTrashCans().then(res => {
+      res && setTrashCanList(res);
+    });
+  }, []);
+
   useEffect(() => {
     requestAccessLocationPermission().then(result => {
       if (result === 'granted') {
@@ -55,9 +70,10 @@ function MapContainer() {
       }
     });
   }, []);
+
   return (
     <View style={{flex: 1}}>
-      {location && (
+      {location && trashCanList && (
         <MapView
           style={{flex: 1}}
           initialRegion={{
@@ -66,12 +82,18 @@ function MapContainer() {
             latitudeDelta: 0.05,
             longitudeDelta: 0.05,
           }}>
-          <Marker
-            coordinate={{
-              latitude: location.latitude,
-              longitude: location.longitude,
-            }}
-          />
+          <Marker coordinate={location} />
+          {trashCanList &&
+            trashCanList.map((item, index) => {
+              return (
+                <Marker
+                  key={index}
+                  title={item.name}
+                  identifier={item.id}
+                  coordinate={item.coordinate}
+                />
+              );
+            })}
         </MapView>
       )}
     </View>

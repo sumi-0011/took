@@ -1,5 +1,5 @@
 import {firebase} from '@react-native-firebase/firestore';
-import {ITrashCanInfo} from 'types/TrashCan';
+import {ITrashCan, ITrashCanInfo} from 'types/TrashCan';
 import {getUserInfo} from './fireAuth';
 
 const trashCans = firebase.firestore().collection('trashCans');
@@ -28,7 +28,30 @@ export async function getStaredTrashCans() {
     console.log(error);
   }
 }
+//모든 쓰레기통
+export async function getTrashCans() {
+  const trashCanList: ITrashCan[] = [];
 
+  await trashCans
+    .get()
+    .then(res => {
+      res.forEach(function (doc) {
+        const trashCanData = doc.data();
+        // console.log('trashCanData', trashCanData);
+        trashCanList.push({
+          id: doc.id,
+          name: trashCanData.name,
+          tags: trashCanData.tags,
+          coordinate: trashCanData.coordinate,
+          trashImage: trashCanData.trashImage,
+          reportUsers: [],
+          isFull: false,
+        });
+      });
+    })
+    .catch(e => console.log(e));
+  return trashCanList;
+}
 export async function getRegisterTrashCans() {
   try {
     const userDoc = await users.doc(uid).get();

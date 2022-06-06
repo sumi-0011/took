@@ -14,7 +14,7 @@ type Props = {};
 function MapModal({}: Props) {
   const [isStar, setIsStar] = useState<boolean>(false);
   const [userInfo, setUserInfo] = useRecoilState<IUserInfo>(user);
-  const currentTCId = 1;
+  const currentTCId = 'BnaYaDlFxfiJ12wj1ZbB';
   const [isTook, setIsTook] = useState<boolean>(false);
 
   const fetchData = async () => {
@@ -34,19 +34,24 @@ function MapModal({}: Props) {
   }, [userInfo?.stars]);
 
   useEffect(() => {
-    const currentDate = new Date();
-    const lastDate = new Date(userInfo?.lastTookTime.seconds * 1000);
-    const diffTime =
-      (currentDate.getTime() - lastDate.getTime()) / (1000 * 60 * 60);
-
-    if (diffTime >= 24) {
-      setIsTook(true);
-    } else {
-      setIsTook(false);
+    if (!userInfo) {
+      return;
     }
-  }, [userInfo?.lastTookTime]);
+    const currentDate = new Date();
+    const lastDate = userInfo.lastTookTime;
+    console.log(currentDate, lastDate);
+    // const diffTime =
+    //   (currentDate.getTime() - lastDate.getTime()) / (1000 * 60 * 60);
 
-  const _updateStar = (id: string, stars: number[]) => {
+    // console.log('diffTime', diffTime);
+    // if (diffTime >= 24) {
+    //   setIsTook(true);
+    // } else {
+    //   setIsTook(false);
+    // }
+  }, [userInfo]);
+
+  const _updateStar = (id: string, stars: string[]) => {
     updateStar(id, stars).then(() => {
       fetchData();
       setIsStar(!isStar);
@@ -59,17 +64,17 @@ function MapModal({}: Props) {
       return;
     }
 
-    const index = userInfo?.stars.findIndex(ele => ele == currentTCId);
+    const index = userInfo?.stars.findIndex(ele => ele === currentTCId);
     if (index === -1) {
-      _updateStar(userInfo.id, [...userInfo.stars, currentTCId]);
+      _updateStar(userInfo.uid, [...userInfo.stars, currentTCId]);
     } else {
       const filterStars = userInfo.stars.filter(star => star !== currentTCId);
-      _updateStar(userInfo.id, filterStars);
+      _updateStar(userInfo.uid, filterStars);
     }
   };
 
   const handleTookBtnClick = () => {
-    updateLastTookTime(userInfo.id, userInfo.tookCnt).then(() => {
+    updateLastTookTime(userInfo.uid, userInfo.tookCnt).then(() => {
       fetchData();
     });
   };

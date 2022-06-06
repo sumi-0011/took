@@ -7,6 +7,6 @@ export interface IUser {
 export interface IUserInfo extends IUser {
   tookCnt: number;
   lastTookTime: Date;
-  stars: number[];
-  registTrashBoxs: number[];
+  stars: string[];
+  registTrashBoxs: string[];
 }

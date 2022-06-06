@@ -1,27 +1,36 @@
-import {Box, Button, HStack, Image} from 'native-base';
 import React from 'react';
-import {SettingIcon} from '../Icon';
+import {Box, Heading, HStack, Image, Stack} from 'native-base';
 import logo from '@images/logo.png';
 
 interface IHeader {
-  onPress: () => void;
+  name: string;
 }
 
-function Header({onPress}: IHeader) {
+function Header({name = '홍길동'}: IHeader) {
   return (
-    <Box paddingX={3} paddingY={2}>
-      <HStack alignContent="center" justifyContent="space-between">
+    <Box paddingX="2" paddingY="5">
+      <Stack space="12">
         <Image
           source={logo}
           alt="image"
           resizeMode="contain"
-          width="1/5"
-          height="auto"
+          width="24"
+          height="8"
         />
-        <Button onPress={onPress} variant="unstyled">
-          <SettingIcon />
-        </Button>
-      </HStack>
+        <Stack space="2">
+          <HStack space="1">
+            <Heading fontSize="3xl" fontWeight="extrabold">
+              {name}
+            </Heading>
+            <Heading fontSize="3xl" fontWeight="thin">
+              님
+            </Heading>
+          </HStack>
+          <Heading fontSize="3xl" fontWeight="thin">
+            환영해요 😄
+          </Heading>
+        </Stack>
+      </Stack>
     </Box>
   );
 }
