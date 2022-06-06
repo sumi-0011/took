@@ -17,7 +17,7 @@ import {TrashCan} from 'recoil/trahCan';
 const MapScreen = ({navigation}: any) => {
   const {uid} = getUserInfo();
   const [userInfo, setUserInfo] = useRecoilState<IUserInfo>(user);
-  const [selectTC, setSelectTC] = useRecoilState<ITrashCan>(TrashCan); //클릭한 쓰레기통 정보
+  const [selectTC, setSelectTC] = useState<string>();
 
   useEffect(() => {
     uid &&
@@ -35,15 +35,14 @@ const MapScreen = ({navigation}: any) => {
         }}>
         <ChevronLeftIcon />
       </BackBtn>
-      <MapContainer />
-      <MapModal currentTCId={selectTC.id ?? 'BnaYaDlFxfiJ12wj1ZbB'} />
+      <MapContainer setSelectTC={setSelectTC} />
+      {selectTC && <MapModal currentTCId={selectTC} />}
     </Wrapper>
   );
 };
-function MapContainer() {
+function MapContainer({setSelectTC}: {setSelectTC: (arg: string) => void}) {
   const [location, setLocation] = useState<any | undefined>(undefined);
   const [trashCanList, setTrashCanList] = useState<Array<any>>();
-
   // useEffect(() => {
   //   console.log('trashCanList', trashCanList);
   // }, [trashCanList]);
@@ -71,6 +70,11 @@ function MapContainer() {
     });
   }, []);
 
+  const handleMarkerClick = (id: string) => {
+    // console.log('click id', id);
+    setSelectTC(id);
+  };
+
   return (
     <View style={{flex: 1}}>
       {location && trashCanList && (
@@ -92,6 +96,7 @@ function MapContainer() {
                   identifier={item.id}
                   coordinate={item.coordinate}
                   image={require('../images/trashCan.png')}
+                  onPress={() => handleMarkerClick(item.id)}
                 />
               );
             })}

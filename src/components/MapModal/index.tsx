@@ -30,9 +30,9 @@ function MapModal({currentTCId}: Props) {
       });
   };
   useEffect(() => {
-    console.log('currentTCId', currentTCId);
+    // console.log('currentTCId', currentTCId);
     getTrashCan(currentTCId).then(res => {
-      console.log('get', currentTCId, res);
+      // console.log('get', currentTCId, res);
       setSelectTCInfo(res);
     });
   }, [currentTCId]);
@@ -172,7 +172,9 @@ const DetailImage = ({url}: {url: string}) => {
     <Box w={100} h={'100%'}>
       <Image
         source={{
-          uri: url,
+          uri:
+            url ??
+            'http://www.solartodaymag.com/news/photo/201705/4484_3192_3220.jpg',
         }}
         alt="detail img"
         width={100}
