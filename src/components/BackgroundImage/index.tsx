@@ -14,12 +14,17 @@ function BackgroundImage({children, img}: IBackgroundImage) {
         uri: img,
       }}
       resizeMode="cover"
-      style={{width: '100%', height: '100%'}}>
+      style={ImageBackgroundStyles}>
       <Bg />
       {children}
     </ImageBackground>
   );
 }
+
+const ImageBackgroundStyles = {
+  width: '100%',
+  height: '100%',
+};
 
 const Bg = styled(View)`
   width: 100%;
