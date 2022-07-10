@@ -141,9 +141,10 @@ function RegisterScreen({navigation}: any) {
         </VStack>
         {errorMsg && <ErrorMsg>{errorMsg}</ErrorMsg>}
         <Button
+          colorScheme={'green'}
+          variant={'light'}
           isLoading={isLoading}
           marginTop={'10'}
-          colorScheme={'blue'}
           borderRadius="sm"
           w={96}
           padding={'4'}

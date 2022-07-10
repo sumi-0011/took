@@ -96,11 +96,12 @@ function LoginScreen({navigation}: any) {
         <VStack space={5} marginTop={16}>
           {errorMsg && <ErrorMsg>{errorMsg}</ErrorMsg>}
           <Button
+            colorScheme={'green'}
+            variant={'light'}
             isLoading={isLoading}
             w={96}
             padding={'4'}
             onPress={handleSubmit(onSubmit)}
-            colorScheme={'blue'}
             borderRadius="sm">
             <Text color={'white'} fontSize={'16px'} fontWeight="bold">
               로그인
