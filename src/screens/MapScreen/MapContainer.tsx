@@ -2,10 +2,8 @@ import MapView, {Marker} from 'react-native-maps';
 import {getTrashCans} from 'api/trashCan';
 import {Box} from 'native-base';
 import React, {useEffect, useState} from 'react';
-import {requestAccessLocationPermission} from 'utils/permission';
-import Geolocation from 'react-native-geolocation-service';
 import {TrashCanType} from 'types/TrashCanType';
-import {LocationType} from 'types/LocationType';
+import useCurrentLocation from 'hooks/useCurrentLocation';
 
 interface MapContainerProps {
   onClickMarker: (id: string) => void;
@@ -13,7 +11,7 @@ interface MapContainerProps {
 
 function MapContainer({onClickMarker}: MapContainerProps) {
   const [trashCanList, setTrashCanList] = useState<TrashCanType[]>([]);
-  const [location, setLocation] = useState<LocationType>();
+  const {location} = useCurrentLocation();
 
   useEffect(() => {
     const fetchTrashCans = async () => {
@@ -28,31 +26,6 @@ function MapContainer({onClickMarker}: MapContainerProps) {
     fetchTrashCans();
   }, []);
 
-  useEffect(() => {
-    const fetchCurrentPosition = async () => {
-      try {
-        const response = await requestAccessLocationPermission();
-
-        if (response === 'granted') {
-          Geolocation.getCurrentPosition(
-            pos => {
-              const {latitude, longitude} = pos.coords;
-              setLocation({latitude, longitude});
-            },
-            error => {
-              console.log(error);
-            },
-            {enableHighAccuracy: true, timeout: 3600, maximumAge: 3600},
-          );
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchCurrentPosition();
-  }, []);
-
   return (
     <Box flex="1">
       {location && (
@@ -61,8 +34,8 @@ function MapContainer({onClickMarker}: MapContainerProps) {
           initialRegion={{
             latitude: location.latitude,
             longitude: location.longitude,
-            latitudeDelta: 0.05,
-            longitudeDelta: 0.05,
+            latitudeDelta: 0.001,
+            longitudeDelta: 0.001,
           }}>
           <Marker coordinate={location} />
           {trashCanList?.map((item, index) => {
