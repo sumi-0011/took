@@ -1,10 +1,10 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import UserScreen from '@screens/User/UserScreen';
-import UserChangeInfoScreen from '@screens/User/UserChangeInfoScreen';
-import UserTCRScreen from '@screens/User/UserTCRScreen';
-import UserStarScreen from '@screens/User/UserStarScreen';
-import UserWithdrawalScreen from '@screens/User/UserWithdrawalScreen';
+import UserScreen from '@screens/UserScreen';
+import UserChangeInfoScreen from '@screens/UserChangeInfoScreen';
+import UserTCRScreen from '@screens/UserTCRScreen';
+import UserStarScreen from '@screens/UserStarScreen';
+import UserWithdrawalScreen from '@screens/UserWithdrawalScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,27 +14,67 @@ function UserNaviagtion() {
       <Stack.Screen
         name="UserScreen"
         component={UserScreen}
-        options={{headerShown: false}}
+        options={() => ({
+          title: '',
+          headerTintColor: 'black',
+          headerStyle: {
+            backgroundColor: 'white',
+          },
+          headerShadowVisible: false, // applied here
+          headerBackTitleVisible: false,
+        })}
       />
       <Stack.Screen
         name="UserChangeInfoScreen"
         component={UserChangeInfoScreen}
-        options={{headerShown: false}}
+        options={() => ({
+          title: '비밀번호 변경',
+          headerTintColor: 'black',
+          headerStyle: {
+            backgroundColor: 'white',
+          },
+          headerShadowVisible: false, // applied here
+          headerBackTitleVisible: false,
+        })}
       />
       <Stack.Screen
         name="UserTCRScreen"
         component={UserTCRScreen}
-        options={{headerShown: false}}
+        options={() => ({
+          title: '내가 등록한 쓰레기통',
+          headerTintColor: 'black',
+          headerStyle: {
+            backgroundColor: 'white',
+          },
+          headerShadowVisible: false, // applied here
+          headerBackTitleVisible: false,
+        })}
       />
       <Stack.Screen
         name="UserStarScreen"
         component={UserStarScreen}
-        options={{headerShown: false}}
+        options={() => ({
+          title: '즐겨찾기한 쓰레기통',
+          headerTintColor: 'black',
+          headerStyle: {
+            backgroundColor: 'white',
+          },
+          headerShadowVisible: false, // applied here
+          headerBackTitleVisible: false,
+        })}
       />
       <Stack.Screen
         name="UserWithdrawalScreen"
         component={UserWithdrawalScreen}
-        options={{headerShown: false}}
+        options={() => ({
+          title: '회원 탈퇴',
+          headerTintColor: 'black',
+          headerStyle: {
+            backgroundColor: 'white',
+          },
+          headerShadowVisible: false, // applied here
+          headerBackTitleVisible: false,
+        })}
       />
     </Stack.Navigator>
   );
