@@ -1,6 +1,6 @@
 import React from 'react';
 import {Box, Checkbox, FlatList, Text} from 'native-base';
-import {categoryList} from '@common/utils/categoryList';
+import {categoryList} from 'utils/categoryList';
 
 interface ICategotyCheckbox {
   setGroupValue: React.Dispatch<React.SetStateAction<never[]>>;

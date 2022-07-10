@@ -1,6 +1,6 @@
 import {Box, Button, HStack, Progress, Text, VStack} from 'native-base';
 import React, {useEffect, useState} from 'react';
-import {getUserInfo} from '@common/api/fireAuth';
+import {getUserInfo} from 'api/fireAuth';
 import {IUser} from 'types/User';
 import {MailIcon} from '@components/Icon';
 
@@ -32,7 +32,7 @@ function Profile({onPress}: IProfile) {
 
   return (
     <VStack
-      p="10"
+      px="10"
       space={3}
       borderBottomColor="coolGray.200"
       borderBottomWidth="1">

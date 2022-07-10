@@ -4,8 +4,8 @@ import {Box, Button, Input, Text, View} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import Geolocation from 'react-native-geolocation-service';
 import CategotyCheckbox from '@components/CategoryCheckbox';
-import {requestPermission} from '@common/utils/permission';
-import {TCRegistSelect} from '../../recoil/TCRegist';
+import {requestPermission} from 'utils/permission';
+import {TCRegistSelect} from '../recoil/TCRegist';
 import {useRecoilState} from 'recoil'; // 훅 import
 import {ITrashCanInfo} from 'types/TrashCan';
 

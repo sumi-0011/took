@@ -4,13 +4,13 @@ import React, {useEffect, useState} from 'react';
 import styled from 'styled-components/native';
 import Geolocation from 'react-native-geolocation-service';
 import MapModal from '@components/MapModal';
-import {requestAccessLocationPermission} from '@common/utils/permission';
-import {getUserInfo} from '@common/api/fireAuth';
-import {getUser} from '@common/api/user';
+import {requestAccessLocationPermission} from 'utils/permission';
+import {getUserInfo} from 'api/fireAuth';
+import {getUser} from 'api/user';
 import {IUserInfo} from 'types/User';
 import {useRecoilState} from 'recoil';
 import {user} from '../recoil/user';
-import {getTrashCans} from '@common/api/trashCan';
+import {getTrashCans} from 'api/trashCan';
 import {ITrashCan} from 'types/TrashCan';
 import {TrashCan} from 'recoil/trahCan';
 

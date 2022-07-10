@@ -1,4 +1,4 @@
-import {getStaredTrashCans} from '@common/api/trashCan';
+import {getStaredTrashCans} from 'api/trashCan';
 import TCCard from '@components/TCCard';
 import {FlatList} from 'native-base';
 import React, {useCallback, useEffect, useState} from 'react';

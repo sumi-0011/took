@@ -4,7 +4,7 @@ import Header from '@components/Header';
 import PressableBox from '@components/PressableBox';
 import BackgroundImage from '@components/BackgroundImage';
 import TagList from '@components/TagList';
-import {getUserInfo} from '@common/api/fireAuth';
+import {getUserInfo} from 'api/fireAuth';
 
 function HomeScreen({navigation}: any) {
   const [name] = useState(getUserInfo().displayName);
@@ -16,7 +16,6 @@ function HomeScreen({navigation}: any) {
           <Header name={name} />
           <HStack w="100%" space={4} height="64">
             <PressableBox
-              shadow
               flex={1}
               onPress={() => navigation.navigate('MapScreen')}>
               <BackgroundImage img="https://media.istockphoto.com/vectors/abstract-city-map-simple-map-illustration-vector-id685869052?s=612x612">
@@ -35,7 +34,6 @@ function HomeScreen({navigation}: any) {
               </BackgroundImage>
             </PressableBox>
             <PressableBox
-              shadow
               flex={1}
               onPress={() => navigation.navigate('TCRScreen')}>
               <BackgroundImage img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSm2-zWd0cNNhehI_h34ZMZPK0Qj9tf8l39w&usqp=CAU">
@@ -54,10 +52,7 @@ function HomeScreen({navigation}: any) {
               </BackgroundImage>
             </PressableBox>
           </HStack>
-          <PressableBox
-            shadow
-            height="48"
-            onPress={() => console.log('clicked')}>
+          <PressableBox height="48" onPress={() => console.log('clicked')}>
             <BackgroundImage
               img={
                 'https://img.freepik.com/free-photo/white-paper-in-the-trash-can_144627-45832.jpg?size=626&ext=jpg&ga=GA1.2.1908636980.1634256000'
@@ -81,7 +76,6 @@ function HomeScreen({navigation}: any) {
           </PressableBox>
           <HStack space={5} height="32" marginTop="3">
             <PressableBox
-              shadow
               bg="trueGray.100"
               flex={1}
               height="32"
@@ -93,7 +87,6 @@ function HomeScreen({navigation}: any) {
               </Center>
             </PressableBox>
             <PressableBox
-              shadow
               bg="trueGray.100"
               flex={1}
               height="32"

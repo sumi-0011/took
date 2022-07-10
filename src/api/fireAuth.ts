@@ -1,5 +1,7 @@
+import {FIREBASE_ERR_USER_NOT_FOUND} from 'utils/filebaseCode';
 import auth from '@react-native-firebase/auth';
 import {firebase} from '@react-native-firebase/firestore';
+import {FirebaseAuthError} from 'types/FirebaseType';
 
 const users = firebase.firestore().collection('users');
 
@@ -23,7 +25,16 @@ export async function signIn(email: string, password: string) {
     const response = await auth().signInWithEmailAndPassword(email, password);
     return {status: 'success', ...response};
   } catch (error) {
-    return {status: 'fail', error};
+    const err = error as FirebaseAuthError;
+
+    let message;
+    let code = err.code;
+    let name = err.name;
+
+    if (err.code === FIREBASE_ERR_USER_NOT_FOUND) {
+      message = '이메일을 다시 확인해주세요.';
+    }
+    return {status: 'fail', message, code, name};
   }
 }
 
@@ -46,7 +57,17 @@ export async function signUp(email: string, password: string, name: string) {
 
     return {status: 'success', ...response};
   } catch (error) {
-    return {status: 'fail', error};
+    const err = error as FirebaseAuthError;
+
+    let code = err.code;
+    let name = err.name;
+    let message = err.message;
+
+    // if (err.code === FIREBASE_ERR_USER_NOT_FOUND) {
+    //   message = '이메일을 다시 확인해주세요.';
+    // }
+
+    return {status: 'fail', message, code, name};
   }
 }
 

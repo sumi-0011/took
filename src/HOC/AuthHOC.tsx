@@ -1,13 +1,14 @@
 import React, {ComponentType} from 'react';
-import {isLoggedIn} from '@common/api/fireAuth';
+import {isLoggedIn} from 'api/fireAuth';
+import AuthNaviagtion from '@navigations/AuthNavigation';
 
 export default function <P extends object>(Component: ComponentType<P>) {
   function AuthenticationCheck({...props}) {
     if (isLoggedIn() === false) {
-      props.navigation.replace('Auth');
+      return <AuthNaviagtion />;
+    } else {
+      return <Component {...(props as P)} />;
     }
-
-    return <Component {...(props as P)} />;
   }
   return AuthenticationCheck;
 }

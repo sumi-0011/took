@@ -2,9 +2,9 @@ import {Box, HStack, Image, Text} from 'native-base';
 import React from 'react';
 import BadgeList from '@components/BadgeList';
 import BasicButton from '@components/Button';
-import {TCRegistSelect} from '../../recoil/TCRegist';
+import {TCRegistSelect} from '../recoil/TCRegist';
 import {useRecoilValue} from 'recoil'; // 훅 import
-import {addTC} from '@common/api/TCRegist';
+import {addTC} from 'api/TCRegist';
 import {ITrashCanInfo} from 'types/TrashCan';
 import MapView, {Marker} from 'react-native-maps';
 

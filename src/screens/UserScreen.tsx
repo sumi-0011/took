@@ -3,7 +3,7 @@ import {ScrollView, Text, VStack} from 'native-base';
 import {LogoutIcon, PushIcon, StarIcon} from '@components/Icon';
 import IconTextMenu from '@components/IconTextMenu';
 import Profile from '@components/Profile';
-import {signOut} from '@common/api/fireAuth';
+import {signOut} from 'api/fireAuth';
 
 function UserScreen({navigation}: any) {
   const onSignout = () => {

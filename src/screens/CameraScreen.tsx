@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Camera from '@components/Camera';
-import {TCRegistSelect} from '../../recoil/TCRegist';
+import {TCRegistSelect} from '../recoil/TCRegist';
 import {useRecoilState} from 'recoil'; // 훅 import
 
 function CameraPage({navigation}: any) {

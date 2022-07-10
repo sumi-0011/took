@@ -1,19 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import * as yup from 'yup';
-import {Box, Button, HStack, Icon, Text, VStack} from 'native-base';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import {Box, Button, Text, VStack} from 'native-base';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import Input from '@components/Input';
 import ErrorMsg from '@components/ErrorMsg';
-import {signIn} from '@common/api/fireAuth';
-
-interface FormData {
-  email: string;
-  password: string;
-}
+import {signIn} from 'api/fireAuth';
+import {UserAuthData} from 'types/AuthType';
+import ScreenHeader from '@components/ScreenHeader';
 
 function LoginScreen({navigation}: any) {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [errorMsg, setErrorMsg] = useState<string>();
+
   const schema = yup.object().shape({
     email: yup.string().email().required(),
     password: yup.string().min(7).required(),
@@ -21,22 +20,32 @@ function LoginScreen({navigation}: any) {
 
   const formOptions = {resolver: yupResolver(schema)};
 
-  const onSubmit = async (data: FormData) => {
-    const res = await signIn(data.email, data.password);
-
-    if (res?.status === 'success') {
-      navigation.replace('HomeScreen');
-    }
-  };
-
   const {
     control,
     handleSubmit,
     formState: {errors},
-  } = useForm<FormData>(formOptions);
+  } = useForm<UserAuthData>(formOptions);
+
+  const onSubmit = async (data: UserAuthData) => {
+    setIsLoading(true);
+    try {
+      const res = await signIn(data.email, data.password);
+
+      if (res.status === 'fail') {
+        setErrorMsg(res.message);
+      } else if (res?.status === 'success') {
+        navigation.replace('HomeScreen');
+      }
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
+  };
 
   return (
-    <Box h="100%" w="100%" paddingTop={20} backgroundColor="white">
+    <Box h="100%" backgroundColor="white">
+      <ScreenHeader text="로그인" />
       <VStack alignItems="center" justifyContent="center">
         <VStack space={6}>
           <VStack space={3}>
@@ -56,6 +65,7 @@ function LoginScreen({navigation}: any) {
               )}
               name="email"
             />
+
             {errors.email && (
               <ErrorMsg>이메일 형식이 올바르지 않습니다!</ErrorMsg>
             )}
@@ -82,46 +92,28 @@ function LoginScreen({navigation}: any) {
             )}
           </VStack>
         </VStack>
+
         <VStack space={5} marginTop={16}>
+          {errorMsg && <ErrorMsg>{errorMsg}</ErrorMsg>}
           <Button
-            colorScheme={'blue'}
+            isLoading={isLoading}
             w={96}
             padding={'4'}
-            onPress={handleSubmit(onSubmit)}>
-            <Text color={'white'} fontSize={'16px'}>
+            onPress={handleSubmit(onSubmit)}
+            colorScheme={'blue'}
+            borderRadius="sm">
+            <Text color={'white'} fontSize={'16px'} fontWeight="bold">
               로그인
             </Text>
           </Button>
           <Button
             variant="unstyled"
-            w={'96'}
+            w={96}
             padding={'4'}
             onPress={() => navigation.navigate('RegisterScreen')}>
             <Text color={'black'} fontSize={'16px'}>
               회원가입
             </Text>
-          </Button>
-        </VStack>
-        <VStack marginTop={16}>
-          <Button
-            backgroundColor={'light.100'}
-            w={96}
-            padding={4}
-            onPress={() => console.log('google login')}>
-            <HStack
-              w={96}
-              paddingX={4}
-              alignItems={'center'}
-              justifyContent="space-between">
-              <Icon
-                as={Ionicons}
-                name="logo-google"
-                size="md"
-                color={'black'}
-              />
-              <Text fontSize={'16px'}>구글 아이디로 로그인</Text>
-              <Icon as={Ionicons} name="chevron-forward-outline" size={'md'} />
-            </HStack>
           </Button>
         </VStack>
       </VStack>

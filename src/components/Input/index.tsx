@@ -5,12 +5,13 @@ interface IInput {
   secondary?: boolean;
   ph: string;
   type: string;
+  fontSize?: string;
   onChangeText: () => void;
   onBlur: () => void;
   value: string;
 }
 
-function Input({type, ph, ...rest}: IInput) {
+function Input({type, ph, fontSize = '16px', ...rest}: IInput) {
   if (rest.secondary) {
     // return another styled NativeInput
   }
@@ -24,7 +25,7 @@ function Input({type, ph, ...rest}: IInput) {
       h={12}
       type={type}
       placeholder={ph}
-      fontSize="16px"
+      fontSize={fontSize}
       variant="underlined"
       value={rest.value}
     />

@@ -1,5 +1,5 @@
-import {getTrashCan} from '@common/api/trashCan';
-import {updateStar, getUser, updateLastTookTime} from '@common/api/user';
+import {getTrashCan} from 'api/trashCan';
+import {updateStar, getUser, updateLastTookTime} from 'api/user';
 import BadgeList from '@components/BadgeList';
 import {HearFilltIcon, HeartOutlineIcon, ReportIcon} from '@components/Icon';
 import IconBtn from '@components/IconBtn';

@@ -1,20 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {useForm, Controller} from 'react-hook-form';
 import {Box, Button, Text, VStack} from 'native-base';
-import {signUp} from '@common/api/fireAuth';
+import {signUp} from 'api/fireAuth';
 import Input from '@components/Input';
 import ErrorMsg from '@components/ErrorMsg';
-
-interface FormData {
-  email: string;
-  password: string;
-  checkPassword: string;
-  name: string;
-}
+import {SignUpData} from 'types/AuthType';
+import ScreenHeader from '@components/ScreenHeader';
 
 function RegisterScreen({navigation}: any) {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [errorMsg, setErrorMsg] = useState<string>();
+
   const schema = yup.object().shape({
     email: yup.string().email().required(),
     password: yup.string().min(7).required(),
@@ -27,11 +25,20 @@ function RegisterScreen({navigation}: any) {
 
   const formOptions = {resolver: yupResolver(schema)};
 
-  const onSubmit = async (data: FormData) => {
-    const res = await signUp(data.email, data.password, data.name);
+  const onSubmit = async (data: SignUpData) => {
+    setIsLoading(true);
+    try {
+      const res = await signUp(data.email, data.password, data.name);
 
-    if (res?.status === 'success') {
-      navigation.replace('HomeScreen');
+      if (res.status === 'fail') {
+        setErrorMsg(res.message);
+      } else if (res.status === 'success') {
+        navigation.replace('HomeScreen');
+      }
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
     }
   };
 
@@ -39,10 +46,11 @@ function RegisterScreen({navigation}: any) {
     control,
     handleSubmit,
     formState: {errors},
-  } = useForm<FormData>(formOptions);
+  } = useForm<SignUpData>(formOptions);
 
   return (
-    <Box h="100%" w="100%" paddingTop={20} backgroundColor="white">
+    <Box h="100%" backgroundColor="white">
+      <ScreenHeader text="회원가입" />
       <VStack alignItems="center" justifyContent="center" space={12}>
         <VStack space={3}>
           <Controller
@@ -131,13 +139,16 @@ function RegisterScreen({navigation}: any) {
           />
           {errors.name && <ErrorMsg>닉네임을 다시 확인해주세요</ErrorMsg>}
         </VStack>
+        {errorMsg && <ErrorMsg>{errorMsg}</ErrorMsg>}
         <Button
+          isLoading={isLoading}
           marginTop={'10'}
           colorScheme={'blue'}
+          borderRadius="sm"
           w={96}
           padding={'4'}
           onPress={handleSubmit(onSubmit)}>
-          <Text color={'white'} fontSize={'16px'}>
+          <Text color={'white'} fontSize={'16px'} fontWeight="bold">
             회원가입
           </Text>
         </Button>
