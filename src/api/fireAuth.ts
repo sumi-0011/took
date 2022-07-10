@@ -38,14 +38,18 @@ export async function signIn(email: string, password: string) {
   }
 }
 
-export async function signUp(email: string, password: string, name: string) {
+export async function signUp(
+  email: string,
+  password: string,
+  userName: string,
+) {
   try {
     const response = await auth().createUserWithEmailAndPassword(
       email,
       password,
     );
 
-    await changeProfile({name});
+    await changeProfile({userName});
 
     await users.doc(response.user.uid).set({
       tookCnt: 0,
@@ -71,10 +75,10 @@ export async function signUp(email: string, password: string, name: string) {
   }
 }
 
-export async function changeProfile({name}: {name: string}) {
+export async function changeProfile({userName}: {userName: string}) {
   try {
     const response = await auth().currentUser?.updateProfile({
-      displayName: name,
+      displayName: userName,
     });
 
     return response;
