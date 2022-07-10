@@ -3,7 +3,7 @@ import {updateStar, getUser, updateLastTookTime} from 'api/user';
 import BadgeList from '@components/BadgeList';
 import {HearFilltIcon, HeartOutlineIcon, ReportIcon} from '@components/Icon';
 import IconBtn from '@components/IconBtn';
-import {Box, Button, Center, HStack, Image, Pressable, Text} from 'native-base';
+import {Box, Button, HStack, Image, Pressable, Text} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import {useRecoilState} from 'recoil';
 import styled from 'styled-components';
@@ -11,24 +11,28 @@ import {ITrashCanInfo} from 'types/TrashCan';
 import {IUserInfo} from 'types/User';
 import {user} from '../../recoil/user';
 
-type Props = {
+interface MapModalProps {
   currentTCId: string;
-};
+}
 
-function MapModal({currentTCId}: Props) {
+function MapModal({currentTCId}: MapModalProps) {
   const [isStar, setIsStar] = useState<boolean>(false);
   const [userInfo, setUserInfo] = useRecoilState<IUserInfo>(user);
   const [isTook, setIsTook] = useState<boolean>(false);
   const [selectTCInfo, setSelectTCInfo] = useState<ITrashCanInfo>();
+
   const fetchData = async () => {
-    getUser(userInfo.uid)
-      .then(res => {
-        res && setUserInfo(res);
-      })
-      .catch(e => {
-        console.log(e);
-      });
+    try {
+      const response = await getUser();
+
+      if (response) {
+        setUserInfo(response);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
+
   useEffect(() => {
     // console.log('currentTCId', currentTCId);
     getTrashCan(currentTCId).then(res => {
