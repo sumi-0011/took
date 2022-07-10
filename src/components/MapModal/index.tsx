@@ -3,11 +3,11 @@ import {updateStar, getUser, updateLastTookTime} from 'api/user';
 import BadgeList from '@components/BadgeList';
 import {HearFilltIcon, HeartOutlineIcon, ReportIcon} from '@components/Icon';
 import IconBtn from '@components/IconBtn';
-import {Box, Button, HStack, Image, Pressable, Text} from 'native-base';
+import {Box, Button, HStack, Image, Text} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import {useRecoilState} from 'recoil';
 import styled from 'styled-components';
-import {ITrashCanInfo} from 'types/TrashCanType';
+import {TrashCanInfoType} from 'types/TrashCanType';
 import {IUserInfo} from 'types/User';
 import {user} from '../../recoil/user';
 
@@ -19,7 +19,7 @@ function MapModal({currentTCId}: MapModalProps) {
   const [isStar, setIsStar] = useState<boolean>(false);
   const [userInfo, setUserInfo] = useRecoilState<IUserInfo>(user);
   const [isTook, setIsTook] = useState<boolean>(false);
-  const [selectTCInfo, setSelectTCInfo] = useState<ITrashCanInfo>();
+  const [selectTCInfo, setSelectTCInfo] = useState<TrashCanInfoType>();
 
   const fetchData = async () => {
     try {

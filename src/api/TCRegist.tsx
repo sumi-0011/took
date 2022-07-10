@@ -1,9 +1,9 @@
 import {firebase} from '@react-native-firebase/firestore';
-import {ITrashCanInfo} from 'types/TrashCanType';
+import {TrashCanInfoType} from 'types/TrashCanType';
 
 const trashCans = firebase.firestore().collection('trashCans');
 
-export async function addTC(addData: ITrashCanInfo) {
+export async function addTC(addData: TrashCanInfoType) {
   await trashCans
     .add(addData)
     .then(res => {

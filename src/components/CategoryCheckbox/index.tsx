@@ -3,7 +3,7 @@ import {Box, Checkbox, FlatList, Text} from 'native-base';
 import {categoryList} from 'utils/categoryList';
 
 interface ICategotyCheckbox {
-  setGroupValue: React.Dispatch<React.SetStateAction<never[]>>;
+  setGroupValue: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 function CategoryCheckbox({setGroupValue}: ICategotyCheckbox) {
