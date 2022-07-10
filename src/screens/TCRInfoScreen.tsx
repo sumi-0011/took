@@ -1,11 +1,10 @@
-import {Box, HStack, Image, Text} from 'native-base';
 import React from 'react';
 import BadgeList from '@components/BadgeList';
 import BasicButton from '@components/Button';
 import {TCRegistSelect} from '../recoil/TCRegist';
 import {useRecoilValue} from 'recoil'; // 훅 import
-import {addTC} from 'api/TCRegist';
-import {TrashCanInfoType} from 'types/TrashCanType';
+import {addTC} from 'api/TCRegistAPI';
+import {ITrashCanInfo} from 'types/TrashCanType';
 import MapView, {Marker} from 'react-native-maps';
 
 function TCRInfoScreen({navigation}: any) {
