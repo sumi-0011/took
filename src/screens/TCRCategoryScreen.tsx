@@ -45,8 +45,8 @@ function TCRCategoryScreen({navigation}: any) {
             initialRegion={{
               latitude: location.latitude,
               longitude: location.longitude,
-              latitudeDelta: 0.003,
-              longitudeDelta: 0.003,
+              latitudeDelta: 0.001,
+              longitudeDelta: 0.001,
             }}
             onRegionChangeComplete={region => {
               setLocation({

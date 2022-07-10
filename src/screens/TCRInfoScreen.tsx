@@ -5,11 +5,11 @@ import BasicButton from '@components/Button';
 import {TCRegistSelect} from '../recoil/TCRegist';
 import {useRecoilValue} from 'recoil'; // 훅 import
 import {addTC} from 'api/TCRegist';
-import {ITrashCanInfo} from 'types/TrashCanType';
+import {TrashCanInfoType} from 'types/TrashCanType';
 import MapView, {Marker} from 'react-native-maps';
 
-function RegistrationInfo({navigation}: any) {
-  const info = useRecoilValue<ITrashCanInfo>(TCRegistSelect);
+function TCRInfoScreen({navigation}: any) {
+  const info = useRecoilValue<TrashCanInfoType>(TCRegistSelect);
 
   console.log('info : ', info);
   const handleSubmit = () => {
@@ -32,7 +32,7 @@ function RegistrationInfo({navigation}: any) {
   );
 }
 
-export default RegistrationInfo;
+export default TCRInfoScreen;
 
 export const PlaceInfo = ({
   name,
