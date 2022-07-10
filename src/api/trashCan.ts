@@ -5,6 +5,7 @@ import {getUserInfo} from './fireAuth';
 const trashCans = firebase.firestore().collection('trashCans');
 const users = firebase.firestore().collection('users');
 const {uid} = getUserInfo();
+
 export async function getTrashCan(TCId: string) {
   let result;
   await trashCans
@@ -22,6 +23,7 @@ export async function getTrashCan(TCId: string) {
 
   return result;
 }
+
 export async function getStaredTrashCans() {
   try {
     const userDoc = await users.doc(uid).get();
@@ -44,7 +46,7 @@ export async function getStaredTrashCans() {
     console.log(error);
   }
 }
-//모든 쓰레기통
+
 export async function getTrashCans() {
   const trashCanList: ITrashCan[] = [];
 
@@ -68,6 +70,7 @@ export async function getTrashCans() {
     .catch(e => console.log(e));
   return trashCanList;
 }
+
 export async function getRegisterTrashCans() {
   try {
     const userDoc = await users.doc(uid).get();

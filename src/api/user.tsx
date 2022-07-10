@@ -1,26 +1,19 @@
 import {firebase} from '@react-native-firebase/firestore';
 import {IUserInfo} from 'types/User';
+import {getUserInfo} from './fireAuth';
 
 const users = firebase.firestore().collection('users');
+const {uid} = getUserInfo();
 
-export async function getUser(uid: string) {
-  let result;
-  await users
-    .get()
-    .then(res => {
-      res.forEach(function (doc) {
-        let docs = doc.data();
-        if (docs.uid === uid) {
-          result = {
-            ...docs,
-            uid: doc.id,
-            lastTookTime: new Date(docs.lastTookTime.seconds * 1000),
-          };
-        }
-      });
-    })
-    .catch(e => console.log(e));
-  return result;
+export async function getUser() {
+  try {
+    const userDoc = await users.doc(uid).get();
+    const userData = userDoc.data();
+
+    return {...userData} as IUserInfo;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function updateStar(dosId: string, newStars: any) {
