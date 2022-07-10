@@ -6,7 +6,7 @@ import {RNCamera} from 'react-native-camera';
 import {Platform} from 'react-native';
 import {hasAndroidPermission} from 'utils/permission';
 
-interface ICamera {
+interface CameraProps {
   imageURL: string;
   setImageURL: (arg0: string) => void;
   nextPage: (arg: string) => void;
@@ -24,7 +24,7 @@ const PendingView = () => (
   </View>
 );
 
-function Camera({imageURL, setImageURL, nextPage}: ICamera) {
+function Camera({imageURL, setImageURL, nextPage}: CameraProps) {
   const getPhotos = async () => {
     //갤러리에서 사진을 가져오는 부분
     try {
