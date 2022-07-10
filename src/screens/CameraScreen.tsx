@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import Camera from '@components/Camera';
 import {TCRegistSelect} from '../recoil/TCRegist';
-import {useRecoilState} from 'recoil'; // 훅 import
+import {useRecoilState} from 'recoil';
 
-function CameraPage({navigation}: any) {
+function CameraScreen({navigation}: any) {
   const [imageURL, setImageURL] = useState<string>('');
   const [registData, setRegistData] = useRecoilState(TCRegistSelect);
-  console.log('camera page', registData);
+
   const nextPage = (image: string) => {
     setRegistData({...registData, trashImage: image});
     navigation.navigate('TCRInfoScreen');
@@ -17,4 +17,4 @@ function CameraPage({navigation}: any) {
   );
 }
 
-export default CameraPage;
+export default CameraScreen;
