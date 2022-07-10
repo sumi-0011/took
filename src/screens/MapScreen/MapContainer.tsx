@@ -4,7 +4,7 @@ import {Box} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import {requestAccessLocationPermission} from 'utils/permission';
 import Geolocation from 'react-native-geolocation-service';
-import {ITrashCan} from 'types/TrashCan';
+import {TrashCanType} from 'types/TrashCanType';
 import {LocationType} from 'types/LocationType';
 
 interface MapContainerProps {
@@ -12,7 +12,7 @@ interface MapContainerProps {
 }
 
 function MapContainer({onClickMarker}: MapContainerProps) {
-  const [trashCanList, setTrashCanList] = useState<ITrashCan[]>([]);
+  const [trashCanList, setTrashCanList] = useState<TrashCanType[]>([]);
   const [location, setLocation] = useState<LocationType>();
 
   useEffect(() => {

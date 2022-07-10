@@ -5,7 +5,7 @@ import BasicButton from '@components/Button';
 import {TCRegistSelect} from '../recoil/TCRegist';
 import {useRecoilValue} from 'recoil'; // 훅 import
 import {addTC} from 'api/TCRegist';
-import {ITrashCanInfo} from 'types/TrashCan';
+import {ITrashCanInfo} from 'types/TrashCanType';
 import MapView, {Marker} from 'react-native-maps';
 
 function RegistrationInfo({navigation}: any) {

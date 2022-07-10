@@ -7,7 +7,7 @@ import {Box, Button, HStack, Image, Pressable, Text} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import {useRecoilState} from 'recoil';
 import styled from 'styled-components';
-import {ITrashCanInfo} from 'types/TrashCan';
+import {ITrashCanInfo} from 'types/TrashCanType';
 import {IUserInfo} from 'types/User';
 import {user} from '../../recoil/user';
 

@@ -7,7 +7,7 @@ import CategotyCheckbox from '@components/CategoryCheckbox';
 import {requestPermission} from 'utils/permission';
 import {TCRegistSelect} from '../recoil/TCRegist';
 import {useRecoilState} from 'recoil'; // 훅 import
-import {ITrashCanInfo} from 'types/TrashCan';
+import {ITrashCanInfo} from 'types/TrashCanType';
 
 interface ILocation {
   latitude: number;

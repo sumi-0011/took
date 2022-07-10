@@ -1,5 +1,5 @@
 import {firebase} from '@react-native-firebase/firestore';
-import {ITrashCan, ITrashCanInfo} from 'types/TrashCan';
+import {ITrashCan, ITrashCanInfo} from 'types/TrashCanType';
 import {getUserInfo} from './fireAuth';
 
 const trashCans = firebase.firestore().collection('trashCans');

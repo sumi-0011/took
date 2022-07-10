@@ -1,4 +1,4 @@
-export interface ITrashCanInfo {
+export interface TrashCanInfoType {
   id: string;
   name: string;
   address?: string;
@@ -7,7 +7,7 @@ export interface ITrashCanInfo {
   trashImage: string;
 }
 
-export interface ITrashCan extends ITrashCanInfo {
+export interface TrashCanType extends TrashCanInfoType {
   reportUsers: string[];
   isFull: boolean;
 }

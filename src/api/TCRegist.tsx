@@ -1,5 +1,5 @@
 import {firebase} from '@react-native-firebase/firestore';
-import {ITrashCanInfo} from 'types/TrashCan';
+import {ITrashCanInfo} from 'types/TrashCanType';
 
 const trashCans = firebase.firestore().collection('trashCans');
 
