@@ -5,11 +5,11 @@ import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import Input from '@components/Input';
 import ErrorMsg from '@components/ErrorMsg';
-import {signIn} from 'api/fireAuth';
-import {UserAuthData} from 'types/AuthType';
+import {signIn} from '@api/fireAuthAPI';
 import ScreenHeader from '@components/ScreenHeader';
+import {UserAuthData} from 'types/AuthType';
 
-function LoginScreen({navigation}: any) {
+function SigninScreen({navigation}: any) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<string>();
 
@@ -111,7 +111,7 @@ function LoginScreen({navigation}: any) {
             variant="unstyled"
             w={96}
             padding={'4'}
-            onPress={() => navigation.navigate('RegisterScreen')}>
+            onPress={() => navigation.navigate('SignupScreen')}>
             <Text color={'black'} fontSize={'16px'}>
               회원가입
             </Text>
@@ -122,4 +122,4 @@ function LoginScreen({navigation}: any) {
   );
 }
 
-export default LoginScreen;
+export default SigninScreen;
