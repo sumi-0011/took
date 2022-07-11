@@ -6,6 +6,7 @@ import {TCRegistSelectState} from '@recoil/TCRegistState';
 import useCurrentLocation from '@hooks/useCurrentLocation';
 import CategotyCheckbox from '@components/CategoryCheckbox';
 import MapViewWrapper from '@components/MapView';
+import TOOKBtn from '@components/TOOKBtn';
 
 function TrashCanRegisterScreen({navigation}: any) {
   const {location, setLocation} = useCurrentLocation();
@@ -24,7 +25,7 @@ function TrashCanRegisterScreen({navigation}: any) {
       coordinate: location,
     };
     setRegistData({...registData, ...tcrRegistStep1Data});
-    navigation.navigate('CameraScreen');
+    navigation.navigate('TrashCanRegisterCameraScreen');
   };
 
   return (
@@ -47,14 +48,7 @@ function TrashCanRegisterScreen({navigation}: any) {
         <CategotyCheckbox
           handleCheckChange={(values: string[]) => setGroupValue(values || [])}
         />
-        <Button
-          colorScheme={'green'}
-          variant={'light'}
-          onPress={handleCameraBtnClick}>
-          <Text color={'white'} fontSize={'16px'} fontWeight="bold">
-            사진 촬영
-          </Text>
-        </Button>
+        <TOOKBtn name={' 사진 촬영'} onPress={handleCameraBtnClick} />
       </Box>
     </Box>
   );
