@@ -1,10 +1,19 @@
 import {firebase} from '@react-native-firebase/firestore';
 import {TrashCanType, TrashCanInfoType} from 'types/TrashCanType';
-import {getUserInfo} from './fireAuth';
+import {getUserInfo} from './fireAuthAPI';
 
 const trashCans = firebase.firestore().collection('trashCans');
 const users = firebase.firestore().collection('users');
 const {uid} = getUserInfo();
+
+export async function addTrashCan(addData: TrashCanInfoType) {
+  try {
+    const res = await trashCans.add(addData);
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 export async function getTrashCan(TCId: string) {
   let result;
