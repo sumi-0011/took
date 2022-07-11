@@ -12,18 +12,6 @@ export async function hasAndroidPermission() {
   return status === 'granted';
 }
 
-export async function requestPermission() {
-  try {
-    if (Platform.OS === 'android') {
-      return await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-      );
-    }
-  } catch (e) {
-    console.log(e);
-  }
-}
-
 export async function requestAccessLocationPermission() {
   try {
     if (Platform.OS === 'android') {
