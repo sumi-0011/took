@@ -7,8 +7,6 @@ import {Platform} from 'react-native';
 import {hasAndroidPermission} from 'utils/permission';
 
 interface CameraProps {
-  imageURL: string;
-  setImageURL: (arg0: string) => void;
   nextPage: (arg: string) => void;
 }
 
@@ -24,20 +22,7 @@ const PendingView = () => (
   </View>
 );
 
-function Camera({imageURL, setImageURL, nextPage}: CameraProps) {
-  const getPhotos = async () => {
-    //갤러리에서 사진을 가져오는 부분
-    try {
-      const {edges} = await CameraRoll.getPhotos({
-        first: 2,
-      });
-      console.log(edges);
-      // setImageURL(edges[0].node.image.uri);
-    } catch (error) {
-      console.log('getPhoto', error);
-    }
-  };
-
+function Camera({nextPage}: CameraProps) {
   const takePicture = async (camera: RNCamera) => {
     const options = {quality: 0.5, base64: true};
     const data = await camera.takePictureAsync(options);
