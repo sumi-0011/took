@@ -1,16 +1,19 @@
-import {getStaredTrashCans} from 'api/trashCan';
+import {getStaredTrashCans} from '@api/trashCanAPI';
 import TCCard from '@components/TCCard';
 import {FlatList} from 'native-base';
 import React, {useCallback, useEffect, useState} from 'react';
-import {ITrashCanInfo} from 'types/TrashCanType';
+import {TrashCanInfoType} from 'types/TrashCanType';
 
 function UserStarScreen() {
-  const [data, setData] = useState<ITrashCanInfo[] | undefined>();
+  const [data, setData] = useState<TrashCanInfoType[]>([]);
 
   useEffect(() => {
     async function fetchData() {
       const stared = await getStaredTrashCans();
-      setData(stared);
+
+      if (stared) {
+        setData(stared);
+      }
     }
 
     fetchData();

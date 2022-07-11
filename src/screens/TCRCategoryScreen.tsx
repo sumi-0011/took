@@ -2,22 +2,17 @@ import MapView, {Marker} from 'react-native-maps';
 import {Box, Button, Input, Text} from 'native-base';
 import React, {useState} from 'react';
 import CategotyCheckbox from '@components/CategoryCheckbox';
-import {TCRegistSelect} from '../recoil/TCRegist';
 import {useRecoilState} from 'recoil';
 import {TrashCanInfoType} from 'types/TrashCanType';
-import useCurrentLocation from 'hooks/useCurrentLocation';
-
-export interface ICategory {
-  name: string;
-  key: string;
-}
+import useCurrentLocation from '@hooks/useCurrentLocation';
+import {TCRegistSelectState} from '@recoil/TCRegistState';
 
 function TCRCategoryScreen({navigation}: any) {
   const {location, setLocation} = useCurrentLocation();
   const [inputName, setInputName] = useState<string>('');
   const [groupValue, setGroupValue] = useState<string[]>([]);
   const [registData, setRegistData] =
-    useRecoilState<TrashCanInfoType>(TCRegistSelect);
+    useRecoilState<TrashCanInfoType>(TCRegistSelectState);
 
   const handleCameraBtnClick = () => {
     if (!location) {

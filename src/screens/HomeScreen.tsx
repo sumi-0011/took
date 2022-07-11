@@ -4,7 +4,7 @@ import Header from '@components/Header';
 import PressableBox from '@components/PressableBox';
 import BackgroundImage from '@components/BackgroundImage';
 import TagList from '@components/TagList';
-import {getUserInfo} from 'api/fireAuth';
+import {getUserInfo} from '@api/fireAuthAPI';
 
 function HomeScreen({navigation}: any) {
   const [name] = useState(getUserInfo().displayName);

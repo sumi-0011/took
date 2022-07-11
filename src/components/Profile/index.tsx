@@ -1,8 +1,8 @@
 import {Box, Button, HStack, Progress, Text, VStack} from 'native-base';
 import React, {useEffect, useState} from 'react';
-import {getUserInfo} from 'api/fireAuth';
-import {IUser} from 'types/User';
+import {getUserInfo} from '@api/fireAuthAPI';
 import {MailIcon} from '@components/Icon';
+import {UserType} from 'types/UserType';
 
 interface IProfile {
   onPress: () => void;
@@ -10,7 +10,7 @@ interface IProfile {
 
 function Profile({onPress}: IProfile) {
   const [isLoading, setIsLoading] = useState(false);
-  const [userInfo, setUserInfo] = useState<IUser>();
+  const [userInfo, setUserInfo] = useState<UserType>();
 
   useEffect(() => {
     setIsLoading(true);

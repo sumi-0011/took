@@ -1,5 +1,5 @@
-import {getTrashCan} from 'api/trashCan';
-import {updateStar, getUser, updateLastTookTime} from 'api/user';
+import {getTrashCan} from '@api/trashCanAPI';
+import {updateStar, getUser, updateLastTookTime} from '@api/userAPI';
 import BadgeList from '@components/BadgeList';
 import {HearFilltIcon, HeartOutlineIcon, ReportIcon} from '@components/Icon';
 import IconBtn from '@components/IconBtn';
@@ -8,8 +8,8 @@ import React, {useEffect, useState} from 'react';
 import {useRecoilState} from 'recoil';
 import styled from 'styled-components';
 import {TrashCanInfoType} from 'types/TrashCanType';
-import {IUserInfo} from 'types/User';
-import {user} from '../../recoil/user';
+import {UserState} from '@recoil/UserState';
+import {UserInfoType} from 'types/UserType';
 
 interface MapModalProps {
   currentTCId: string;
@@ -17,7 +17,7 @@ interface MapModalProps {
 
 function MapModal({currentTCId}: MapModalProps) {
   const [isStar, setIsStar] = useState<boolean>(false);
-  const [userInfo, setUserInfo] = useRecoilState<IUserInfo>(user);
+  const [userInfo, setUserInfo] = useRecoilState<UserInfoType>(UserState);
   const [isTook, setIsTook] = useState<boolean>(false);
   const [selectTCInfo, setSelectTCInfo] = useState<TrashCanInfoType>();
 

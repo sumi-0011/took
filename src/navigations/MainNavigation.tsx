@@ -5,7 +5,7 @@ import MapScreen from '@screens/MapScreen';
 import AuthNaviagtion from '@navigations/AuthNavigation';
 import TCRegisterNavigation from '@navigations/TCRegisterNavigation';
 import UserNaviagtion from '@navigations/UserNavigation';
-import AuthHOC from 'HOC/AuthHOC';
+import AuthHOC from '@HOC/AuthHOC';
 
 const Stack = createNativeStackNavigator();
 

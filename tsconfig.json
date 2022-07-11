@@ -12,11 +12,16 @@
     "target": "esnext",
     "baseUrl": "./src",
     "paths": {
+      "@api/*": ["api/*"],
       "@components/*": ["components/*"],
-      "@screens/*": ["screens/*"],
+      "@HOC/*": ["HOC/*"],
+      "@hooks/*": ["hooks/*"],
       "@images/*": ["images/*"],
-      "@common/*": ["common/*"],
-      "@navigations/*": ["navigations/*"]
+      "@navigations/*": ["navigations/*"],
+      "@recoil/*": ["recoil/*"],
+      "@screens/*": ["screens/*"],
+      "types/*": ["types/*"],
+      "@utils/*": ["utils/*"]
     }
   },
   "exclude": [

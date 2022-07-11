@@ -18,7 +18,7 @@ function TCRegisterNavigation() {
           headerStyle: {
             backgroundColor: 'white',
           },
-          headerShadowVisible: false, // applied here
+          headerShadowVisible: false,
           headerBackTitleVisible: false,
         })}
       />
@@ -31,7 +31,7 @@ function TCRegisterNavigation() {
           headerStyle: {
             backgroundColor: 'white',
           },
-          headerShadowVisible: false, // applied here
+          headerShadowVisible: false,
           headerBackTitleVisible: false,
         })}
       />
