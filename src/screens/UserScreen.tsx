@@ -3,10 +3,10 @@ import {ScrollView, Text, VStack} from 'native-base';
 import {LogoutIcon, PushIcon, StarIcon} from '@components/Icon';
 import IconTextMenu from '@components/IconTextMenu';
 import Profile from '@components/Profile';
-import {signOut} from 'api/fireAuth';
+import {signOut} from '@api/fireAuthAPI';
 
 function UserScreen({navigation}: any) {
-  const onSignout = () => {
+  const handleSignout = () => {
     signOut();
     navigation.replace('HomeScreen');
   };
@@ -34,7 +34,7 @@ function UserScreen({navigation}: any) {
           회원정보
         </Text>
         <IconTextMenu
-          onPress={onSignout}
+          onPress={handleSignout}
           icon={<LogoutIcon />}
           text="로그아웃"
         />

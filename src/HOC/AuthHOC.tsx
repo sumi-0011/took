@@ -1,5 +1,5 @@
 import React, {ComponentType} from 'react';
-import {isLoggedIn} from 'api/fireAuth';
+import {isLoggedIn} from '@api/fireAuthAPI';
 import AuthNaviagtion from '@navigations/AuthNavigation';
 
 export default function <P extends object>(Component: ComponentType<P>) {

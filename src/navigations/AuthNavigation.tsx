@@ -1,36 +1,36 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import LoginScreen from '@screens/LoginScreen';
-import RegisterScreen from '@screens/RegisterScreen';
+import SigninScreen from '@screens/SigninScreen';
+import SignupScreen from '@screens/SignupScreen';
 
 const Stack = createNativeStackNavigator();
 
 function AuthNaviagtion() {
   return (
-    <Stack.Navigator initialRouteName="LoginScreen">
+    <Stack.Navigator initialRouteName="SigninScreen">
       <Stack.Screen
-        name="LoginScreen"
-        component={LoginScreen}
+        name="SigninScreen"
+        component={SigninScreen}
         options={() => ({
           title: '',
           headerTintColor: 'black',
           headerStyle: {
             backgroundColor: 'white',
           },
-          headerShadowVisible: false, // applied here
+          headerShadowVisible: false,
           headerBackTitleVisible: false,
         })}
       />
       <Stack.Screen
-        name="RegisterScreen"
-        component={RegisterScreen}
+        name="SignupScreen"
+        component={SignupScreen}
         options={() => ({
           title: '',
           headerTintColor: 'black',
           headerStyle: {
             backgroundColor: 'white',
           },
-          headerShadowVisible: false, // applied here
+          headerShadowVisible: false,
           headerBackTitleVisible: false,
         })}
       />

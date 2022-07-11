@@ -1,9 +1,10 @@
 import MapView, {Marker} from 'react-native-maps';
-import {getTrashCans} from 'api/trashCan';
+import {getTrashCans} from '@api/trashCanAPI';
 import {Box} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import {TrashCanType} from 'types/TrashCanType';
-import useCurrentLocation from 'hooks/useCurrentLocation';
+import useCurrentLocation from '@hooks/useCurrentLocation';
+import trashCanImage from '@images/trashCan.png';
 
 interface MapContainerProps {
   onClickMarker: (id: string) => void;
@@ -45,7 +46,7 @@ function MapContainer({onClickMarker}: MapContainerProps) {
                 title={item.name}
                 identifier={item.id}
                 coordinate={item.coordinate}
-                image={require('../../images/trashCan.png')}
+                image={trashCanImage}
                 onPress={() => onClickMarker(item.id)}
               />
             );
