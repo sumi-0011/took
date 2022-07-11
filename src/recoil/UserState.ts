@@ -1,8 +1,7 @@
 import {atom} from 'recoil';
-import {IUserInfo} from 'types/User';
-import {string} from 'yup';
+import {UserInfoType} from 'types/UserType';
 
-export const user = atom<IUserInfo>({
+export const UserState = atom<UserInfoType>({
   key: 'userInfo',
   default: {
     // id: '', //dosId
