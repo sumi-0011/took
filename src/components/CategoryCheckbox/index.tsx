@@ -2,20 +2,19 @@ import React from 'react';
 import {Box, Checkbox, FlatList, Text} from 'native-base';
 import {categoryList} from 'utils/categoryList';
 
-interface ICategotyCheckbox {
-  setGroupValue: React.Dispatch<React.SetStateAction<string[]>>;
+interface CategotyCheckboxProps {
+  handleCheckChange: (values: string[]) => void;
 }
 
-function CategoryCheckbox({setGroupValue}: ICategotyCheckbox) {
+function CategoryCheckbox({handleCheckChange}: CategotyCheckboxProps) {
   return (
     <>
       <Text>재활용 가능한 품목</Text>
+      {/* TODO : 체크박스 색깔 수정 필요 (연한 그린으로 ) */}
       <Checkbox.Group
         colorScheme="green"
         accessibilityLabel="재활용 가능한 품목"
-        onChange={values => {
-          setGroupValue(values || []);
-        }}>
+        onChange={values => handleCheckChange(values)}>
         <FlatList
           numColumns={2}
           data={categoryList}

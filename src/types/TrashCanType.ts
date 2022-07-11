@@ -11,3 +11,9 @@ export interface TrashCanType extends TrashCanInfoType {
   reportUsers: string[];
   isFull: boolean;
 }
+
+export interface TCRStep1RegistType {
+  name: string;
+  tags: string[];
+  coordinate: {latitude: number; longitude: number};
+}
