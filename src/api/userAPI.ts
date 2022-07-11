@@ -1,6 +1,6 @@
 import {firebase} from '@react-native-firebase/firestore';
-import {IUserInfo} from 'types/User';
-import {getUserInfo} from './fireAuth';
+import {UserInfoType} from 'types/UserType';
+import {getUserInfo} from './fireAuthAPI';
 
 const users = firebase.firestore().collection('users');
 const {uid} = getUserInfo();
@@ -10,7 +10,7 @@ export async function getUser() {
     const userDoc = await users.doc(uid).get();
     const userData = userDoc.data();
 
-    return {...userData} as IUserInfo;
+    return {...userData} as UserInfoType;
   } catch (error) {
     console.log(error);
   }
