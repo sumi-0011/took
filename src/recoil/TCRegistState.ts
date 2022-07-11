@@ -1,7 +1,9 @@
 import {atom} from 'recoil';
 import {TrashCanInfoType} from 'types/TrashCanType';
 
-export const TCRegistSelect = atom<TrashCanInfoType>({
+// TODO: atom initial state 정의 확실하게 하기. image, trashImage 는 기본값이 빈 string 이 좋지 않을지?
+
+export const TCRegistSelectState = atom<TrashCanInfoType>({
   key: 'TCRegist',
   default: {
     name: 'test name',
