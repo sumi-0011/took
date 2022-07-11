@@ -1,11 +1,11 @@
-export interface IUser {
+export interface UserType {
   displayName: string;
   uid: string;
   photoURL: string;
   email: string;
 }
 
-export interface IUserInfo extends IUser {
+export interface UserInfoType extends UserType {
   tookCnt: number;
   lastTookTime: Date;
   stars: string[];

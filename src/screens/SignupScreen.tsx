@@ -3,13 +3,13 @@ import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {useForm, Controller} from 'react-hook-form';
 import {Box, Button, Text, VStack} from 'native-base';
-import {signUp} from 'api/fireAuth';
+import {signUp} from '@api/fireAuthAPI';
 import Input from '@components/Input';
 import ErrorMsg from '@components/ErrorMsg';
 import {SignUpData} from 'types/AuthType';
 import ScreenHeader from '@components/ScreenHeader';
 
-function RegisterScreen({navigation}: any) {
+function SignupScreen({navigation}: any) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<string>();
 
@@ -158,4 +158,4 @@ function RegisterScreen({navigation}: any) {
   );
 }
 
-export default RegisterScreen;
+export default SignupScreen;
