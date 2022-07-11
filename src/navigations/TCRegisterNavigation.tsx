@@ -1,8 +1,8 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import CameraScreen from '@screens/CameraScreen';
 import TrashCanRegisterScreen from '@screens/TrashCanRegisterScreen';
 import TCRInfoScreen from '@screens/TCRInfoScreen';
+import TrashCanRegisterCameraScreen from '@screens/TrashCanRegisterCameraScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -36,8 +36,8 @@ function TCRegisterNavigation() {
         })}
       />
       <Stack.Screen
-        name="CameraScreen"
-        component={CameraScreen}
+        name="TrashCanRegisterCameraScreen"
+        component={TrashCanRegisterCameraScreen}
         options={{
           headerShown: false,
         }}
