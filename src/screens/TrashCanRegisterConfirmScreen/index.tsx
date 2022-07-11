@@ -7,7 +7,7 @@ import {addTrashCan} from '@api/trashCanAPI';
 import TCRInfoPlaceInfo from './TCRInfoPlaceInfo';
 import TCRInfo from './TCRInfo';
 
-function TCRInfoScreen({navigation}: any) {
+function TrachCanRegisterConfirmScreen({navigation}: any) {
   const info = useRecoilValue<TrashCanInfoType>(TCRegistSelectState);
 
   const handleSubmit = async () => {
@@ -30,4 +30,4 @@ function TCRInfoScreen({navigation}: any) {
   );
 }
 
-export default TCRInfoScreen;
+export default TrachCanRegisterConfirmScreen;

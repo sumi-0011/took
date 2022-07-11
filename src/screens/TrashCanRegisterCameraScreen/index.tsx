@@ -7,7 +7,7 @@ function TrashCanRegisterCameraScreen({navigation}: any) {
   const [registData, setRegistData] = useRecoilState(TCRegistSelectState);
   const nextPage = (image: string) => {
     setRegistData({...registData, trashImage: image});
-    navigation.navigate('TCRInfoScreen');
+    navigation.navigate('TrachCanRegisterConfirmScreen');
   };
 
   return <Camera nextPage={nextPage} />;

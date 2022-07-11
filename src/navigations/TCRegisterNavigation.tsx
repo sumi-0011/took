@@ -1,7 +1,7 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import TrashCanRegisterScreen from '@screens/TrashCanRegisterScreen';
-import TCRInfoScreen from '@screens/TCRInfoScreen';
+import TrachCanRegisterConfirmScreen from '@screens/TrachCanRegisterConfirmScreen';
 import TrashCanRegisterCameraScreen from '@screens/TrashCanRegisterCameraScreen';
 
 const Stack = createNativeStackNavigator();
@@ -23,8 +23,8 @@ function TCRegisterNavigation() {
         })}
       />
       <Stack.Screen
-        name="TCRInfoScreen"
-        component={TCRInfoScreen}
+        name="TrachCanRegisterConfirmScreen"
+        component={TrachCanRegisterConfirmScreen}
         options={() => ({
           title: '쓰레기통 등록하기',
           headerTintColor: 'black',
