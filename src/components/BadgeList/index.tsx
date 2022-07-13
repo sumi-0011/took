@@ -1,31 +1,28 @@
 import React from 'react';
-import {HStack, Text} from 'native-base';
-import styled from 'styled-components/native';
+import {HStack, Text, Box} from 'native-base';
 
 interface IBadgeList {
-  data: Array<string>;
+  data: string[];
+  bgColor?: string;
+  color?: string;
 }
 
-function BadgeList({data}: IBadgeList) {
+function BadgeList({data, bgColor, color}: IBadgeList) {
   return (
     <HStack space={1} marginY="2">
       {data.map((item, index) => (
-        <Badge
+        <Box
           key={`tag${index}`}
-          paddingX={2}
-          paddingY={1}
           borderRadius={5}
-          fontSize="xs"
-          testID="trash-tag">
-          {item}
-        </Badge>
+          bgColor={bgColor ?? '#d1d5db'}
+          p={'5px 10px'}>
+          <Text color={color ?? '#353535'} fontSize="xs">
+            {item}
+          </Text>
+        </Box>
       ))}
     </HStack>
   );
 }
-
-const Badge = styled(Text)`
-  background-color: #d1d5db;
-`;
 
 export default BadgeList;

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, HStack, Image, Text} from 'native-base';
+import {Box, Image, Text} from 'native-base';
 import BadgeList from '@components/BadgeList';
 
 interface TCRInfoProps {
@@ -22,11 +22,8 @@ function TCRInfo({image, tagList}: TCRInfoProps) {
         marginY={5}
         borderRadius={10}
         alt="쓰레기통 이미지"
-        accessibilityLabel="쓰레기통 이미지"
       />
-      <HStack>
-        <BadgeList data={tagList} />
-      </HStack>
+      <BadgeList data={tagList} />
     </Box>
   );
 }

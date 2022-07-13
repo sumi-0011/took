@@ -1,8 +1,8 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import TrashCanRegisterScreen from '@screens/TrashCanRegisterScreen';
-import TrachCanRegisterConfirmScreen from '@screens/TrachCanRegisterConfirmScreen';
 import TrashCanRegisterCameraScreen from '@screens/TrashCanRegisterCameraScreen';
+import TrachCanRegisterConfirmScreen from '@screens/TrashCanRegisterConfirmScreen';
 
 const Stack = createNativeStackNavigator();
 

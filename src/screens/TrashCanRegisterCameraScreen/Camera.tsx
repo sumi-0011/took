@@ -4,7 +4,6 @@ import {Box, Text} from 'native-base';
 import {RNCamera} from 'react-native-camera';
 import {hasAndroidPermission} from 'utils/permission';
 import TOOKBtn from '@components/TOOKBtn';
-// import CameraRoll from '@react-native-community/cameraroll';
 import {LogBox} from 'react-native';
 
 LogBox.ignoreLogs([
@@ -24,8 +23,7 @@ function Camera({nextPage}: CameraProps) {
       if (Platform.OS === 'android' && !(await hasAndroidPermission())) {
         return;
       }
-      // const result = await CameraRoll.save(data.uri); //사진 갤러리에 저장
-      // console.log('snap result', result);
+      // NOTE :사진 갤러리에 저장 =>  const result = await CameraRoll.save(data.uri); //
       nextPage(data.uri);
     }
   };
@@ -55,11 +53,7 @@ function Camera({nextPage}: CameraProps) {
             </Box>
           );
         }
-        return (
-          <Box>
-            <TOOKBtn name={'SNAP'} onPress={() => takePicture(camera)} />
-          </Box>
-        );
+        return <TOOKBtn name={'SNAP'} onPress={() => takePicture(camera)} />;
       }}
     </RNCamera>
   );
@@ -76,4 +70,5 @@ const RNCameraStyle: StyleProp<ViewStyle> = {
   flex: 1,
   justifyContent: 'flex-end',
 };
+
 export default Camera;
