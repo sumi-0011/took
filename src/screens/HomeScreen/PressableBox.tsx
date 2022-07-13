@@ -6,7 +6,6 @@ interface IPressableBox {
   height?: string;
   bg?: string;
   flex?: number;
-  paddingX?: number;
   children: ReactNode;
   onPress?: () => void;
   shadow?: boolean;
@@ -22,7 +21,6 @@ function PressableBox({children, onPress, shadow, ...rest}: IPressableBox) {
             h={rest.height}
             bg={rest.bg}
             rounded="2xl"
-            paddingX={rest.paddingX}
             justifyContent="center"
             overflow="hidden"
             opacity={isPressed ? 0.8 : 1}>
