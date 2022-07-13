@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {Box, Center, HStack, ScrollView, Text, VStack} from 'native-base';
-import Header from '@components/Header';
-import PressableBox from '@components/PressableBox';
-import BackgroundImage from '@components/BackgroundImage';
-import TagList from '@components/TagList';
 import {getUserInfo} from '@api/fireAuthAPI';
+import PressableBox from './PressableBox';
+import TagList from './TagList';
+import Header from './Header';
+import BackgroundImage from './BackgroundImage';
 
 function HomeScreen({navigation}: any) {
   const [name] = useState(getUserInfo().displayName);
@@ -90,7 +90,7 @@ function HomeScreen({navigation}: any) {
               bg="trueGray.100"
               flex={1}
               height="32"
-              onPress={() => console.log('clicked')}>
+              onPress={() => console.log('FAQ clicked')}>
               <Center>
                 <Text fontSize="lg" bold>
                   FAQ
