@@ -1,8 +1,8 @@
 import {Box} from 'native-base';
 import React, {useCallback, useState} from 'react';
-import MapModal from '@components/MapModal';
 import BackButton from '@components/BackButton';
 import MapContainer from './MapContainer';
+import MapModal from './MapModal';
 
 function MapScreen({navigation}: any) {
   const [selectTrashCan, setSelectTrashCan] = useState<string>();
@@ -11,13 +11,9 @@ function MapScreen({navigation}: any) {
     setSelectTrashCan(id);
   }, []);
 
-  const onClickBackButton = useCallback(() => {
-    navigation.pop();
-  }, [navigation]);
-
   return (
     <Box w="100%" h="100%">
-      <BackButton onPress={onClickBackButton} />
+      <BackButton navigation={navigation} />
       <MapContainer onClickMarker={onClickMarker} />
       {selectTrashCan && <MapModal currentTCId={selectTrashCan} />}
     </Box>
