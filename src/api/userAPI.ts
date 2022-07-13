@@ -17,30 +17,24 @@ export async function getUser() {
 }
 
 export async function updateStar(dosId: string, newStars: any) {
-  await users
-    .doc(dosId)
-    .update({
+  try {
+    const res = await users.doc(dosId).update({
       stars: newStars,
-    })
-    .then(res => {
-      return res;
-    })
-    .catch(e => {
-      console.log(e);
     });
+    return res;
+  } catch (error) {
+    console.log('updateStar api error: ', error);
+  }
 }
 
 export async function updateLastTookTime(dosId: string, tookCnt: number) {
-  await users
-    .doc(dosId)
-    .update({
+  try {
+    const res = await users.doc(dosId).update({
       lastTookTime: new Date(),
       tookCnt: tookCnt + 1,
-    })
-    .then(res => {
-      return res;
-    })
-    .catch(e => {
-      console.log(e);
     });
+    return res;
+  } catch (error) {
+    console.log('updateLastTookTime api error: ', error);
+  }
 }

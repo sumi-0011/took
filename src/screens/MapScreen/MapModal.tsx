@@ -32,9 +32,11 @@ function MapModal({currentTCId}: MapModalProps) {
   };
 
   useEffect(() => {
-    getTrashCan(currentTCId).then(res => {
-      setSelectTCInfo(res);
-    });
+    getTrashCan(currentTCId)
+      .then(res => {
+        setSelectTCInfo(res);
+      })
+      .catch(error => console.log('getTrashCan error: ', error));
   }, [currentTCId]);
   useEffect(() => {
     const index = userInfo?.stars.findIndex(ele => ele === currentTCId);
@@ -70,8 +72,10 @@ function MapModal({currentTCId}: MapModalProps) {
 
     const index = userInfo?.stars.findIndex(ele => ele === currentTCId);
     if (index === -1) {
+      // 추가
       updateStarApi(userInfo.uid, [...userInfo.stars, currentTCId]);
     } else {
+      // 제거
       const filterStars = userInfo.stars.filter(star => star !== currentTCId);
       updateStarApi(userInfo.uid, filterStars);
     }
