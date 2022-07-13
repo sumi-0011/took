@@ -1,10 +1,10 @@
-import {Box, Button, Input, Text} from 'native-base';
+import {Box, Input, Text} from 'native-base';
 import React, {useState} from 'react';
 import {useRecoilState} from 'recoil';
 import {TCRStep1RegistType, TrashCanInfoType} from 'types/TrashCanType';
 import {TCRegistSelectState} from '@recoil/TCRegistState';
 import useCurrentLocation from '@hooks/useCurrentLocation';
-import CategotyCheckbox from '@components/CategoryCheckbox';
+import RecycleChecks from '@screens/TrashCanRegiterScreen/RecycleChecks';
 import MapViewWrapper from '@components/MapView';
 import TOOKBtn from '@components/TOOKBtn';
 
@@ -30,11 +30,9 @@ function TrashCanRegisterScreen({navigation}: any) {
 
   return (
     <Box height={'100%'}>
-      <Box flex={1}>
-        {location && (
-          <MapViewWrapper location={location} setLocation={setLocation} />
-        )}
-      </Box>
+      {location && (
+        <MapViewWrapper location={location} setLocation={setLocation} />
+      )}
       <Box p={5} bg={'#fff'}>
         <Text>쓰레기통 이름</Text>
         <Input
@@ -45,7 +43,7 @@ function TrashCanRegisterScreen({navigation}: any) {
           value={inputName}
           onChangeText={text => setInputName(text)}
         />
-        <CategotyCheckbox
+        <RecycleChecks
           handleCheckChange={(values: string[]) => setGroupValue(values || [])}
         />
         <TOOKBtn name={' 사진 촬영'} onPress={handleCameraBtnClick} />
