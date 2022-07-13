@@ -16,29 +16,29 @@ export async function addTrashCan(addData: TrashCanInfoType) {
 }
 
 export async function getTrashCan(TCId: string) {
-  let result;
-  await trashCans
-    .get()
-    .then(res => {
-      res.forEach(function (doc) {
-        if (TCId === doc.id) {
-          const trashCanData = doc.data();
-          // console.log('trashCanData', trashCanData);
-          result = trashCanData;
-        }
-      });
-    })
-    .catch(e => console.log(e));
-
-  return result;
+  try {
+    let result;
+    const res = await trashCans.get();
+    // TODO : doc.id로 바로 찾을수 있을텐데? 밑처럼 하면 될거같은데 테스트를 못함
+    // await trashCans.doc(TCId).get()
+    res.forEach(function (doc) {
+      if (TCId === doc.id) {
+        const trashCanData = doc.data();
+        result = trashCanData;
+      }
+    });
+    return result;
+  } catch (error) {
+    console.log('error: ', error);
+  }
 }
 
 export async function getStaredTrashCans() {
   try {
     const userDoc = await users.doc(uid).get();
     const userData = userDoc.data();
-    const stars: string[] = userData?.stars;
 
+    const stars: string[] = userData?.stars;
     const staredTrashCans: TrashCanInfoType[] = [];
 
     for (const staredItemId of stars) {
@@ -49,7 +49,6 @@ export async function getStaredTrashCans() {
         id: staredItemId,
       } as TrashCanInfoType);
     }
-
     return staredTrashCans;
   } catch (error) {
     console.log(error);
@@ -58,34 +57,32 @@ export async function getStaredTrashCans() {
 
 export async function getTrashCans() {
   const trashCanList: TrashCanType[] = [];
-
-  await trashCans
-    .get()
-    .then(res => {
-      res.forEach(function (doc) {
-        const trashCanData = doc.data();
-        // console.log('trashCanData', trashCanData);
-        trashCanList.push({
-          id: doc.id,
-          name: trashCanData.name,
-          tags: trashCanData.tags,
-          coordinate: trashCanData.coordinate,
-          trashImage: trashCanData.trashImage,
-          reportUsers: [],
-          isFull: false,
-        });
+  try {
+    const res = await trashCans.get();
+    res.forEach(function (doc) {
+      const trashCanData = doc.data();
+      trashCanList.push({
+        id: doc.id,
+        name: trashCanData.name,
+        tags: trashCanData.tags,
+        coordinate: trashCanData.coordinate,
+        trashImage: trashCanData.trashImage,
+        reportUsers: [],
+        isFull: false,
       });
-    })
-    .catch(e => console.log(e));
+    });
+  } catch (error) {
+    console.log('getTrashCans api error: ', error);
+  }
   return trashCanList;
 }
 
 export async function getRegisterTrashCans() {
+  const registedTrashCans: TrashCanInfoType[] = [];
   try {
     const userDoc = await users.doc(uid).get();
     const userData = userDoc.data();
     const registed = userData?.registedTrashCans;
-    const registedTrashCans: TrashCanInfoType[] = [];
 
     for (const registedItemId of registed) {
       const trashCanDoc = await trashCans.doc(registedItemId).get();
@@ -95,9 +92,8 @@ export async function getRegisterTrashCans() {
         id: registedItemId,
       } as TrashCanInfoType);
     }
-
     return registedTrashCans;
   } catch (error) {
-    console.log(error);
+    console.log('getRegisterTrashCans api error: ', error);
   }
 }
