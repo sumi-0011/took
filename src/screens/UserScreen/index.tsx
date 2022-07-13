@@ -1,9 +1,9 @@
 import React from 'react';
 import {ScrollView, Text, VStack} from 'native-base';
 import {LogoutIcon, PushIcon, StarIcon} from '@components/Icon';
-import IconTextMenu from '@components/IconTextMenu';
-import Profile from '@components/Profile';
 import {signOut} from '@api/fireAuthAPI';
+import IconTextMenu from './IconTextMenu';
+import Profile from './Profile';
 
 function UserScreen({navigation}: any) {
   const handleSignout = () => {
