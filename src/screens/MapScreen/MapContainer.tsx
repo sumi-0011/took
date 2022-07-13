@@ -1,10 +1,11 @@
-import MapView, {Marker} from 'react-native-maps';
+import {Marker} from 'react-native-maps';
 import {getTrashCans} from '@api/trashCanAPI';
 import {Box} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import {TrashCanType} from 'types/TrashCanType';
 import useCurrentLocation from '@hooks/useCurrentLocation';
 import trashCanImage from '@images/trashCan.png';
+import MapViewWrapper from '@components/MapViewWrapper';
 
 interface MapContainerProps {
   onClickMarker: (id: string) => void;
@@ -30,15 +31,7 @@ function MapContainer({onClickMarker}: MapContainerProps) {
   return (
     <Box flex="1">
       {location && (
-        <MapView
-          style={mapViewStyle}
-          initialRegion={{
-            latitude: location.latitude,
-            longitude: location.longitude,
-            latitudeDelta: 0.001,
-            longitudeDelta: 0.001,
-          }}>
-          <Marker coordinate={location} />
+        <MapViewWrapper location={location}>
           {trashCanList?.map((item, index) => {
             return (
               <Marker
@@ -51,7 +44,7 @@ function MapContainer({onClickMarker}: MapContainerProps) {
               />
             );
           })}
-        </MapView>
+        </MapViewWrapper>
       )}
     </Box>
   );

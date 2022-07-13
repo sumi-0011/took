@@ -1,7 +1,7 @@
 import React from 'react';
 import {Box, Text} from 'native-base';
-import MapView, {Marker} from 'react-native-maps';
 import {LocationType} from 'types/LocationType';
+import MapViewWrapper from '@components/MapViewWrapper';
 
 interface PlaceInfoProps {
   name: string;
@@ -22,23 +22,10 @@ function TCRInfoPlaceInfo({name, address, coordinate}: PlaceInfoProps) {
         {address}
       </Text>
       <Box width={'100%'} height={150} marginTop={5} borderRadius={10}>
-        <MapView
-          style={MapViewStyles}
-          initialRegion={{
-            latitude: coordinate.latitude,
-            longitude: coordinate.longitude,
-            latitudeDelta: 0.003,
-            longitudeDelta: 0.003,
-          }}>
-          <Marker coordinate={coordinate} />
-        </MapView>
+        <MapViewWrapper location={coordinate} />
       </Box>
     </Box>
   );
 }
-
-const MapViewStyles = {
-  flex: 1,
-};
 
 export default TCRInfoPlaceInfo;

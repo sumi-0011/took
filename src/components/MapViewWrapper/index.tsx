@@ -4,10 +4,15 @@ import {LocationType} from 'types/LocationType';
 
 interface MapViewWrapperProps {
   location: LocationType;
-  setLocation: ({latitude, longitude}: LocationType) => void;
+  onRegionChangeComplete?: (region: LocationType) => void;
+  children?: React.ReactNode;
 }
 
-const MapViewWrapper = ({location, setLocation}: MapViewWrapperProps) => {
+const MapViewWrapper = ({
+  location,
+  onRegionChangeComplete,
+  children,
+}: MapViewWrapperProps) => {
   return (
     <MapView
       style={mapViewStyle}
@@ -17,18 +22,11 @@ const MapViewWrapper = ({location, setLocation}: MapViewWrapperProps) => {
         latitudeDelta: 0.001,
         longitudeDelta: 0.001,
       }}
-      onRegionChangeComplete={region => {
-        setLocation({
-          latitude: region.latitude,
-          longitude: region.longitude,
-        });
-      }}>
-      <Marker
-        coordinate={{
-          latitude: location.latitude,
-          longitude: location.longitude,
-        }}
-      />
+      onRegionChangeComplete={region =>
+        onRegionChangeComplete && onRegionChangeComplete(region)
+      }>
+      <Marker coordinate={location} />
+      {children}
     </MapView>
   );
 };
