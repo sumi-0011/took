@@ -2,10 +2,10 @@ import {ChevronLeftIcon, IconButton} from 'native-base';
 import React from 'react';
 
 interface BackButtonProps {
-  onPress: () => void;
+  navigation: any;
 }
 
-function BackButton({onPress}: BackButtonProps) {
+function BackButton({navigation}: BackButtonProps) {
   return (
     <IconButton
       w="50px"
@@ -22,7 +22,7 @@ function BackButton({onPress}: BackButtonProps) {
         color: 'black',
         size: 'sm',
       }}
-      onPress={onPress}
+      onPress={() => navigation.pop()}
     />
   );
 }

@@ -50,6 +50,4 @@ function MapContainer({onClickMarker}: MapContainerProps) {
   );
 }
 
-const mapViewStyle = {flex: 1};
-
 export default MapContainer;
