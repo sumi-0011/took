@@ -1,9 +1,10 @@
 import React from 'react';
-import {Box, Button} from 'native-base';
+import {Box} from 'native-base';
 import {useRecoilValue} from 'recoil';
 import {TCRegistSelectState} from '@recoil/TCRegistState';
-import {TrashCanInfoType} from 'types/TrashCanType';
 import {addTrashCan} from '@api/trashCanAPI';
+import TOOKBtn from '@components/TOOKBtn';
+import {TrashCanInfoType} from 'types/TrashCanType';
 import TCRInfoPlaceInfo from './TCRInfoPlaceInfo';
 import TCRInfo from './TCRInfo';
 
@@ -12,7 +13,6 @@ function TrachCanRegisterConfirmScreen({navigation}: any) {
 
   const handleSubmit = async () => {
     const res = await addTrashCan(info);
-
     console.log(res);
     navigation.navigate('HomeScreen');
   };
@@ -22,10 +22,11 @@ function TrachCanRegisterConfirmScreen({navigation}: any) {
       <TCRInfoPlaceInfo
         name={info.name}
         coordinate={info.coordinate}
+        // NOTE :  address 임시 데이터
         address={`${info.coordinate.latitude} + ${info.coordinate.longitude}`}
       />
       <TCRInfo image={info.trashImage} tagList={info.tags} />
-      <Button onPress={handleSubmit}>등록하기</Button>
+      <TOOKBtn name={'등록하기'} onPress={handleSubmit} />
     </Box>
   );
 }
