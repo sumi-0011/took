@@ -21,7 +21,8 @@
       "@recoil/*": ["recoil/*"],
       "@screens/*": ["screens/*"],
       "types/*": ["types/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@constants/*": ["src/constants/*"]
     }
   },
   "exclude": [

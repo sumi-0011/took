@@ -25,8 +25,10 @@ module.exports = {
           '@navigations': './src/navigations',
           '@recoil': './src/recoil',
           '@screens': './src/screens',
+          // NOTE : types 만 이렇게 해둔 이유는 뭐죵
           types: './src/types',
           '@utils': './src/utils',
+          '@constants': './scr/constants',
         },
       },
     ],
