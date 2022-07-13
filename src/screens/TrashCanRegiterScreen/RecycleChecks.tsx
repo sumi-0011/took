@@ -1,23 +1,22 @@
 import React from 'react';
 import {Box, Checkbox, FlatList, Text} from 'native-base';
-import {categoryList} from 'utils/categoryList';
+import {RECYCLE_CHECK_LIST} from 'constants/trashCanRegister';
 
-interface CategotyCheckboxProps {
+interface RecycleChecksProps {
   handleCheckChange: (values: string[]) => void;
 }
 
-function CategoryCheckbox({handleCheckChange}: CategotyCheckboxProps) {
+function RecycleChecks({handleCheckChange}: RecycleChecksProps) {
   return (
     <>
       <Text>재활용 가능한 품목</Text>
       {/* TODO : 체크박스 색깔 수정 필요 (연한 그린으로 ) */}
       <Checkbox.Group
         colorScheme="green"
-        accessibilityLabel="재활용 가능한 품목"
         onChange={values => handleCheckChange(values)}>
         <FlatList
           numColumns={2}
-          data={categoryList}
+          data={RECYCLE_CHECK_LIST}
           renderItem={({item}) => (
             <Box width={'50%'}>
               <Checkbox value={item.name} my="2">
@@ -32,4 +31,4 @@ function CategoryCheckbox({handleCheckChange}: CategotyCheckboxProps) {
   );
 }
 
-export default CategoryCheckbox;
+export default RecycleChecks;
