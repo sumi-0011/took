@@ -5,7 +5,7 @@ import {TCRStep1RegistType, TrashCanInfoType} from 'types/TrashCanType';
 import {TCRegistSelectState} from '@recoil/TCRegistState';
 import useCurrentLocation from '@hooks/useCurrentLocation';
 import RecycleChecks from '@screens/TrashCanRegiterScreen/RecycleChecks';
-import MapViewWrapper from '@components/MapView';
+import MapViewWrapper from '@components/MapViewWrapper';
 import TOOKBtn from '@components/TOOKBtn';
 
 function TrashCanRegisterScreen({navigation}: any) {
@@ -31,8 +31,17 @@ function TrashCanRegisterScreen({navigation}: any) {
   return (
     <Box height={'100%'}>
       {location && (
-        <MapViewWrapper location={location} setLocation={setLocation} />
+        <MapViewWrapper
+          location={location}
+          onRegionChangeComplete={region =>
+            setLocation({
+              latitude: region.latitude,
+              longitude: region.longitude,
+            })
+          }
+        />
       )}
+      {/* NOTE : map의 로딩 시간이 있어서 박스가 위에있다 아래로 내려가는 현상이 발생 */}
       <Box p={5} bg={'#fff'}>
         <Text>쓰레기통 이름</Text>
         <Input
