@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
+import {Box, Button, Text, VStack} from 'native-base';
+import {useForm, Controller} from 'react-hook-form';
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
-import {useForm, Controller} from 'react-hook-form';
-import {Box, Button, Text, VStack} from 'native-base';
 import {signUp} from '@api/fireAuthAPI';
+import {SignUpData} from 'types/AuthType';
 import Input from '@components/Input';
 import ErrorMsg from '@components/ErrorMsg';
-import {SignUpData} from 'types/AuthType';
 import ScreenHeader from '@components/ScreenHeader';
 
 function SignupScreen({navigation}: any) {

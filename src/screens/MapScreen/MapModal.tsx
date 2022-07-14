@@ -1,16 +1,15 @@
-import {getTrashCan} from '@api/trashCanAPI';
-import {updateStar, getUser, updateLastTookTime} from '@api/userAPI';
-import BadgeList from '@components/BadgeList';
-import {HearFilltIcon, HeartOutlineIcon, ReportIcon} from '@components/Icon';
-import {Box, Button, HStack, Image, Text} from 'native-base';
 import React, {useEffect, useState} from 'react';
+import {Box, HStack, Image, Text} from 'native-base';
 import {useRecoilState} from 'recoil';
-import styled from 'styled-components';
-import {TrashCanInfoType} from 'types/TrashCanType';
+import {updateStar, getUser, updateLastTookTime} from '@api/userAPI';
+import {getTrashCan} from '@api/trashCanAPI';
 import {UserState} from '@recoil/UserState';
+import {TrashCanInfoType} from 'types/TrashCanType';
 import {UserInfoType} from 'types/UserType';
-import IconBtn from './IconBtn';
+import {HearFilltIcon, HeartOutlineIcon, ReportIcon} from '@components/Icon';
+import BadgeList from '@components/BadgeList';
 import TOOKBtn from '@components/TOOKBtn';
+import IconBtn from './IconBtn';
 
 interface MapModalProps {
   currentTCId: string;

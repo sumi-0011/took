@@ -1,7 +1,7 @@
 import React from 'react';
 import {ScrollView, Text, VStack} from 'native-base';
-import {LogoutIcon, PushIcon, StarIcon} from '@components/Icon';
 import {signOut} from '@api/fireAuthAPI';
+import {LogoutIcon, PushIcon, StarIcon} from '@components/Icon';
 import IconTextMenu from './IconTextMenu';
 import Profile from './Profile';
 

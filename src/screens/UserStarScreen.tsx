@@ -1,8 +1,8 @@
-import {getStaredTrashCans} from '@api/trashCanAPI';
-import TCCard from '@components/TCCard';
-import {FlatList} from 'native-base';
 import React, {useCallback, useEffect, useState} from 'react';
+import {FlatList} from 'native-base';
+import {getStaredTrashCans} from '@api/trashCanAPI';
 import {TrashCanInfoType} from 'types/TrashCanType';
+import TCCard from '@components/TCCard';
 
 function UserStarScreen() {
   const [data, setData] = useState<TrashCanInfoType[]>([]);
