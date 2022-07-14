@@ -16,7 +16,7 @@ export async function getUser() {
   }
 }
 
-export async function updateStar(dosId: string, newStars: any) {
+export async function updateStar(dosId: string, newStars: string[]) {
   try {
     const res = await users.doc(dosId).update({
       stars: newStars,
