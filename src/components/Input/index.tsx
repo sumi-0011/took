@@ -10,7 +10,7 @@ interface IInput {
   onBlur: () => void;
   value: string;
 }
-
+// 로그인, 회원가입에서 사용
 function Input({type, ph, fontSize = '16px', ...rest}: IInput) {
   if (rest.secondary) {
     // return another styled NativeInput
