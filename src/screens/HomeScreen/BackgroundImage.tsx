@@ -1,6 +1,6 @@
+import {Box} from 'native-base';
 import React, {ReactNode} from 'react';
-import {ImageBackground, View} from 'react-native';
-import styled from 'styled-components/native';
+import {ImageBackground} from 'react-native';
 
 interface IBackgroundImage {
   children: ReactNode;
@@ -15,7 +15,12 @@ function BackgroundImage({children, img}: IBackgroundImage) {
       }}
       resizeMode="cover"
       style={ImageBackgroundStyles}>
-      <Bg />
+      <Box
+        w="100%"
+        h="100%"
+        position={'absolute'}
+        bgColor="rgba(0, 0, 0, 0.4)"
+      />
       {children}
     </ImageBackground>
   );
@@ -25,12 +30,5 @@ const ImageBackgroundStyles = {
   width: '100%',
   height: '100%',
 };
-
-const Bg = styled(View)`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.4);
-`;
 
 export default BackgroundImage;

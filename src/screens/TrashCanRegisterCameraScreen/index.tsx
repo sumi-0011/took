@@ -1,7 +1,7 @@
 import React from 'react';
-import Camera from './Camera';
 import {useRecoilState} from 'recoil';
 import {TCRegistSelectState} from '@recoil/TCRegistState';
+import Camera from './Camera';
 
 function TrashCanRegisterCameraScreen({navigation}: any) {
   const [registData, setRegistData] = useRecoilState(TCRegistSelectState);

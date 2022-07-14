@@ -1,5 +1,5 @@
-import {Box} from 'native-base';
 import React, {useCallback, useState} from 'react';
+import {Box} from 'native-base';
 import BackButton from '@components/BackButton';
 import MapContainer from './MapContainer';
 import MapModal from './MapModal';

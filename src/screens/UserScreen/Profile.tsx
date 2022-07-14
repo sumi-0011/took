@@ -1,8 +1,8 @@
-import {Box, Button, HStack, Progress, Text, VStack} from 'native-base';
 import React, {useEffect, useState} from 'react';
+import {Box, Button, HStack, Progress, Text, VStack} from 'native-base';
 import {getUserInfo} from '@api/fireAuthAPI';
-import {MailIcon} from '@components/Icon';
 import {UserType} from 'types/UserType';
+import {MailIcon} from '@components/Icon';
 
 interface IProfile {
   onPress: () => void;

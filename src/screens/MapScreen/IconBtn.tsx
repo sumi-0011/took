@@ -1,5 +1,5 @@
-import {Pressable, Text} from 'native-base';
 import React from 'react';
+import {Pressable, Text} from 'native-base';
 
 type IIconButton = {
   icon: any;

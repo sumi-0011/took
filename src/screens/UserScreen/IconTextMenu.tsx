@@ -1,6 +1,6 @@
-import {RightArrowIcon} from '@components/Icon';
-import {HStack, Pressable, Text} from 'native-base';
 import React, {ReactNode} from 'react';
+import {HStack, Pressable, Text} from 'native-base';
+import {RightArrowIcon} from '@components/Icon';
 
 interface IIconTeextMenu {
   icon: ReactNode;

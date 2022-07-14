@@ -1,5 +1,5 @@
-import {Box, Input, Text} from 'native-base';
 import React, {useState} from 'react';
+import {Box, Input, Text} from 'native-base';
 import {useRecoilState} from 'recoil';
 import {TCRStep1RegistType, TrashCanInfoType} from 'types/TrashCanType';
 import {TCRegistSelectState} from '@recoil/TCRegistState';

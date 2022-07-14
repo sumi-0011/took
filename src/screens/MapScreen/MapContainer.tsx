@@ -1,7 +1,7 @@
+import React, {useEffect, useState} from 'react';
+import {Box} from 'native-base';
 import {Marker} from 'react-native-maps';
 import {getTrashCans} from '@api/trashCanAPI';
-import {Box} from 'native-base';
-import React, {useEffect, useState} from 'react';
 import {TrashCanType} from 'types/TrashCanType';
 import useCurrentLocation from '@hooks/useCurrentLocation';
 import trashCanImage from '@images/trashCan.png';
