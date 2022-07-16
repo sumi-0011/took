@@ -14,13 +14,12 @@ import BadgeList from '@components/BadgeList';
 interface ITCCard {
   name: string;
   tags: string[];
-  trashImage: string;
   id: string;
   onPress?: () => void;
   onRemove: (id: string) => void;
 }
 
-function TCCard({name, tags, trashImage, id, onPress, onRemove}: ITCCard) {
+function TCCard({name, tags, id, onPress, onRemove}: ITCCard) {
   return (
     <Box flex={1}>
       <Pressable onPress={onPress}>

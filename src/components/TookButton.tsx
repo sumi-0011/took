@@ -1,24 +1,26 @@
 import {Button, Text} from 'native-base';
 import React from 'react';
 
-interface TOOKBtnProps {
+interface TookButtonProps {
   name: string;
   onPress: () => void;
   isDisabled?: boolean;
 }
 
-function TOOKBtn({name, onPress, isDisabled}: TOOKBtnProps) {
+function TookButton({name, onPress, isDisabled}: TookButtonProps) {
   return (
     <Button
-      colorScheme={'green'}
-      variant={'light'}
+      padding="5"
+      colorScheme="green"
+      variant="light"
       onPress={onPress}
+      borderRadius="xl"
       isDisabled={isDisabled}>
-      <Text color={'white'} fontSize={'16px'} fontWeight="bold">
+      <Text color="white" fontSize="16px" bold>
         {name}
       </Text>
     </Button>
   );
 }
 
-export default TOOKBtn;
+export default TookButton;
