@@ -17,3 +17,13 @@ export interface TCRStep1RegistType {
   tags: string[];
   coordinate: {latitude: number; longitude: number};
 }
+
+export interface RecycleTypes {
+  name: string;
+  key: string;
+  check: boolean;
+}
+
+export interface RecycleItem {
+  item: RecycleTypes;
+}

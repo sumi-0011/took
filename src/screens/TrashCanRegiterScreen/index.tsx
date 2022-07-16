@@ -1,62 +1,94 @@
 import React, {useState} from 'react';
-import {Box, Input, Text} from 'native-base';
+import {Box, Input, Text, useToast, VStack} from 'native-base';
 import {useRecoilState} from 'recoil';
-import {TCRStep1RegistType, TrashCanInfoType} from 'types/TrashCanType';
-import {TCRegistSelectState} from '@recoil/TCRegistState';
+import {TrashCanInfoType} from 'types/TrashCanType';
+import {trashCanRegisterState} from '@recoil/TrashCanRegisterState';
 import useCurrentLocation from '@hooks/useCurrentLocation';
 import RecycleChecks from '@screens/TrashCanRegiterScreen/RecycleChecks';
 import MapViewWrapper from '@components/MapViewWrapper';
-import TOOKBtn from '@components/TOOKBtn';
+import TookButton from '@components/TookButton';
+import CenterSpinner from '@components/CenterSpinner';
+import {LocationType} from 'types/LocationType';
 
 function TrashCanRegisterScreen({navigation}: any) {
+  const toast = useToast();
   const {location, setLocation} = useCurrentLocation();
+
   const [inputName, setInputName] = useState<string>('');
   const [groupValue, setGroupValue] = useState<string[]>([]);
-  const [registData, setRegistData] =
-    useRecoilState<TrashCanInfoType>(TCRegistSelectState);
 
-  const handleCameraBtnClick = () => {
-    if (!location) {
-      return;
+  const [registerData, setRegisterData] = useRecoilState<TrashCanInfoType>(
+    trashCanRegisterState,
+  );
+
+  const handleCameraButtonClick = () => {
+    if (!inputName || groupValue.length === 0) {
+      toast.show({
+        render: () => {
+          return (
+            <Box bg="error.500" px="3" py="2" rounded="full" mb={5}>
+              <Text color="white" bold fontSize="md">
+                쓰레기통의 이름과 카테고리를 한 개 이상 선택해주세요.
+              </Text>
+            </Box>
+          );
+        },
+      });
+    } else if (location) {
+      setRegisterData({
+        ...registerData,
+        name: inputName,
+        tags: groupValue,
+        coordinate: location,
+      });
+
+      navigation.navigate('TrashCanRegisterCameraScreen');
     }
-    const tcrRegistStep1Data: TCRStep1RegistType = {
-      name: inputName,
-      tags: groupValue,
-      coordinate: location,
-    };
-    setRegistData({...registData, ...tcrRegistStep1Data});
-    navigation.navigate('TrashCanRegisterCameraScreen');
   };
 
+  const handleRegionChange = (region: LocationType) => {
+    setLocation({
+      latitude: region.latitude,
+      longitude: region.longitude,
+    });
+  };
+
+  const handleCheckChange = (values: string[]) => {
+    setGroupValue(values);
+  };
+
+  const handleTextChange = (text: string) => {
+    setInputName(text);
+  };
+
+  if (!location) {
+    return <CenterSpinner />;
+  }
+
   return (
-    <Box height={'100%'}>
-      {location && (
+    <Box h="100%" bg="white">
+      {location ? (
         <MapViewWrapper
           location={location}
-          onRegionChangeComplete={region =>
-            setLocation({
-              latitude: region.latitude,
-              longitude: region.longitude,
-            })
-          }
+          handleRegionChange={handleRegionChange}
         />
-      )}
-      {/* NOTE : map의 로딩 시간이 있어서 박스가 위에있다 아래로 내려가는 현상이 발생 */}
-      <Box p={5} bg={'#fff'}>
-        <Text>쓰레기통 이름</Text>
-        <Input
-          size="lg"
-          placeholder="쓰레기통 이름을 입력해주세요"
-          name="trashName"
-          marginY={2}
-          value={inputName}
-          onChangeText={text => setInputName(text)}
-        />
-        <RecycleChecks
-          handleCheckChange={(values: string[]) => setGroupValue(values || [])}
-        />
-        <TOOKBtn name={' 사진 촬영'} onPress={handleCameraBtnClick} />
-      </Box>
+      ) : null}
+
+      <VStack space={10} p={5}>
+        <VStack space={2}>
+          <Text fontSize="xl">쓰레기통 이름</Text>
+          <Input
+            size="lg"
+            placeholder="쓰레기통 이름을 입력해주세요"
+            name="trashName"
+            marginY={1}
+            value={inputName}
+            onChangeText={handleTextChange}
+          />
+        </VStack>
+        <RecycleChecks handleCheckChange={handleCheckChange} />
+        <TookButton name="사진 촬영" onPress={handleCameraButtonClick} />
+      </VStack>
     </Box>
   );
 }

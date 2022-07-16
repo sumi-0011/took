@@ -10,7 +10,7 @@ interface TCRInfoProps {
 function TCRInfo({image, tagList}: TCRInfoProps) {
   return (
     <Box marginTop={5}>
-      <Text bold fontSize={'lg'}>
+      <Text bold fontSize={'xl'}>
         쓰레기통 정보
       </Text>
       <Image

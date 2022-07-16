@@ -12,11 +12,11 @@ interface PlaceInfoProps {
 function TCRInfoPlaceInfo({name, address, coordinate}: PlaceInfoProps) {
   return (
     <Box>
-      <Text bold fontSize={'lg'} accessibilityLabel="place-name">
+      <Text fontSize="xl" accessibilityLabel="place-name" bold>
         {name}
       </Text>
       <Text
-        fontSize={'xs'}
+        fontSize="xs"
         color="coolGray.500"
         accessibilityLabel="place-address">
         {address}

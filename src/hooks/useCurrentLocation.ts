@@ -7,20 +7,27 @@ function useCurrentLocation() {
   const [location, setLocation] = useState<LocationType>();
 
   useEffect(() => {
-    requestAccessLocationPermission().then(result => {
-      if (result === 'granted') {
-        Geolocation.getCurrentPosition(
-          pos => {
-            const {latitude, longitude} = pos.coords;
-            setLocation({latitude, longitude});
-          },
-          error => {
-            console.log(error);
-          },
-          {enableHighAccuracy: true, timeout: 3600, maximumAge: 3600},
-        );
+    const fetchCurrentLocation = async () => {
+      try {
+        const res = await requestAccessLocationPermission();
+        if (res === 'granted') {
+          Geolocation.getCurrentPosition(
+            pos => {
+              const {latitude, longitude} = pos.coords;
+              setLocation({latitude, longitude});
+            },
+            error => {
+              console.log(error);
+            },
+            {enableHighAccuracy: true, timeout: 3600, maximumAge: 3600},
+          );
+        }
+      } catch (error) {
+        console.log(error);
       }
-    });
+    };
+
+    fetchCurrentLocation();
   }, []);
 
   return {location, setLocation};
