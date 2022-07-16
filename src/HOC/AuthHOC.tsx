@@ -4,10 +4,10 @@ import AuthNaviagtion from '@navigations/AuthNavigation';
 
 export default function <P extends object>(Component: ComponentType<P>) {
   function AuthenticationCheck({...props}) {
-    if (isLoggedIn() === false) {
-      return <AuthNaviagtion />;
-    } else {
+    if (isLoggedIn) {
       return <Component {...(props as P)} />;
+    } else {
+      return <AuthNaviagtion />;
     }
   }
   return AuthenticationCheck;
