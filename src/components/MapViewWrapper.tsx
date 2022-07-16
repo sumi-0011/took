@@ -1,16 +1,16 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import MapView, {Marker} from 'react-native-maps';
 import {LocationType} from 'types/LocationType';
 
 interface MapViewWrapperProps {
   location: LocationType;
-  onRegionChangeComplete?: (region: LocationType) => void;
-  children?: React.ReactNode;
+  handleRegionChange?: (region: LocationType) => void;
+  children?: ReactNode;
 }
 
 const MapViewWrapper = ({
   location,
-  onRegionChangeComplete,
+  handleRegionChange,
   children,
 }: MapViewWrapperProps) => {
   return (
@@ -23,7 +23,7 @@ const MapViewWrapper = ({
         longitudeDelta: 0.001,
       }}
       onRegionChangeComplete={region =>
-        onRegionChangeComplete && onRegionChangeComplete(region)
+        handleRegionChange && handleRegionChange(region)
       }>
       <Marker coordinate={location} />
       {children}
@@ -31,6 +31,8 @@ const MapViewWrapper = ({
   );
 };
 
-const mapViewStyle = {flex: 1};
+const mapViewStyle = {
+  flex: 1,
+};
 
 export default MapViewWrapper;
