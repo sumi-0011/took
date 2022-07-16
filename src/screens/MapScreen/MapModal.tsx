@@ -8,17 +8,19 @@ import {TrashCanInfoType} from 'types/TrashCanType';
 import {UserInfoType} from 'types/UserType';
 import {HearFilltIcon, HeartOutlineIcon, ReportIcon} from '@components/Icon';
 import BadgeList from '@components/BadgeList';
-import TOOKBtn from '@components/TOOKBtn';
+import TOOKBtn from '@components/TookButton';
 import IconBtn from './IconBtn';
+import {isLoggedIn} from '@api/fireAuthAPI';
 
 interface MapModalProps {
-  currentTCId: string;
+  currentTrashCanID: string;
 }
 
-function MapModal({currentTCId}: MapModalProps) {
+function MapModal({currentTrashCanID}: MapModalProps) {
   const [isStar, setIsStar] = useState<boolean>(false);
-  const [userInfo, setUserInfo] = useRecoilState<UserInfoType>(UserState);
   const [isTook, setIsTook] = useState<boolean>(false);
+
+  const [userInfo, setUserInfo] = useRecoilState<UserInfoType>(UserState);
   const [selectTCInfo, setSelectTCInfo] = useState<TrashCanInfoType>();
 
   const fetchData = async () => {
@@ -31,16 +33,17 @@ function MapModal({currentTCId}: MapModalProps) {
   };
 
   useEffect(() => {
-    getTrashCan(currentTCId)
+    getTrashCan(currentTrashCanID)
       .then(res => {
         setSelectTCInfo(res);
       })
       .catch(error => console.log('getTrashCan error: ', error));
-  }, [currentTCId]);
+  }, [currentTrashCanID]);
+
   useEffect(() => {
-    const index = userInfo?.stars.findIndex(ele => ele === currentTCId);
+    const index = userInfo?.stars.findIndex(ele => ele === currentTrashCanID);
     index !== -1 ? setIsStar(true) : setIsStar(false);
-  }, [currentTCId, userInfo?.stars]);
+  }, [currentTrashCanID, userInfo?.stars]);
 
   useEffect(() => {
     if (!userInfo) {
@@ -64,18 +67,20 @@ function MapModal({currentTCId}: MapModalProps) {
   };
 
   const handleStarClick = () => {
-    if (!userInfo) {
+    if (!isLoggedIn) {
       console.log('로그인이 필요합니다.');
       return;
     }
 
-    const index = userInfo?.stars.findIndex(ele => ele === currentTCId);
+    const index = userInfo?.stars.findIndex(ele => ele === currentTrashCanID);
     if (index === -1) {
       // 추가
-      updateStarApi(userInfo.uid, [...userInfo.stars, currentTCId]);
+      updateStarApi(userInfo.uid, [...userInfo.stars, currentTrashCanID]);
     } else {
       // 제거
-      const filterStars = userInfo.stars.filter(star => star !== currentTCId);
+      const filterStars = userInfo.stars.filter(
+        star => star !== currentTrashCanID,
+      );
       updateStarApi(userInfo.uid, filterStars);
     }
   };

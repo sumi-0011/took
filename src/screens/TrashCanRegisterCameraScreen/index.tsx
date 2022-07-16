@@ -1,12 +1,16 @@
 import React from 'react';
 import {useRecoilState} from 'recoil';
-import {TCRegistSelectState} from '@recoil/TCRegistState';
+import {trashCanRegisterState} from '@recoil/TrashCanRegisterState';
 import Camera from './Camera';
+import {TrashCanInfoType} from 'types/TrashCanType';
 
 function TrashCanRegisterCameraScreen({navigation}: any) {
-  const [registData, setRegistData] = useRecoilState(TCRegistSelectState);
+  const [registerData, setRegisterData] = useRecoilState<TrashCanInfoType>(
+    trashCanRegisterState,
+  );
+
   const nextPage = (image: string) => {
-    setRegistData({...registData, trashImage: image});
+    setRegisterData({...registerData, trashImage: image});
     navigation.navigate('TrachCanRegisterConfirmScreen');
   };
 

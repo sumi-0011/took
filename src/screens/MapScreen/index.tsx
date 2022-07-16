@@ -5,9 +5,11 @@ import MapContainer from './MapContainer';
 import MapModal from './MapModal';
 
 function MapScreen({navigation}: any) {
-  const [selectTrashCan, setSelectTrashCan] = useState<string>();
+  const [selectTrashCan, setSelectTrashCan] = useState<string>('');
+  const [isMapModalVisible, setIsMapModalVisible] = useState<boolean>(false);
 
   const onClickMarker = useCallback((id: string) => {
+    setIsMapModalVisible(true);
     setSelectTrashCan(id);
   }, []);
 
@@ -15,7 +17,9 @@ function MapScreen({navigation}: any) {
     <Box w="100%" h="100%">
       <BackButton navigation={navigation} />
       <MapContainer onClickMarker={onClickMarker} />
-      {selectTrashCan && <MapModal currentTCId={selectTrashCan} />}
+      {isMapModalVisible ? (
+        <MapModal currentTrashCanID={selectTrashCan} />
+      ) : null}
     </Box>
   );
 }

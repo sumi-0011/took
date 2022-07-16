@@ -3,7 +3,7 @@ import {StyleProp, ViewStyle, Platform, LogBox} from 'react-native';
 import {Box, Text} from 'native-base';
 import {RNCamera} from 'react-native-camera';
 import {hasAndroidPermission} from 'utils/permission';
-import TOOKBtn from '@components/TOOKBtn';
+import TOOKBtn from '@components/TookButton';
 
 LogBox.ignoreLogs([
   'ViewPropTypes will be removed',

@@ -1,31 +1,30 @@
 import React from 'react';
 import {Box} from 'native-base';
 import {useRecoilValue} from 'recoil';
-import {TCRegistSelectState} from '@recoil/TCRegistState';
+import {trashCanRegisterState} from '@recoil/TrashCanRegisterState';
 import {addTrashCan} from '@api/trashCanAPI';
-import TOOKBtn from '@components/TOOKBtn';
+import TOOKBtn from '@components/TookButton';
 import {TrashCanInfoType} from 'types/TrashCanType';
 import TCRInfoPlaceInfo from './TCRInfoPlaceInfo';
 import TCRInfo from './TCRInfo';
 
 function TrachCanRegisterConfirmScreen({navigation}: any) {
-  const info = useRecoilValue<TrashCanInfoType>(TCRegistSelectState);
+  const registerData = useRecoilValue<TrashCanInfoType>(trashCanRegisterState);
 
   const handleSubmit = async () => {
-    const res = await addTrashCan(info);
+    const res = await addTrashCan(registerData);
     console.log(res);
     navigation.navigate('HomeScreen');
   };
 
   return (
-    <Box p={5} bg={'#fff'} height={'100%'} justifyContent="space-between">
+    <Box p={5} bg="white" height="100%" justifyContent="space-between">
       <TCRInfoPlaceInfo
-        name={info.name}
-        coordinate={info.coordinate}
-        // NOTE :  address 임시 데이터
-        address={`${info.coordinate.latitude} + ${info.coordinate.longitude}`}
+        name={registerData.name}
+        coordinate={registerData.coordinate}
+        address={`${registerData.coordinate.latitude} + ${registerData.coordinate.longitude}`}
       />
-      <TCRInfo image={info.trashImage} tagList={info.tags} />
+      <TCRInfo image={registerData.trashImage} tagList={registerData.tags} />
       <TOOKBtn name={'등록하기'} onPress={handleSubmit} />
     </Box>
   );
