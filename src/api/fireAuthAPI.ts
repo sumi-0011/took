@@ -5,9 +5,7 @@ import {FirebaseAuthError} from 'types/FirebaseType';
 
 const users = firebase.firestore().collection('users');
 
-export function isLoggedIn() {
-  return auth().currentUser ? true : false;
-}
+export const isLoggedIn = auth().currentUser ? true : false;
 
 export function getUserInfo() {
   const user = auth().currentUser;
