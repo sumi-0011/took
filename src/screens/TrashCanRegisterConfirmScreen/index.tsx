@@ -1,31 +1,56 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Box} from 'native-base';
 import {useRecoilValue} from 'recoil';
 import {trashCanRegisterState} from '@recoil/TrashCanRegisterState';
 import {addTrashCan} from '@api/trashCanAPI';
-import TOOKBtn from '@components/TookButton';
+import {getUser, updateRegisterTrashCan} from '@api/userAPI';
+import TookButton from '@components/TookButton';
 import {TrashCanInfoType} from 'types/TrashCanType';
-import TCRInfoPlaceInfo from './TCRInfoPlaceInfo';
-import TCRInfo from './TCRInfo';
+import TCRInfoPlaceInfo from '@screens/TrashCanRegisterConfirmScreen/TCRInfoPlaceInfo';
+import TCRInfo from '@screens/TrashCanRegisterConfirmScreen/TCRInfo';
 
 function TrachCanRegisterConfirmScreen({navigation}: any) {
-  const registerData = useRecoilValue<TrashCanInfoType>(trashCanRegisterState);
+  const currentTrashCan = useRecoilValue<TrashCanInfoType>(
+    trashCanRegisterState,
+  );
+
+  const [registerTrashCans, setRegisterTrashCans] = useState<string[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const user = await getUser();
+      setRegisterTrashCans(user.registedTrashCans);
+    }
+
+    fetchData();
+  }, []);
 
   const handleSubmit = async () => {
-    const res = await addTrashCan(registerData);
-    console.log(res);
+    try {
+      const trashCan = await addTrashCan(currentTrashCan);
+
+      if (trashCan) {
+        await updateRegisterTrashCan([...registerTrashCans, trashCan.id]);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
     navigation.navigate('HomeScreen');
   };
 
   return (
     <Box p={5} bg="white" height="100%" justifyContent="space-between">
       <TCRInfoPlaceInfo
-        name={registerData.name}
-        coordinate={registerData.coordinate}
-        address={`${registerData.coordinate.latitude} + ${registerData.coordinate.longitude}`}
+        name={currentTrashCan.name}
+        coordinate={currentTrashCan.coordinate}
+        address={`${currentTrashCan.coordinate.latitude} + ${currentTrashCan.coordinate.longitude}`}
       />
-      <TCRInfo image={registerData.trashImage} tagList={registerData.tags} />
-      <TOOKBtn name={'등록하기'} onPress={handleSubmit} />
+      <TCRInfo
+        image={currentTrashCan.trashImage}
+        tagList={currentTrashCan.tags}
+      />
+      <TookButton name={'등록하기'} onPress={handleSubmit} />
     </Box>
   );
 }

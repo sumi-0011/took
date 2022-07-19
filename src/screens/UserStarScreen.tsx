@@ -1,19 +1,24 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {FlatList} from 'native-base';
+import {Box, FlatList} from 'native-base';
 import {getStaredTrashCans} from '@api/trashCanAPI';
 import {TrashCanInfoType} from 'types/TrashCanType';
 import TCCard from '@components/TrashCanCard';
+import CenterSpinner from '@components/CenterSpinner';
 
 function UserStarScreen() {
-  const [data, setData] = useState<TrashCanInfoType[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [data, setData] = useState<TrashCanInfoType[] | undefined>([]);
 
   useEffect(() => {
     async function fetchData() {
-      const stared = await getStaredTrashCans();
-
-      if (stared) {
+      try {
+        setIsLoading(true);
+        const stared = await getStaredTrashCans();
         setData(stared);
+      } catch (error) {
+        console.log(error);
       }
+      setIsLoading(false);
     }
 
     fetchData();
@@ -34,18 +39,24 @@ function UserStarScreen() {
 
   const keyExtractor = useCallback(item => item.id + item.name, []);
 
+  if (isLoading) {
+    return <CenterSpinner />;
+  }
+
   return (
-    <FlatList
-      data={data}
-      keyExtractor={keyExtractor}
-      renderItem={renderItem}
-      maxToRenderPerBatch={8}
-      windowSize={12}
-      initialNumToRender={7}
-      removeClippedSubviews={true}
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-    />
+    <Box w="100%" h="100%" backgroundColor="white">
+      <FlatList
+        data={data}
+        keyExtractor={keyExtractor}
+        renderItem={renderItem}
+        maxToRenderPerBatch={8}
+        windowSize={12}
+        initialNumToRender={7}
+        removeClippedSubviews={true}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+      />
+    </Box>
   );
 }
 
