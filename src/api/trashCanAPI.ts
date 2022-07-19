@@ -9,6 +9,7 @@ const {uid} = getUserInfo();
 export async function addTrashCan(addData: TrashCanInfoType) {
   try {
     const res = await trashCans.add(addData);
+
     return res;
   } catch (error) {
     console.log(error);
@@ -27,6 +28,7 @@ export async function getTrashCan(TCId: string) {
         result = trashCanData;
       }
     });
+
     return result;
   } catch (error) {
     console.log('error: ', error);

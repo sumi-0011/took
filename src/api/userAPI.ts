@@ -13,23 +13,43 @@ export async function getUser() {
     return {...userData} as UserInfoType;
   } catch (error) {
     console.log(error);
+
+    return {
+      tookCnt: 0,
+      lastTookTime: new Date(),
+      stars: [''],
+      registedTrashCans: [''],
+    } as UserInfoType;
   }
 }
 
-export async function updateStar(dosId: string, newStars: string[]) {
+export async function updateStar(newStars: string[]) {
   try {
-    const res = await users.doc(dosId).update({
+    const res = await users.doc(uid).update({
       stars: newStars,
     });
+
     return res;
   } catch (error) {
     console.log('updateStar api error: ', error);
   }
 }
 
-export async function updateLastTookTime(dosId: string, tookCnt: number) {
+export async function updateRegisterTrashCan(newRegisterTrashCans: string[]) {
   try {
-    const res = await users.doc(dosId).update({
+    const response = await users.doc(uid).update({
+      registedTrashCans: newRegisterTrashCans,
+    });
+
+    return response;
+  } catch (error) {
+    console.log('update register trash can error', error);
+  }
+}
+
+export async function updateLastTookTime(tookCnt: number) {
+  try {
+    const res = await users.doc(uid).update({
       lastTookTime: new Date(),
       tookCnt: tookCnt + 1,
     });
