@@ -10,7 +10,7 @@ interface IBadgeList {
 function BadgeList({data, bgColor, color}: IBadgeList) {
   return (
     <HStack space={1} marginY="2">
-      {data.map((item, index) => (
+      {data?.map((item, index) => (
         <Box
           key={`tag${index}`}
           borderRadius={5}

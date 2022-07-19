@@ -15,11 +15,12 @@ interface ITCCard {
   name: string;
   tags: string[];
   id: string;
+  trashImage: string;
   onPress?: () => void;
   onRemove: (id: string) => void;
 }
 
-function TCCard({name, tags, id, onPress, onRemove}: ITCCard) {
+function TCCard({name, trashImage, tags, id, onPress, onRemove}: ITCCard) {
   return (
     <Box flex={1}>
       <Pressable onPress={onPress}>
