@@ -16,6 +16,8 @@ const MapViewWrapper = ({
   return (
     <MapView
       style={mapViewStyle}
+      showsUserLocaiton={true}
+      showsMyLocationButton={true}
       initialRegion={{
         latitude: location.latitude,
         longitude: location.longitude,
