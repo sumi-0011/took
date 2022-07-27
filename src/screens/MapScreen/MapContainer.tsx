@@ -39,7 +39,7 @@ function MapContainer({onClickMarker}: MapContainerProps) {
                 title={item.name}
                 identifier={item.id}
                 coordinate={item.coordinate}
-                image={trashCanImage}
+                pinColor={'green'}
                 onPress={() => onClickMarker(item.id)}
               />
             );

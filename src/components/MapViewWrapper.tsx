@@ -16,7 +16,7 @@ const MapViewWrapper = ({
   return (
     <MapView
       style={mapViewStyle}
-      showsUserLocaiton={true}
+      showsUserLocation={true}
       showsMyLocationButton={true}
       initialRegion={{
         latitude: location.latitude,
@@ -27,7 +27,6 @@ const MapViewWrapper = ({
       onRegionChangeComplete={region =>
         handleRegionChange && handleRegionChange(region)
       }>
-      <Marker coordinate={location} />
       {children}
     </MapView>
   );
