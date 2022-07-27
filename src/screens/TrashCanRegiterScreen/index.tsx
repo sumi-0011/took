@@ -9,6 +9,7 @@ import MapViewWrapper from '@components/MapViewWrapper';
 import TookButton from '@components/TookButton';
 import CenterSpinner from '@components/CenterSpinner';
 import {LocationType} from 'types/LocationType';
+import { Marker } from 'react-native-maps';
 
 function TrashCanRegisterScreen({navigation}: any) {
   const toast = useToast();
@@ -68,10 +69,11 @@ function TrashCanRegisterScreen({navigation}: any) {
   return (
     <Box h="100%" bg="white">
       {location ? (
-        <MapViewWrapper
+        <MapViewWrapper 
           location={location}
-          handleRegionChange={handleRegionChange}
-        />
+          handleRegionChange={handleRegionChange}>
+          <Marker coordinate={location} />
+        </MapViewWrapper>
       ) : null}
 
       <VStack space={10} p={5}>
