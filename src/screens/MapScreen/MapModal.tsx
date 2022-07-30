@@ -27,40 +27,36 @@ function MapModal({currentTrashCanID}: MapModalProps) {
   const [selectTrashCanInfo, setSelectTrashCanInfo] =
     useState<TrashCanInfoType>();
 
-  const fetchMapModalData = useCallback(async () => {
-    try {
-      setIsLoading(true);
+  const fetchMapModalData = useCallback(
+    async (isRefetch: boolean = false) => {
+      try {
+        !isRefetch && setIsLoading(true);
+        const [user, trashCan] = await Promise.all([
+          getUser(),
+          getTrashCan(currentTrashCanID),
+        ]);
+        console.log('user, trashCan: ', user, trashCan);
+        setUserInfo(user);
+        setSelectTrashCanInfo(trashCan);
 
-      const [user, trashCan] = await Promise.all([
-        getUser(),
-        getTrashCan(currentTrashCanID),
-      ]);
-      console.log('user, trashCan: ', user, trashCan);
-      setUserInfo(user);
-      setSelectTrashCanInfo(trashCan);
+        const elapsedHour = getElapsedTime(user.lastTookTime);
 
-      const elapsedHour = getElapsedTime(user.lastTookTime);
+        elapsedHour >= 3 ? setIsTook(true) : setIsTook(false);
 
-      if (elapsedHour >= 3) {
-        //3시간 이상 경과
-        setIsTook(true);
-      } else {
-        setIsTook(false);
+        const target = user.stars.find(star => star === currentTrashCanID);
+
+        if (target) {
+          setIsStar(true);
+        } else {
+          setIsStar(false);
+        }
+      } catch (error) {
+        console.log(error);
       }
-
-      const target = user.stars.find(star => star === currentTrashCanID);
-
-      if (target) {
-        setIsStar(true);
-      } else {
-        setIsStar(false);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-
-    setIsLoading(false);
-  }, [currentTrashCanID, setUserInfo]);
+      !isRefetch && setIsLoading(false);
+    },
+    [currentTrashCanID, setUserInfo],
+  );
 
   useEffect(() => {
     fetchMapModalData();
@@ -75,9 +71,9 @@ function MapModal({currentTrashCanID}: MapModalProps) {
       if (!target) {
         try {
           await updateStar([...userInfo.stars, currentTrashCanID]);
-          await fetchMapModalData();
+          await fetchMapModalData(true);
         } catch (error) {
-          console.log('updateStar error: ', error);
+          console.warn('updateStar error: ', error);
         }
       } else {
         const filterStars = userInfo.stars.filter(
@@ -86,7 +82,7 @@ function MapModal({currentTrashCanID}: MapModalProps) {
 
         try {
           await updateStar(filterStars);
-          await fetchMapModalData();
+          await fetchMapModalData(true);
         } catch (error) {
           console.log('updateStar error: ', error);
         }
@@ -100,7 +96,7 @@ function MapModal({currentTrashCanID}: MapModalProps) {
     } else {
       try {
         await updateLastTookTime(userInfo.tookCnt);
-        await fetchMapModalData();
+        await fetchMapModalData(true);
       } catch (error) {
         console.warn('updateLastTookTime error: ', error);
       }
@@ -108,7 +104,6 @@ function MapModal({currentTrashCanID}: MapModalProps) {
   }, [fetchMapModalData, userInfo.tookCnt]);
 
   const handleReportClick = useCallback(async () => {
-    console.log('신고하기 버튼 클릭');
     if (!isLoggedIn) {
       console.log('로그인이 필요합니다.');
       return;
@@ -131,6 +126,7 @@ function MapModal({currentTrashCanID}: MapModalProps) {
       w="100%"
       position={'absolute'}
       bottom="0"
+      minH="280px"
       bgColor={'#fff'}>
       {!isLoading ? (
         <>
@@ -143,15 +139,10 @@ function MapModal({currentTrashCanID}: MapModalProps) {
               <Text fontSize="lg" bold>
                 {selectTrashCanInfo?.name}
               </Text>
-              {/* NOTE : addresss 자리  */}
-              {/* <Text fontSize="sm" color={'coolGray.500'}>
-                {address}
-              </Text> */}
               <Box>
                 <BadgeList data={selectTrashCanInfo?.tags ?? []} />
               </Box>
             </Box>
-            {/* trash can image */}
             <Box w={100} h={'100%'}>
               <Image
                 source={{
