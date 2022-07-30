@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {Box, HStack, Image, Text} from 'native-base';
+import {Box, HStack, Image, Slide, Text} from 'native-base';
 import {useRecoilState} from 'recoil';
 import {updateStar, getUser, updateLastTookTime} from '@api/userAPI';
 import {getTrashCan, updateTrashCanReportUser} from '@api/trashCanAPI';
@@ -120,71 +120,74 @@ function MapModal({currentTrashCanID}: MapModalProps) {
   }, [selectTrashCanInfo]);
 
   return (
-    <Box
-      borderTopRadius="20"
-      p={5}
-      w="100%"
-      position={'absolute'}
-      bottom="0"
-      minH="280px"
-      bgColor={'#fff'}>
-      {!isLoading ? (
-        <>
-          <Box
-            flexDirection={'row'}
-            paddingY={2}
-            borderBottomWidth="1"
-            borderColor="coolGray.200">
-            <Box flex={1}>
-              <Text fontSize="lg" bold>
-                {selectTrashCanInfo?.name}
-              </Text>
-              <Box>
-                <BadgeList data={selectTrashCanInfo?.tags ?? []} />
+    <Slide in={selectTrashCanInfo?.id ? true : false}>
+      <Box
+        borderTopRadius="20"
+        p={5}
+        w="100%"
+        position={'absolute'}
+        bottom="0"
+        minH="280px"
+        bgColor={'#fff'}>
+        {!isLoading ? (
+          <>
+            <Box
+              flexDirection={'row'}
+              paddingY={2}
+              borderBottomWidth="1"
+              borderColor="coolGray.200"
+              h={'115px'}>
+              <Box flex={1}>
+                <Text fontSize="lg" bold>
+                  {selectTrashCanInfo?.name}
+                </Text>
+                <Box>
+                  <BadgeList data={selectTrashCanInfo?.tags ?? []} />
+                </Box>
+              </Box>
+              <Box w={100} h={'100%'}>
+                <Image
+                  source={{
+                    uri:
+                      selectTrashCanInfo?.trashImage ??
+                      'http://www.solartodaymag.com/news/photo/201705/4484_3192_3220.jpg',
+                  }}
+                  alt="쓰레기통 사진"
+                  width={100}
+                  height={90}
+                  borderRadius={10}
+                />
               </Box>
             </Box>
-            <Box w={100} h={'100%'}>
-              <Image
-                source={{
-                  uri:
-                    selectTrashCanInfo?.trashImage ??
-                    'http://www.solartodaymag.com/news/photo/201705/4484_3192_3220.jpg',
-                }}
-                alt="detail img"
-                width={100}
-                height={90}
-                borderRadius={10}
+            <HStack paddingY={3} h="70px">
+              <IconBtn
+                text="MY TOOK"
+                icon={
+                  isStar ? (
+                    <HearFilltIcon size={25} />
+                  ) : (
+                    <HeartOutlineIcon size={25} />
+                  )
+                }
+                onPress={handleStarClick}
               />
-            </Box>
-          </Box>
-          <HStack paddingY={3}>
-            <IconBtn
-              text="MY TOOK"
-              icon={
-                isStar ? (
-                  <HearFilltIcon size={25} />
-                ) : (
-                  <HeartOutlineIcon size={25} />
-                )
-              }
-              onPress={handleStarClick}
+              <IconBtn
+                text="신고하기"
+                icon={<ReportIcon size={20} />}
+                onPress={handleReportClick}
+              />
+            </HStack>
+            <TOOKBtn
+              name=" TOOK 버리기"
+              isDisabled={!isTook}
+              onPress={handleTookBtnClick}
             />
-            <IconBtn
-              text="신고하기"
-              icon={<ReportIcon size={20} />}
-              onPress={handleReportClick}
-            />
-          </HStack>
-          <TOOKBtn
-            name=" TOOK 버리기"
-            isDisabled={!isTook}
-            onPress={handleTookBtnClick}
-          />
-        </>
-      ) : (
-        <CenterSpinner />
-      )}
-    </Box>
+          </>
+        ) : (
+          <CenterSpinner />
+        )}
+      </Box>
+    </Slide>
   );
 }
 
