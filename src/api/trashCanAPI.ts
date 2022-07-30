@@ -25,7 +25,7 @@ export async function getTrashCan(TCId: string) {
     res.forEach(function (doc) {
       if (TCId === doc.id) {
         const trashCanData = doc.data();
-        result = trashCanData;
+        result = {...trashCanData, id: TCId};
       }
     });
 
@@ -69,7 +69,7 @@ export async function getTrashCans() {
         tags: trashCanData.tags,
         coordinate: trashCanData.coordinate,
         trashImage: trashCanData.trashImage,
-        reportUsers: [],
+        reportUsers: trashCanData.reportUsers ?? [],
         isFull: false,
       });
     });
@@ -97,5 +97,28 @@ export async function getRegisterTrashCans() {
     return registedTrashCans;
   } catch (error) {
     console.log('getRegisterTrashCans api error: ', error);
+  }
+}
+
+export async function updateTrashCanReportUser(TCId: string) {
+  if (!uid) {
+    console.log('로그인이 필요합니다.');
+    return;
+  }
+  try {
+    const TrashCanDoc = await trashCans.doc(TCId).get();
+    const TrashCanData: TrashCanType = TrashCanDoc.data() as TrashCanType;
+    const TrashCanReportUser = TrashCanData?.reportUsers ?? [];
+    if (TrashCanReportUser.includes(uid)) {
+      console.log('이미 신고한 유저입니다. ');
+      return false;
+    } else {
+      const res = await trashCans.doc(TCId).update({
+        reportUsers: [...TrashCanReportUser, uid],
+      });
+      return res;
+    }
+  } catch (error) {
+    console.warn('error: ', error);
   }
 }

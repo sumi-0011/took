@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {Box, HStack, Image, Text} from 'native-base';
 import {useRecoilState} from 'recoil';
 import {updateStar, getUser, updateLastTookTime} from '@api/userAPI';
-import {getTrashCan} from '@api/trashCanAPI';
+import {getTrashCan, updateTrashCanReportUser} from '@api/trashCanAPI';
 import {UserState} from '@recoil/UserState';
 import {TrashCanInfoType} from 'types/TrashCanType';
 import {UserInfoType} from 'types/UserType';
@@ -107,9 +107,22 @@ function MapModal({currentTrashCanID}: MapModalProps) {
     }
   }, [fetchMapModalData, userInfo.tookCnt]);
 
-  const handleReportClick = useCallback(() => {
+  const handleReportClick = useCallback(async () => {
     console.log('신고하기 버튼 클릭');
-  }, []);
+    if (!isLoggedIn) {
+      console.log('로그인이 필요합니다.');
+      return;
+    }
+    if (!selectTrashCanInfo) {
+      console.log('선택한 쓰레기통이 없습니다. ');
+      return;
+    }
+    try {
+      await updateTrashCanReportUser(selectTrashCanInfo.id);
+    } catch (error) {
+      console.log('error: ', error);
+    }
+  }, [selectTrashCanInfo]);
 
   return (
     <Box
