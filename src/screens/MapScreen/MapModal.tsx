@@ -12,6 +12,7 @@ import TOOKBtn from '@components/TookButton';
 import IconBtn from './IconBtn';
 import {isLoggedIn} from '@api/fireAuthAPI';
 import CenterSpinner from '@components/CenterSpinner';
+import {getElapsedTime} from '@utils/time';
 
 interface MapModalProps {
   currentTrashCanID: string;
@@ -34,9 +35,18 @@ function MapModal({currentTrashCanID}: MapModalProps) {
         getUser(),
         getTrashCan(currentTrashCanID),
       ]);
-
+      console.log('user, trashCan: ', user, trashCan);
       setUserInfo(user);
       setSelectTrashCanInfo(trashCan);
+
+      const elapsedHour = getElapsedTime(user.lastTookTime);
+
+      if (elapsedHour >= 3) {
+        //3시간 이상 경과
+        setIsTook(true);
+      } else {
+        setIsTook(false);
+      }
 
       const target = user.stars.find(star => star === currentTrashCanID);
 
@@ -55,16 +65,6 @@ function MapModal({currentTrashCanID}: MapModalProps) {
   useEffect(() => {
     fetchMapModalData();
   }, [fetchMapModalData]);
-
-  // useEffect(() => {
-  //   if (userInfo) {
-  //     const currentDate = new Date();
-  //     const diffTime =
-  //       (currentDate.getTime() - userInfo.lastTookTime.getTime()) /
-  //       (1000 * 60 * 60);
-  //     diffTime >= 3 ? setIsTook(true) : setIsTook(false);
-  //   }
-  // }, [userInfo]);
 
   const handleStarClick = useCallback(async () => {
     if (!isLoggedIn) {
@@ -94,12 +94,18 @@ function MapModal({currentTrashCanID}: MapModalProps) {
     }
   }, [currentTrashCanID, fetchMapModalData, userInfo.stars]);
 
-  const handleTookBtnClick = useCallback(() => {
-    console.log('툭 버리기 클릭');
-    // updateLastTookTime(userInfo.tookCnt)
-    //   .then(() => fetchData())
-    //   .catch(error => console.log('updateLastTookTime error: ', error));
-  }, []);
+  const handleTookBtnClick = useCallback(async () => {
+    if (!isLoggedIn) {
+      console.log('로그인이 필요합니다.');
+    } else {
+      try {
+        await updateLastTookTime(userInfo.tookCnt);
+        await fetchMapModalData();
+      } catch (error) {
+        console.warn('updateLastTookTime error: ', error);
+      }
+    }
+  }, [fetchMapModalData, userInfo.tookCnt]);
 
   const handleReportClick = useCallback(() => {
     console.log('신고하기 버튼 클릭');

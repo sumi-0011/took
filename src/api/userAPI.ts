@@ -9,8 +9,8 @@ export async function getUser() {
   try {
     const userDoc = await users.doc(uid).get();
     const userData = userDoc.data();
-
-    return {...userData} as UserInfoType;
+    const lastTime = userData?.lastTookTime.toDate(); //FireStoreTimeStamp => Date
+    return {...userData, lastTookTime: lastTime} as UserInfoType;
   } catch (error) {
     console.log(error);
 
@@ -53,6 +53,7 @@ export async function updateLastTookTime(tookCnt: number) {
       lastTookTime: new Date(),
       tookCnt: tookCnt + 1,
     });
+    console.log(' updateLastTookTime res: ', res);
     return res;
   } catch (error) {
     console.log('updateLastTookTime api error: ', error);
