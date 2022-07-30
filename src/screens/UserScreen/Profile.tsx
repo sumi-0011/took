@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {Box, Button, HStack, Progress, Text, VStack} from 'native-base';
 import {getUserInfo} from '@api/fireAuthAPI';
-import {UserType} from 'types/UserType';
+import {UserInfoType} from 'types/UserType';
 import {MailIcon} from '@components/Icon';
+import {getUser} from '@api/userAPI';
 
 interface IProfile {
   onPress: () => void;
@@ -10,20 +11,28 @@ interface IProfile {
 
 function Profile({onPress}: IProfile) {
   const [isLoading, setIsLoading] = useState(false);
-  const [userInfo, setUserInfo] = useState<UserType>();
+  const [userInfo, setUserInfo] = useState<UserInfoType>();
+
+  const fetchUserInfo = async () => {
+    try {
+      setIsLoading(true);
+      const {photoURL, displayName, uid, email} = getUserInfo();
+      const res = await getUser();
+      setUserInfo({
+        ...res,
+        photoURL: photoURL ?? '',
+        displayName: displayName ?? '회원',
+        uid: uid ?? '',
+        email: email ?? '',
+      });
+    } catch (error) {
+      console.warn('fetchUserInfo error: ', error);
+    }
+    setIsLoading(false);
+  };
 
   useEffect(() => {
-    setIsLoading(true);
-    const {photoURL, displayName, uid, email} = getUserInfo();
-
-    setUserInfo({
-      photoURL: photoURL ?? '',
-      displayName: displayName ?? '회원',
-      uid: uid ?? '',
-      email: email ?? '',
-    });
-
-    setIsLoading(false);
+    fetchUserInfo();
   }, []);
 
   if (isLoading) {
@@ -53,13 +62,13 @@ function Profile({onPress}: IProfile) {
       <HStack justifyContent="space-evenly">
         <VStack justifyContent="center" alignItems="center" space="2">
           <Text fontSize="3xl" bold>
-            42
+            {userInfo?.tookCnt ?? 0}
           </Text>
           <Text>쓰레기 버린 횟수</Text>
         </VStack>
         <VStack justifyContent="center" alignItems="center" space="2">
           <Text fontSize="3xl" bold>
-            10
+            {userInfo?.registedTrashCans.length ?? 0}
           </Text>
           <Text>쓰레기통 발견 횟수</Text>
         </VStack>
