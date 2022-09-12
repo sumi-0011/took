@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Box} from 'native-base';
 import {useRecoilValue} from 'recoil';
 import {trashCanRegisterState} from '@recoil/TrashCanRegisterState';
 import {addTrashCan} from '@api/trashCanAPI';
-import {getUser, updateRegisterTrashCan} from '@api/userAPI';
+import {addRegisterTrashCan} from '@api/userAPI';
 import TookButton from '@components/TookButton';
 import {TrashCanInfoType} from 'types/TrashCanType';
 import TCRInfoPlaceInfo from '@screens/TrashCanRegisterConfirmScreen/TCRInfoPlaceInfo';
@@ -14,26 +14,15 @@ function TrachCanRegisterConfirmScreen({navigation}: any) {
     trashCanRegisterState,
   );
 
-  const [registerTrashCans, setRegisterTrashCans] = useState<string[]>([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      const user = await getUser();
-      setRegisterTrashCans(user.registedTrashCans);
-    }
-
-    fetchData();
-  }, []);
-
   const handleSubmit = async () => {
     try {
       const trashCan = await addTrashCan(currentTrashCan);
 
       if (trashCan) {
-        await updateRegisterTrashCan([...registerTrashCans, trashCan.id]);
+        await addRegisterTrashCan(trashCan.id);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
 
     navigation.navigate('HomeScreen');

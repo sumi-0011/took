@@ -1,7 +1,12 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {Box, HStack, Image, Slide, Text} from 'native-base';
 import {useRecoilState} from 'recoil';
-import {updateStar, getUser, updateLastTookTime} from '@api/userAPI';
+import {
+  addStaredTrashCan,
+  deleteStaredTrashCan,
+  getUser,
+  updateLastTookTime,
+} from '@api/userAPI';
 import {getTrashCan, updateTrashCanReportUser} from '@api/trashCanAPI';
 import {UserState} from '@recoil/UserState';
 import {TrashCanInfoType} from 'types/TrashCanType';
@@ -70,21 +75,17 @@ function MapModal({currentTrashCanID}: MapModalProps) {
 
       if (!target) {
         try {
-          await updateStar([...userInfo.stars, currentTrashCanID]);
+          await addStaredTrashCan(currentTrashCanID);
           await fetchMapModalData(true);
         } catch (error) {
-          console.warn('updateStar error: ', error);
+          console.warn('addStaredTrashCans error: ', error);
         }
       } else {
-        const filterStars = userInfo.stars.filter(
-          star => star !== currentTrashCanID,
-        );
-
         try {
-          await updateStar(filterStars);
+          await deleteStaredTrashCan(currentTrashCanID);
           await fetchMapModalData(true);
         } catch (error) {
-          console.log('updateStar error: ', error);
+          console.log('deleteStaredTrashCan error: ', error);
         }
       }
     }
