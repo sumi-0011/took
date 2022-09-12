@@ -3,7 +3,7 @@ import {TrashCanType, TrashCanInfoType} from 'types/TrashCanType';
 import {getUserInfo} from './fireAuthAPI';
 
 const trashCans = firebase.firestore().collection('trashCans');
-const users = firebase.firestore().collection('users');
+
 const {uid} = getUserInfo();
 
 export async function addTrashCan(addData: TrashCanInfoType) {
@@ -35,28 +35,6 @@ export async function getTrashCan(TCId: string) {
   }
 }
 
-export async function getStaredTrashCans() {
-  try {
-    const userDoc = await users.doc(uid).get();
-    const userData = userDoc.data();
-
-    const stars: string[] = userData?.stars;
-    const staredTrashCans: TrashCanInfoType[] = [];
-
-    for (const staredItemId of stars) {
-      const trashCanDoc = await trashCans.doc(staredItemId).get();
-      const trashCanData = trashCanDoc.data();
-      staredTrashCans.push({
-        ...trashCanData,
-        id: staredItemId,
-      } as TrashCanInfoType);
-    }
-    return staredTrashCans;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
 export async function getTrashCans() {
   const trashCanList: TrashCanType[] = [];
   try {
@@ -77,27 +55,6 @@ export async function getTrashCans() {
     console.log('getTrashCans api error: ', error);
   }
   return trashCanList;
-}
-
-export async function getRegisterTrashCans() {
-  const registedTrashCans: TrashCanInfoType[] = [];
-  try {
-    const userDoc = await users.doc(uid).get();
-    const userData = userDoc.data();
-    const registed = userData?.registedTrashCans;
-
-    for (const registedItemId of registed) {
-      const trashCanDoc = await trashCans.doc(registedItemId).get();
-      const trashCanData = trashCanDoc.data();
-      registedTrashCans.push({
-        ...trashCanData,
-        id: registedItemId,
-      } as TrashCanInfoType);
-    }
-    return registedTrashCans;
-  } catch (error) {
-    console.log('getRegisterTrashCans api error: ', error);
-  }
 }
 
 export async function updateTrashCanReportUser(TCId: string) {

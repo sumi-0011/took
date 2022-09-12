@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Box, Button, HStack, Progress, Text, VStack} from 'native-base';
+import {Button, HStack, Progress, Text, VStack} from 'native-base';
 import {getUserInfo} from '@api/fireAuthAPI';
 import {UserInfoType} from 'types/UserType';
 import {MailIcon} from '@components/Icon';
@@ -35,10 +35,6 @@ function Profile({onPress}: IProfile) {
     fetchUserInfo();
   }, []);
 
-  if (isLoading) {
-    return <Box>loading</Box>;
-  }
-
   return (
     <VStack
       px="10"
@@ -47,12 +43,12 @@ function Profile({onPress}: IProfile) {
       borderBottomWidth="1">
       <VStack space={2} marginBottom="6">
         <Text fontSize="2xl" bold>
-          {userInfo?.displayName}
+          {!isLoading && userInfo?.displayName}
         </Text>
         <HStack justifyContent="space-between">
           <HStack space={2} alignItems="center">
             <MailIcon size={20} />
-            <Text fontSize="md">{userInfo?.email}</Text>
+            <Text fontSize="md">{!isLoading && userInfo?.email}</Text>
           </HStack>
           <Button variant="link" colorScheme="green" onPress={onPress}>
             비밀번호 변경
@@ -62,13 +58,13 @@ function Profile({onPress}: IProfile) {
       <HStack justifyContent="space-evenly">
         <VStack justifyContent="center" alignItems="center" space="2">
           <Text fontSize="3xl" bold>
-            {userInfo?.tookCnt ?? 0}
+            {(!isLoading && userInfo?.tookCnt) ?? 0}
           </Text>
           <Text>쓰레기 버린 횟수</Text>
         </VStack>
         <VStack justifyContent="center" alignItems="center" space="2">
           <Text fontSize="3xl" bold>
-            {userInfo?.registedTrashCans.length ?? 0}
+            {(!isLoading && userInfo?.registedTrashCans.length) ?? 0}
           </Text>
           <Text>쓰레기통 발견 횟수</Text>
         </VStack>
