@@ -13,11 +13,14 @@ function ClosetTrashCanBox() {
   const {location} = useCurrentLocation();
 
   useEffect(() => {
-    getClosetTrashCan();
+    location && getClosetTrashCan(location);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
-  const getClosetTrashCan = async () => {
+  const getClosetTrashCan = async (currentLocation: {
+    latitude: number;
+    longitude: number;
+  }) => {
     try {
       const trashCans = await getTrashCans();
       let closetTrashCanInfo: {
@@ -31,8 +34,8 @@ function ClosetTrashCanBox() {
       trashCans.forEach(({id, coordinate}) => {
         const {latitude, longitude} = coordinate;
         const TrashCanBeteenDistance = getDistanceFromLatLonInKm(
-          location?.latitude,
-          location?.longitude,
+          currentLocation.latitude,
+          currentLocation.longitude,
           latitude,
           longitude,
         );
