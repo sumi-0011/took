@@ -41,7 +41,11 @@ function ClosetTrashCanBox() {
             longitude,
           );
 
-          if (closetTrashCanInfo.distance > TrashCanBeteenDistance) {
+          const ONE_KM = 1;
+          if (
+            TrashCanBeteenDistance < ONE_KM &&
+            closetTrashCanInfo.distance > TrashCanBeteenDistance
+          ) {
             closetTrashCanInfo = {
               distance: TrashCanBeteenDistance,
               id,
