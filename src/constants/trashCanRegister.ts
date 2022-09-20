@@ -60,3 +60,11 @@ export const RECYCLE_CHECK_LIST = [
     check: false,
   },
 ];
+
+export const RECYCLE_FILTER_LIST = [
+  {
+    name: '전체',
+    key: 'all',
+  },
+  ...RECYCLE_CHECK_LIST,
+];
