@@ -10,6 +10,8 @@ export interface TrashCanInfoType {
 export interface TrashCanType extends TrashCanInfoType {
   reportUsers: string[]; //신고 유저
   isFull: boolean; //쓰레기통이 꽉 찼는지 여부
+  count_yes: number;
+  count_no: number;
 }
 
 export interface TCRStep1RegistType {

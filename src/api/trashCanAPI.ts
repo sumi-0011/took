@@ -1,3 +1,4 @@
+import { resolvePlugin } from '@babel/core';
 import {firebase} from '@react-native-firebase/firestore';
 import {TrashCanType, TrashCanInfoType} from 'types/TrashCanType';
 import {getUserInfo} from './fireAuthAPI';
@@ -49,6 +50,8 @@ export async function getTrashCans() {
         trashImage: trashCanData.trashImage,
         reportUsers: trashCanData.reportUsers ?? [],
         isFull: false,
+        count_yes: trashCanData.count_yes,
+        count_no: trashCanData.count_no,
       });
     });
   } catch (error) {
@@ -76,6 +79,29 @@ export async function updateTrashCanReportUser(TCId: string) {
       return res;
     }
   } catch (error) {
+    console.warn('error: ', error);
+  }
+}
+
+export async function updateTrashCanYesOrNo(TCId: string, answer: boolean) {
+  try {
+    const TrashCanDoc = await trashCans.doc(TCId).get();
+    const TrashCanData: TrashCanType = TrashCanDoc.data() as TrashCanType;
+    const TrashCanCountYes = TrashCanData.count_yes;
+    const TrashCanCountNo = TrashCanData.count_no;
+
+    if(answer === true) {
+      const res = await trashCans.doc(TCId).update({
+        count_yes: TrashCanCountYes + 1 
+      });
+    }
+    else {
+      const res = await trashCans.doc(TCId).update({
+        count_no: TrashCanCountNo + 1
+      })
+    }
+  }
+  catch (error) {
     console.warn('error: ', error);
   }
 }

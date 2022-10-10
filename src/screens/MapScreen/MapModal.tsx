@@ -21,9 +21,10 @@ import {getElapsedTime} from '@utils/time';
 
 interface MapModalProps {
   currentTrashCanID: string;
+  onClickModal:() => void;
 }
 
-function MapModal({currentTrashCanID}: MapModalProps) {
+function MapModal({currentTrashCanID, onClickModal}: MapModalProps) {
   const [userInfo, setUserInfo] = useRecoilState<UserInfoType>(UserState);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -180,9 +181,11 @@ function MapModal({currentTrashCanID}: MapModalProps) {
             </HStack>
             <TOOKBtn
               name=" TOOK 버리기"
-              isDisabled={!isTook}
-              onPress={handleTookBtnClick}
-            />
+              //isDisabled={!isTook}
+              onPress={() => {
+                onClickModal();
+                handleTookBtnClick();
+              }}/>
           </>
         ) : (
           <CenterSpinner />

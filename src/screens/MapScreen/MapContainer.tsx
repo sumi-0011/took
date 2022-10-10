@@ -33,16 +33,29 @@ function MapContainer({onClickMarker}: MapContainerProps) {
       {location && (
         <MapViewWrapper location={location}>
           {trashCanList?.map((item, index) => {
+            const percentage = ((item.count_yes/(item.count_yes+item.count_no))*100)
+            if (percentage >= 80) {
             return (
-              <Marker
-                key={index}
-                title={item.name}
-                identifier={item.id}
-                coordinate={item.coordinate}
-                pinColor={'green'}
-                onPress={() => onClickMarker(item.id)}
-              />
-            );
+                <Marker
+                  key={index}
+                  title={item.name}
+                  identifier={item.id}
+                  coordinate={item.coordinate}
+                  pinColor={'red'}
+                  //onPress={() => onClickMarker(item.id)}
+                />
+            );}
+            else {
+              return (
+                <Marker
+                  key={index}
+                  title={item.name}
+                  identifier={item.id}
+                  coordinate={item.coordinate}
+                  pinColor={'green'}
+                  onPress={() => onClickMarker(item.id)}
+                />
+            );}
           })}
         </MapViewWrapper>
       )}
