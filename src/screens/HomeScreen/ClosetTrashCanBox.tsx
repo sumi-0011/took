@@ -87,7 +87,7 @@ function ClosetTrashCanBox() {
           ))}
         </Select>
       </Box>
-      <PressableBox height="48" onPress={() => console.log('clicked')}>
+      <PressableBox height="40" onPress={() => console.log('clicked')}>
         {closetTrashCan ? (
           <BackgroundImage img={closetTrashCan.trashImage}>
             <VStack p={5} flex={1} justifyContent="space-between">

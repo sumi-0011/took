@@ -14,7 +14,7 @@ function HomeScreen({navigation}: any) {
       <Box p={6} alignContent="center">
         <VStack justifyContent="space-evenly" space={7} h="100%">
           <Header name={name} />
-          <HStack w="100%" space={4} height="64">
+          <HStack w="100%" space={4} height="48">
             <PressableBox
               flex={1}
               onPress={() => navigation.navigate('MapScreen')}>
@@ -53,11 +53,11 @@ function HomeScreen({navigation}: any) {
             </PressableBox>
           </HStack>
           <ClosetTrashCanBox />
-          <HStack space={5} height="32" marginTop="3">
+          <HStack space={5} height="24" marginTop="3">
             <PressableBox
               bg="trueGray.100"
               flex={1}
-              height="32"
+              height="24"
               onPress={() => navigation.navigate('UserRootScreen')}>
               <Center>
                 <Text fontSize="lg" bold>
@@ -68,7 +68,7 @@ function HomeScreen({navigation}: any) {
             <PressableBox
               bg="trueGray.100"
               flex={1}
-              height="32"
+              height="24"
               onPress={() => console.log('FAQ clicked')}>
               <Center>
                 <Text fontSize="lg" bold>
