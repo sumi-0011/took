@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {Box, HStack, Image, Slide, Text} from 'native-base';
+import {Box, HStack, Slide, Text} from 'native-base';
 import {useRecoilState} from 'recoil';
 import {
   addStaredTrashCan,
@@ -18,7 +18,6 @@ import IconBtn from './IconBtn';
 import {isLoggedIn} from '@api/fireAuthAPI';
 import CenterSpinner from '@components/CenterSpinner';
 import {getElapsedTime} from '@utils/time';
-import styled from 'styled-components';
 
 interface MapModalProps {
   currentTrashCanID: string;
@@ -42,13 +41,14 @@ function MapModal({currentTrashCanID, onClickModal}: MapModalProps) {
           getUser(),
           getTrashCan(currentTrashCanID),
         ]);
-        console.log('user, trashCan: ', user, trashCan);
         setUserInfo(user);
         setSelectTrashCanInfo(trashCan);
 
         const elapsedHour = getElapsedTime(user.lastTookTime);
 
-        elapsedHour >= 3 ? setIsTook(true) : setIsTook(false);
+        // TODO : 테스트가 끝나면 지우기 isTook
+        // elapsedHour >= 3 ? setIsTook(true) : setIsTook(false);
+        setIsTook(true);
 
         const target = user.stars.find(star => star === currentTrashCanID);
 
@@ -58,7 +58,7 @@ function MapModal({currentTrashCanID, onClickModal}: MapModalProps) {
           setIsStar(false);
         }
       } catch (error) {
-        console.log(error);
+        console.warn(error);
       }
       !isRefetch && setIsLoading(false);
     },
@@ -87,7 +87,7 @@ function MapModal({currentTrashCanID, onClickModal}: MapModalProps) {
           await deleteStaredTrashCan(currentTrashCanID);
           await fetchMapModalData(true);
         } catch (error) {
-          console.log('deleteStaredTrashCan error: ', error);
+          console.warn('deleteStaredTrashCan error: ', error);
         }
       }
     }
@@ -118,7 +118,7 @@ function MapModal({currentTrashCanID, onClickModal}: MapModalProps) {
     try {
       await updateTrashCanReportUser(selectTrashCanInfo.id);
     } catch (error) {
-      console.log('error: ', error);
+      console.warn('error: ', error);
     }
   }, [selectTrashCanInfo]);
 
@@ -149,7 +149,7 @@ function MapModal({currentTrashCanID, onClickModal}: MapModalProps) {
                 </Box>
               </Box>
               <Box w={100} h={'100%'}>
-                <Image
+                {/* <Image
                   source={{
                     uri:
                       selectTrashCanInfo?.trashImage ??
@@ -159,7 +159,7 @@ function MapModal({currentTrashCanID, onClickModal}: MapModalProps) {
                   width={100}
                   height={90}
                   borderRadius={10}
-                />
+                /> */}
               </Box>
             </Box>
             <HStack paddingY={3} h="70px">
@@ -182,7 +182,7 @@ function MapModal({currentTrashCanID, onClickModal}: MapModalProps) {
             </HStack>
             <TOOKBtn
               name=" TOOK 버리기"
-              //isDisabled={!isTook}
+              isDisabled={!isTook}
               onPress={() => {
                 onClickModal();
                 handleTookBtnClick();

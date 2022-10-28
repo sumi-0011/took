@@ -15,7 +15,7 @@ function UserStarScreen() {
       const stared = await getStaredTrashCans();
       setData(stared);
     } catch (error) {
-      console.log(error);
+      console.warn(error);
     }
     setIsLoading(false);
   };

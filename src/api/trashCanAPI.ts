@@ -1,4 +1,3 @@
-import { resolvePlugin } from '@babel/core';
 import {firebase} from '@react-native-firebase/firestore';
 import {TrashCanType, TrashCanInfoType} from 'types/TrashCanType';
 import {getUserInfo} from './fireAuthAPI';
@@ -13,7 +12,7 @@ export async function addTrashCan(addData: TrashCanInfoType) {
 
     return res;
   } catch (error) {
-    console.log(error);
+    console.warn(error);
   }
 }
 
@@ -32,7 +31,7 @@ export async function getTrashCan(TCId: string) {
 
     return result;
   } catch (error) {
-    console.log('error: ', error);
+    console.warn('error: ', error);
   }
 }
 
@@ -50,12 +49,11 @@ export async function getTrashCans() {
         trashImage: trashCanData.trashImage,
         reportUsers: trashCanData.reportUsers ?? [],
         isFull: false,
-        count_yes: trashCanData.count_yes,
-        count_no: trashCanData.count_no,
+        fullDegree: 0,
       });
     });
   } catch (error) {
-    console.log('getTrashCans api error: ', error);
+    console.warn('getTrashCans api error: ', error);
   }
   return trashCanList;
 }
@@ -83,25 +81,24 @@ export async function updateTrashCanReportUser(TCId: string) {
   }
 }
 
-export async function updateTrashCanYesOrNo(TCId: string, answer: boolean) {
+export async function updateTrashCanFull(TCId: string, input: number) {
   try {
     const TrashCanDoc = await trashCans.doc(TCId).get();
     const TrashCanData: TrashCanType = TrashCanDoc.data() as TrashCanType;
-    const TrashCanCountYes = TrashCanData.count_yes;
-    const TrashCanCountNo = TrashCanData.count_no;
 
-    if(answer === true) {
-      const res = await trashCans.doc(TCId).update({
-        count_yes: TrashCanCountYes + 1 
+    // NOTE : 기본값이 잘 들어가지 않은 이전 데이터가 있어 분기 처리
+    if (TrashCanData?.fullDegree === undefined) {
+      trashCans.doc(TCId).update({
+        fullDegree: input,
+      });
+    } else {
+      const prevFullDegree = TrashCanData.fullDegree;
+      const calc = Math.round((prevFullDegree + input) / 2);
+      trashCans.doc(TCId).update({
+        fullDegree: calc,
       });
     }
-    else {
-      const res = await trashCans.doc(TCId).update({
-        count_no: TrashCanCountNo + 1
-      })
-    }
-  }
-  catch (error) {
+  } catch (error) {
     console.warn('error: ', error);
   }
 }

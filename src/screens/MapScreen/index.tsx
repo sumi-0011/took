@@ -8,7 +8,8 @@ import CheckModal from './CheckModal';
 function MapScreen({navigation}: any) {
   const [selectTrashCan, setSelectTrashCan] = useState<string>('');
   const [isMapModalVisible, setIsMapModalVisible] = useState<boolean>(false);
-  const [isCheckModalVisible, setIsCheckModalVisible] = useState<boolean>(false);
+  const [isCheckModalVisible, setIsCheckModalVisible] =
+    useState<boolean>(false);
 
   const onClickMarker = useCallback((id: string) => {
     setIsMapModalVisible(true);
@@ -29,10 +30,18 @@ function MapScreen({navigation}: any) {
       <BackButton navigation={navigation} />
       <MapContainer onClickMarker={onClickMarker} />
       {isMapModalVisible ? (
-        <MapModal currentTrashCanID={selectTrashCan} onClickModal={onClickModal} />
+        <MapModal
+          currentTrashCanID={selectTrashCan}
+          onClickModal={onClickModal}
+        />
       ) : null}
       {isCheckModalVisible ? (
-        <CheckModal currentTrashCanID={selectTrashCan} onClickModalDown={onClickModalDown}/> )  : null }
+        <CheckModal
+          currentTrashCanID={selectTrashCan}
+          onClickModalDown={onClickModalDown}
+          open={isCheckModalVisible}
+        />
+      ) : null}
     </Box>
   );
 }
