@@ -15,7 +15,7 @@ function UserTCRScreen() {
       const registed = await getRegisterTrashCans();
       setData(registed);
     } catch (error) {
-      console.log(error);
+      console.warn(error);
     }
     setIsLoading(false);
   };
@@ -23,8 +23,6 @@ function UserTCRScreen() {
   useEffect(() => {
     fetchData();
   }, []);
-
-  console.log('data', data);
 
   const handleDeleteRegisterTrashCan = useCallback(
     async (trashCanID: string) => {

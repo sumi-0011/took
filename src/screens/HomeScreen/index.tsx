@@ -1,10 +1,19 @@
 import React, {useState} from 'react';
-import {Box, Center, HStack, ScrollView, Text, VStack} from 'native-base';
+import {
+  Box,
+  Center,
+  HStack,
+  ScrollView,
+  Slider,
+  Text,
+  VStack,
+} from 'native-base';
 import {getUserInfo} from '@api/fireAuthAPI';
 import PressableBox from './PressableBox';
 import Header from './Header';
 import BackgroundImage from './BackgroundImage';
 import ClosetTrashCanBox from './ClosetTrashCanBox';
+import BaseModal from '@components/BaseModal';
 
 function HomeScreen({navigation}: any) {
   const [name] = useState(getUserInfo().displayName);

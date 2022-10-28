@@ -38,7 +38,7 @@ function SigninScreen({navigation}: any) {
       }
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      console.warn(error);
       setIsLoading(false);
     }
   };
