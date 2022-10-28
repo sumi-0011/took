@@ -18,10 +18,11 @@ import IconBtn from './IconBtn';
 import {isLoggedIn} from '@api/fireAuthAPI';
 import CenterSpinner from '@components/CenterSpinner';
 import {getElapsedTime} from '@utils/time';
+import styled from 'styled-components';
 
 interface MapModalProps {
   currentTrashCanID: string;
-  onClickModal:() => void;
+  onClickModal: () => void;
 }
 
 function MapModal({currentTrashCanID, onClickModal}: MapModalProps) {
@@ -152,9 +153,9 @@ function MapModal({currentTrashCanID, onClickModal}: MapModalProps) {
                   source={{
                     uri:
                       selectTrashCanInfo?.trashImage ??
-                      'http://www.solartodaymag.com/news/photo/201705/4484_3192_3220.jpg',
+                      'https://user-images.githubusercontent.com/49177223/198580813-2849f49d-c495-4931-9f97-745f4219f10e.png',
                   }}
-                  alt="쓰레기통 사진"
+                  alt="TrashCan"
                   width={100}
                   height={90}
                   borderRadius={10}
@@ -185,7 +186,8 @@ function MapModal({currentTrashCanID, onClickModal}: MapModalProps) {
               onPress={() => {
                 onClickModal();
                 handleTookBtnClick();
-              }}/>
+              }}
+            />
           </>
         ) : (
           <CenterSpinner />
