@@ -48,6 +48,8 @@ function MapModal({currentTrashCanID, onClickModal}: MapModalProps) {
 
         const elapsedHour = getElapsedTime(user.lastTookTime);
 
+        // NOTE : took 버리기 3시간 제한
+        // setIsTook(true) 로 하면 테스트 할때 편함
         elapsedHour >= 3 ? setIsTook(true) : setIsTook(false);
 
         const target = user.stars.find(star => star === currentTrashCanID);
