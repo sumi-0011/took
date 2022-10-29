@@ -4,7 +4,6 @@ import {Marker} from 'react-native-maps';
 import {getTrashCans} from '@api/trashCanAPI';
 import {TrashCanType} from 'types/TrashCanType';
 import useCurrentLocation from '@hooks/useCurrentLocation';
-import trashCanImage from '@images/trashCan.png';
 import MapViewWrapper from '@components/MapViewWrapper';
 
 interface MapContainerProps {
@@ -21,7 +20,7 @@ function MapContainer({onClickMarker}: MapContainerProps) {
         const response = await getTrashCans();
         setTrashCanList(response);
       } catch (error) {
-        console.log(error);
+        console.warn(error);
       }
     };
 
@@ -33,29 +32,31 @@ function MapContainer({onClickMarker}: MapContainerProps) {
       {location && (
         <MapViewWrapper location={location}>
           {trashCanList?.map((item, index) => {
-            const percentage = ((item.count_yes/(item.count_yes+item.count_no))*100)
-            if (percentage >= 80) {
-            return (
-                <Marker
-                  key={index}
-                  title={item.name}
-                  identifier={item.id}
-                  coordinate={item.coordinate}
-                  pinColor={'red'}
-                  //onPress={() => onClickMarker(item.id)}
-                />
-            );}
-            else {
+            const percentage = item.fullDegree; // 0~10
+
+            if (percentage >= 8) {
               return (
                 <Marker
                   key={index}
                   title={item.name}
                   identifier={item.id}
                   coordinate={item.coordinate}
-                  pinColor={'green'}
+                  pinColor="red"
                   onPress={() => onClickMarker(item.id)}
                 />
-            );}
+              );
+            } else {
+              return (
+                <Marker
+                  key={index}
+                  title={item.name}
+                  identifier={item.id}
+                  coordinate={item.coordinate}
+                  pinColor="green"
+                  onPress={() => onClickMarker(item.id)}
+                />
+              );
+            }
           })}
         </MapViewWrapper>
       )}

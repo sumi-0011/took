@@ -81,7 +81,7 @@ export async function changeProfile({userName}: {userName: string}) {
 
     return response;
   } catch (error) {
-    console.log(error);
+    console.warn(error);
   }
 }
 
@@ -101,10 +101,10 @@ export async function withdrawal() {
     // TODO : 회원탈퇴전에 재로그인을 해야함
     const response = await user?.delete();
 
-    console.log(response);
+    console.warn(response);
 
     return response;
   } catch (error) {
-    console.log(error);
+    console.warn(error);
   }
 }

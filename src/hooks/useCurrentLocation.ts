@@ -17,13 +17,13 @@ function useCurrentLocation() {
               setLocation({latitude, longitude});
             },
             error => {
-              console.log(error);
+              console.warn(error);
             },
             {enableHighAccuracy: true, timeout: 3600, maximumAge: 3600},
           );
         }
       } catch (error) {
-        console.log(error);
+        console.warn(error);
       }
     };
 
