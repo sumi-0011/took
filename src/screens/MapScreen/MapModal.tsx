@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {Box, HStack, Slide, Text} from 'native-base';
+import {Box, HStack, Slide, Text, useToast} from 'native-base';
 import {useRecoilState} from 'recoil';
 import {
   addStaredTrashCan,
@@ -27,6 +27,8 @@ interface MapModalProps {
 function MapModal({currentTrashCanID, onClickModal}: MapModalProps) {
   const [userInfo, setUserInfo] = useRecoilState<UserInfoType>(UserState);
 
+  const toast = useToast();
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isStar, setIsStar] = useState<boolean>(false);
   const [isTook, setIsTook] = useState<boolean>(false);
@@ -46,9 +48,7 @@ function MapModal({currentTrashCanID, onClickModal}: MapModalProps) {
 
         const elapsedHour = getElapsedTime(user.lastTookTime);
 
-        // TODO : 테스트가 끝나면 지우기 isTook
-        // elapsedHour >= 3 ? setIsTook(true) : setIsTook(false);
-        setIsTook(true);
+        elapsedHour >= 3 ? setIsTook(true) : setIsTook(false);
 
         const target = user.stars.find(star => star === currentTrashCanID);
 
@@ -71,7 +71,9 @@ function MapModal({currentTrashCanID, onClickModal}: MapModalProps) {
 
   const handleStarClick = useCallback(async () => {
     if (!isLoggedIn) {
-      console.log('로그인이 필요합니다.');
+      toast.show({
+        description: '로그인이 필요합니다.',
+      });
     } else {
       const target = userInfo?.stars.find(star => star === currentTrashCanID);
 
@@ -91,11 +93,13 @@ function MapModal({currentTrashCanID, onClickModal}: MapModalProps) {
         }
       }
     }
-  }, [currentTrashCanID, fetchMapModalData, userInfo.stars]);
+  }, [currentTrashCanID, fetchMapModalData, toast, userInfo?.stars]);
 
   const handleTookBtnClick = useCallback(async () => {
     if (!isLoggedIn) {
-      console.log('로그인이 필요합니다.');
+      toast.show({
+        description: '로그인이 필요합니다.',
+      });
     } else {
       try {
         await updateLastTookTime(userInfo.tookCnt);
@@ -104,11 +108,13 @@ function MapModal({currentTrashCanID, onClickModal}: MapModalProps) {
         console.warn('updateLastTookTime error: ', error);
       }
     }
-  }, [fetchMapModalData, userInfo.tookCnt]);
+  }, [fetchMapModalData, toast, userInfo.tookCnt]);
 
   const handleReportClick = useCallback(async () => {
     if (!isLoggedIn) {
-      console.log('로그인이 필요합니다.');
+      toast.show({
+        description: '로그인이 필요합니다.',
+      });
       return;
     }
     if (!selectTrashCanInfo) {
@@ -120,7 +126,7 @@ function MapModal({currentTrashCanID, onClickModal}: MapModalProps) {
     } catch (error) {
       console.warn('error: ', error);
     }
-  }, [selectTrashCanInfo]);
+  }, [selectTrashCanInfo, toast]);
 
   return (
     <Slide in={selectTrashCanInfo?.id ? true : false}>
