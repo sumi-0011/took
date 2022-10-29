@@ -14,7 +14,7 @@ export async function getUser() {
     const lastTime = userData?.lastTookTime.toDate(); //FireStoreTimeStamp => Date
     return {...userData, lastTookTime: lastTime} as UserInfoType;
   } catch (error) {
-    console.log(error);
+    console.warn(error);
 
     return {
       tookCnt: 0,
@@ -49,7 +49,7 @@ export async function getStaredTrashCans() {
 
     return staredTrashCans;
   } catch (error) {
-    console.log(error);
+    console.warn(error);
   }
 }
 
@@ -63,7 +63,7 @@ export async function addStaredTrashCan(trashCanID: string) {
 
     return res;
   } catch (error) {
-    console.log('addStar api error: ', error);
+    console.warn('addStar api error: ', error);
   }
 }
 
@@ -77,7 +77,7 @@ export async function deleteStaredTrashCan(trashCanID: string) {
 
     return response;
   } catch (error) {
-    console.log('delete register trash can error', error);
+    console.warn('delete register trash can error', error);
   }
 }
 
@@ -105,7 +105,7 @@ export async function getRegisterTrashCans() {
 
     return registedTrashCans;
   } catch (error) {
-    console.log('getRegisterTrashCans api error: ', error);
+    console.warn('getRegisterTrashCans api error: ', error);
   }
 }
 
@@ -119,7 +119,7 @@ export async function addRegisterTrashCan(trashCanID: string) {
 
     return response;
   } catch (error) {
-    console.log('update register trash can error', error);
+    console.warn('update register trash can error', error);
   }
 }
 
@@ -135,7 +135,7 @@ export async function deleteRegisterTrashCan(trashCanID: string) {
 
     return response;
   } catch (error) {
-    console.log('delete register trash can error', error);
+    console.warn('delete register trash can error', error);
   }
 }
 
@@ -145,9 +145,8 @@ export async function updateLastTookTime(tookCnt: number) {
       lastTookTime: new Date(),
       tookCnt: tookCnt + 1,
     });
-    console.log(' updateLastTookTime res: ', res);
     return res;
   } catch (error) {
-    console.log('updateLastTookTime api error: ', error);
+    console.warn('updateLastTookTime api error: ', error);
   }
 }

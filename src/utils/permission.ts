@@ -20,6 +20,6 @@ export async function requestAccessLocationPermission() {
       );
     }
   } catch (e) {
-    console.log(e);
+    console.warn(e);
   }
 }
