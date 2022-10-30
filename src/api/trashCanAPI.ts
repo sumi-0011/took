@@ -20,8 +20,7 @@ export async function getTrashCan(TCId: string) {
   try {
     let result;
     const res = await trashCans.get();
-    // TODO : doc.id로 바로 찾을수 있을텐데? 밑처럼 하면 될거같은데 테스트를 못함
-    // await trashCans.doc(TCId).get()
+
     res.forEach(function (doc) {
       if (TCId === doc.id) {
         const trashCanData = doc.data();
