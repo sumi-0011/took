@@ -3,7 +3,7 @@ import {Box, FlatList} from 'native-base';
 import {TrashCanInfoType} from 'types/TrashCanType';
 import TCCard from '@components/TrashCanCard';
 import CenterSpinner from '@components/CenterSpinner';
-import {deleteRegisterTrashCan, getRegisterTrashCans} from '@api/userAPI';
+import {getRegisterTrashCans} from '@api/userAPI';
 
 function UserTCRScreen() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -24,14 +24,6 @@ function UserTCRScreen() {
     fetchData();
   }, []);
 
-  const handleDeleteRegisterTrashCan = useCallback(
-    async (trashCanID: string) => {
-      await deleteRegisterTrashCan(trashCanID);
-      await fetchData();
-    },
-    [],
-  );
-
   const renderItem = useCallback(
     ({item}) => (
       <TCCard
@@ -39,7 +31,6 @@ function UserTCRScreen() {
         name={item.name}
         tags={item.tags}
         trashImage={item.trashImage}
-        onRemove={() => handleDeleteRegisterTrashCan(item.id)}
       />
     ),
     [],

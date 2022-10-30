@@ -17,7 +17,7 @@ interface ITCCard {
   id: string;
   trashImage: string;
   onPress?: () => void;
-  onRemove: () => Promise<void>;
+  onRemove?: () => Promise<void>;
 }
 
 function TCCard({name, trashImage, tags, id, onPress, onRemove}: ITCCard) {
@@ -54,14 +54,16 @@ function TCCard({name, trashImage, tags, id, onPress, onRemove}: ITCCard) {
                   </VStack>
                 </HStack>
 
-                <Button
-                  onPress={onRemove}
-                  variant="outline"
-                  colorScheme="trueGray"
-                  borderRadius="lg"
-                  size="sm">
-                  삭제
-                </Button>
+                {onRemove && (
+                  <Button
+                    onPress={onRemove}
+                    variant="outline"
+                    colorScheme="trueGray"
+                    borderRadius="lg"
+                    size="sm">
+                    삭제
+                  </Button>
+                )}
               </HStack>
             </Box>
           );
