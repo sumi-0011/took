@@ -37,7 +37,13 @@ function TCCard({name, trashImage, tags, id, onPress, onRemove}: ITCCard) {
                 <HStack space={5} alignItems="center">
                   <Image
                     opacity={isPressed ? '0.6' : '1'}
-                    source={defaultImg}
+                    source={
+                      trashImage
+                        ? {
+                            uri: trashImage,
+                          }
+                        : defaultImg
+                    }
                     alt="image"
                     resizeMode="cover"
                     rounded="md"

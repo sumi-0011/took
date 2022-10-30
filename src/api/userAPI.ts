@@ -97,6 +97,7 @@ export async function getRegisterTrashCans() {
     for (const registedItemId of registed) {
       const trashCanDoc = await trashCans.doc(registedItemId).get();
       const trashCanData = trashCanDoc.data();
+
       registedTrashCans.push({
         ...trashCanData,
         id: registedItemId,
