@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {Box, HStack, Slide, Text, useToast} from 'native-base';
+import {Box, HStack, Image, Slide, Text, useToast} from 'native-base';
 import {useRecoilState} from 'recoil';
 import {
   addStaredTrashCan,
@@ -67,10 +67,6 @@ function MapModal({currentTrashCanID, onClickModal}: MapModalProps) {
     [currentTrashCanID, setUserInfo],
   );
 
-  useEffect(() => {
-    fetchMapModalData();
-  }, [fetchMapModalData]);
-
   const handleStarClick = useCallback(async () => {
     if (!isLoggedIn) {
       toast.show({
@@ -130,6 +126,10 @@ function MapModal({currentTrashCanID, onClickModal}: MapModalProps) {
     }
   }, [selectTrashCanInfo, toast]);
 
+  useEffect(() => {
+    fetchMapModalData();
+  }, [fetchMapModalData]);
+
   return (
     <Slide in={selectTrashCanInfo?.id ? true : false}>
       <Box
@@ -157,17 +157,15 @@ function MapModal({currentTrashCanID, onClickModal}: MapModalProps) {
                 </Box>
               </Box>
               <Box w={100} h={'100%'}>
-                {/* <Image
+                <Image
                   source={{
-                    uri:
-                      selectTrashCanInfo?.trashImage ??
-                      'https://user-images.githubusercontent.com/49177223/198580813-2849f49d-c495-4931-9f97-745f4219f10e.png',
+                    uri: selectTrashCanInfo?.trashImage,
                   }}
                   alt="TrashCan"
                   width={100}
                   height={90}
                   borderRadius={10}
-                /> */}
+                />
               </Box>
             </Box>
             <HStack paddingY={3} h="70px">

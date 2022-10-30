@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {StyleProp, ViewStyle, Platform, LogBox} from 'react-native';
 import {Box, Text} from 'native-base';
 import {RNCamera} from 'react-native-camera';
 import {hasAndroidPermission} from 'utils/permission';
 import TOOKBtn from '@components/TookButton';
+import {createTrashCanImage} from '@api/storageAPI';
 
 LogBox.ignoreLogs([
   'ViewPropTypes will be removed',
@@ -11,21 +12,32 @@ LogBox.ignoreLogs([
 ]);
 
 interface CameraProps {
-  nextPage: (arg: string) => void;
+  moveToNextPage: (arg: string) => void;
 }
 
-function Camera({nextPage}: CameraProps) {
-  const takePicture = async (camera: RNCamera) => {
-    const options = {quality: 0.5, base64: true};
-    const data = await camera.takePictureAsync(options);
-    if (data) {
-      if (Platform.OS === 'android' && !(await hasAndroidPermission())) {
-        return;
+function Camera({moveToNextPage}: CameraProps) {
+  const takePicture = useCallback(
+    async (camera: RNCamera) => {
+      const options = {quality: 0.5, base64: true};
+      const {uri, base64} = await camera.takePictureAsync(options);
+
+      if (base64 && uri) {
+        if (Platform.OS === 'android' && !(await hasAndroidPermission())) {
+          return;
+        }
+
+        const startIndex = uri.lastIndexOf('/');
+        const endIndex = uri.lastIndexOf('.jpg');
+
+        const imageName = uri.slice(startIndex + 1, endIndex);
+
+        const imageUrl = await createTrashCanImage(imageName, base64);
+
+        moveToNextPage(imageUrl ?? '');
       }
-      // NOTE :사진 갤러리에 저장 =>  const result = await CameraRoll.save(data.uri); //
-      nextPage(data.uri);
-    }
-  };
+    },
+    [moveToNextPage],
+  );
 
   return (
     <RNCamera
@@ -52,7 +64,7 @@ function Camera({nextPage}: CameraProps) {
             </Box>
           );
         }
-        return <TOOKBtn name={'SNAP'} onPress={() => takePicture(camera)} />;
+        return <TOOKBtn name="사진 촬영" onPress={() => takePicture(camera)} />;
       }}
     </RNCamera>
   );

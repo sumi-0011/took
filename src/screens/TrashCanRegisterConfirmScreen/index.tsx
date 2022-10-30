@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box} from 'native-base';
+import {Box, useToast} from 'native-base';
 import {useRecoilValue} from 'recoil';
 import {trashCanRegisterState} from '@recoil/TrashCanRegisterState';
 import {addTrashCan} from '@api/trashCanAPI';
@@ -10,6 +10,7 @@ import TCRInfoPlaceInfo from '@screens/TrashCanRegisterConfirmScreen/TCRInfoPlac
 import TCRInfo from '@screens/TrashCanRegisterConfirmScreen/TCRInfo';
 
 function TrachCanRegisterConfirmScreen({navigation}: any) {
+  const toast = useToast();
   const currentTrashCan = useRecoilValue<TrashCanInfoType>(
     trashCanRegisterState,
   );
@@ -21,6 +22,10 @@ function TrachCanRegisterConfirmScreen({navigation}: any) {
       if (trashCan) {
         await addRegisterTrashCan(trashCan.id);
       }
+
+      toast.show({
+        description: '쓰레기통 등록이 완료되었습니다',
+      });
     } catch (error) {
       console.error(error);
     }
