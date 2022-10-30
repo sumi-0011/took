@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {Box, Slider} from 'native-base';
 import {updateTrashCanFull} from '@api/trashCanAPI';
 import BaseModal from '@components/BaseModal';
@@ -20,17 +20,17 @@ function CheckModal({
 
   const [inputValue, setInputValue] = useState(3);
 
-  const handleUpdate = async () => {
-    updateTrashCanFull(currentTrashCanID, inputValue);
+  const handleUpdate = useCallback(async () => {
+    await updateTrashCanFull(currentTrashCanID, inputValue);
 
     toast.show({
       description: '답변 감사합니다 :D',
     });
-  };
+  }, [currentTrashCanID, inputValue, toast]);
 
-  const handleChange = (value: number) => {
+  const handleChange = useCallback((value: number) => {
     setInputValue(value);
-  };
+  }, []);
 
   return (
     <>

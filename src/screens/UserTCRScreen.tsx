@@ -9,7 +9,7 @@ function UserTCRScreen() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [data, setData] = useState<TrashCanInfoType[] | undefined>([]);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       setIsLoading(true);
       const registed = await getRegisterTrashCans();
@@ -18,10 +18,6 @@ function UserTCRScreen() {
       console.warn(error);
     }
     setIsLoading(false);
-  };
-
-  useEffect(() => {
-    fetchData();
   }, []);
 
   const renderItem = useCallback(
@@ -37,6 +33,10 @@ function UserTCRScreen() {
   );
 
   const keyExtractor = useCallback(item => item.id + item.name, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   if (isLoading) {
     return <CenterSpinner />;

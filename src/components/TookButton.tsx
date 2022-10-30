@@ -11,6 +11,7 @@ function TookButton({name, onPress, isDisabled}: TookButtonProps) {
   return (
     <Button
       padding="5"
+      margin={4}
       colorScheme="green"
       variant="light"
       onPress={onPress}
